@@ -69,7 +69,7 @@ h1,h2,h3 {color: #994;}
 	float: left;
 	width: 640px;
 	background: url(/images/header.jpg) no-repeat;
-	font: normal 2.4em Verdana,sans-serif;
+	font: normal 2.4em Palatino,Verdana,sans-serif;
 	line-height: 150px;
 	text-align: center;	
 }
