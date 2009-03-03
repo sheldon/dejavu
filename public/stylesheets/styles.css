@@ -96,8 +96,9 @@ h1,h2,h3 {color: #994;}
 }
 .main_right {
 	float: right;
-	width: 200px;
+	width: 180px;
 	color: #CCC;
+	padding: 10px;
 }
 
 /* sub-navigation */
