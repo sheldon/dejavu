@@ -14,7 +14,7 @@ load 'deploy' if respond_to?(:namespace) # cap2 differentiator
 # form the root of the application path.
 
 set :application, "dejavu"
-role :web,        "dejavu.oneblackbear.com"
+role :web,        "dejavu.cloudflakes.com"
 set :user,        "#{application}"
 set :password,    'dejavu222'
 
