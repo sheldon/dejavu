@@ -91,7 +91,8 @@ h1,h2,h3 {color: #994;}
 .main {
   background: #fff;
 	float: left;
-	width: 480px;
+	width: 460px;
+	padding: 10px;
 }
 .main_right {
 	float: right;
