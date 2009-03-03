@@ -23,7 +23,7 @@ set :password,    'dejavu222'
 # OPTIONAL VARIABLES
 # =============================================================================
 default_run_options[:pty] = true
-set :repository,  "git@github.com:Sheldon/dejavu.git"
+set :repository,  "git://github.com/Sheldon/dejavu.git"
 set :branch,      "master"
 set :deploy_to,   "."
 
