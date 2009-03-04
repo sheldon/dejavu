@@ -1,0 +1,8 @@
+<?foreach($cms_content as $content):?>
+  <h1><?=$content->title?></h1>
+  <p class="meta"><?=$content->published?> by <?=$content->author->username?></p>
+  
+  <div class="cms-content">
+    <?=$content->content?>
+  </div>
+<?endforeach?>

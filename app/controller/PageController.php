@@ -13,8 +13,22 @@
 
 class PageController extends ApplicationController {
   
-  public function index() {
-    
+  public function controller_global(){
+    $this->cms();
   }
   
+  public function index() {
+    $this->cms_section = new CmsSection();
+    $this->cms_section = $this->cms_section->filter(array("title" => "Home"))->first();
+    $this->cms_content = $this->cms_section->content;
+  }
+  
+  public function login() {
+    $user = new WildfireUser();
+    $this->login_form = new WaxForm($user);
+  }
+  
+  public function shoutbox() {
+    
+  }
 }
