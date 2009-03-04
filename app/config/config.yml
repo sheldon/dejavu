@@ -14,11 +14,10 @@ production:   208.78.97.122
 # == Database configuration ==
 development:
  db:
-   dbtype: mysql
-   host: localhost
-   database: dejavu
-   username: dejavu
-   password: dejavu222
+  dbtype: mysql
+  host: localhost
+  database: dejavu_development
+  username: root
 
 test:
   db:
