@@ -40,10 +40,13 @@ class WXApplication {
    */
 	private function setup_environment() {
 	  $addr = gethostbyname($_SERVER["HOSTNAME"]);
+	  print_r($addr);
 	  if(!$addr) $addr = gethostbyname($_SERVER["SERVER_NAME"]);
+	  print_r($addr);
 	  $regexp = '/^((1?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(1?\d{1,2}|2[0-4]\d|25[0-5])$/'; 
+	  print_r($addr);
 	  if(!preg_match($regexp, $addr)) $addr = false;
-	  print_r($_SERVER); exit;
+	  print_r($addr); exit;
 		if(defined('ENV')) {
 		  WXConfiguration::set_environment(ENV);
 		} elseif($addr && (substr($addr,0,3)=="10." || substr($addr,0,4)=="127."||substr($addr,0,4)=="192.")) {
