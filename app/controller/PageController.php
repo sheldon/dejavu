@@ -21,6 +21,7 @@ class PageController extends ApplicationController {
     $this->cms_section = new CmsSection();
     $this->cms_section = $this->cms_section->filter(array("title" => "Home"))->first();
     $this->cms_content = $this->cms_section->content;
+    print_r($this->cms_content); exit;
   }
   
   public function login() {
