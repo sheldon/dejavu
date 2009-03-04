@@ -7,11 +7,9 @@ URL: http://templates.arcsin.se
 
 Feel free to use and modify but please provide credits.
 #############################################################*/
-
-/* standard elements */
-* {
-	margin: 0;
-	padding: 0;
+html, body{
+  margin: 0;
+  padding: 0;
 }
 
 a {color: #682;}
@@ -49,6 +47,14 @@ blockquote p {padding: 3px 0;}
 
 h1,h2,h3 {color: #994;}
 
+form label, form input.submit_field{
+  float: left;
+  clear: left;
+}
+form input{
+  float: left;
+}
+
 /* misc */
 .clearer {clear: both;}
 .meta {font-size: 0.8em; color: #666;}
@@ -65,13 +71,15 @@ h1,h2,h3 {color: #994;}
 }
 
 /* header */
-.header {
+.header a {
 	float: left;
 	width: 640px;
 	background: url(/images/header.jpg) no-repeat;
-	font: normal 2.4em Palatino,Verdana,sans-serif;
+	font: normal 2.4em "Times Roman",times,serif;
 	line-height: 150px;
 	text-align: center;	
+  color: #000;
+  text-decoration: none;
 }
 
 /* structure */
