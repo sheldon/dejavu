@@ -37,6 +37,16 @@ class PageController extends ApplicationController {
     
   }
   
+  public function recruitment(){
+    $this->rec_form = new WaxForm();
+    $this->rec_form->add_element("Character Name", "TextInput");
+    $this->rec_form->add_element("Class", "TextInput");
+    $this->rec_form->add_element("Level", "TextInput");
+    $this->rec_form->add_element("Talent Spec", "TextInput");
+    $this->rec_form->add_element("About yourself", "TextareaInput");
+    $this->rec_form->submit_text = "Apply to Guild";
+  }
+  
   public function members(){
     $guild_list_url = "http://eu.wowarmory.com/guild-info.xml?r=".urlencode($this->server_name)."&n=".urlencode($this->guild_name)."&p=1";
 		$xml = $this->cached_feed($guild_list_url);

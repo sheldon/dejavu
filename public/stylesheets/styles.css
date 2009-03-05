@@ -53,9 +53,19 @@ h1,h2,h3 {color: #994;}
 form label, form input.submit_field{
   float: left;
   clear: left;
+  margin: 5px 0;
 }
-form input{
+form input, form textarea{
   float: left;
+  border: 1px solid #000;
+  padding: 2px;
+  margin: 5px 0;
+}
+form input.text_field, form textarea {
+  width: 200px;
+}
+form input.submit_field{
+  margin-left: 120px;
 }
 
 /* misc */
