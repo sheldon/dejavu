@@ -24,7 +24,8 @@ class PageController extends ApplicationController {
   public function index(){
     $this->cms_section = new CmsSection();
     $this->cms_section = $this->cms_section->filter(array("title" => "Home"))->first();
-    $this->cms_content = $this->cms_section->content;
+    $this->cms_content = new CmsContent("published");
+    $this->cms_content = $this->cms_content->filter(array("cms_section_id" => $this->cms_section->id))->order("published DESC")->all();
   }
   
   public function login(){
