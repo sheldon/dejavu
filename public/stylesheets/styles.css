@@ -12,7 +12,10 @@ html, body{
   padding: 0;
 }
 
-a {color: #682;}
+a {
+  color: #682;
+  text-decoration: none;
+}
 
 a:hover {color: #9A6;}
 
