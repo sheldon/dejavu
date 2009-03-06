@@ -34,8 +34,11 @@ p,ul {
 
 ul {margin-left: 1.2em;}
 
-li {list-style-type: disc;}
-.main li {padding-bottom:1em;}
+li {list-style: none;}
+.main li {
+  padding-bottom:1em;
+  list-style-image:url(/images/bullet.gif);
+}
 
 h1 {font-size: 1.2em;}
 
