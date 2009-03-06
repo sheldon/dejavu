@@ -12,9 +12,7 @@ html, body{
   padding: 0;
 }
 
-html{
-	background: #333 url(/images/bg.gif);
-}
+html{ background: #333 url(/images/bg.gif); }
 
 a {
   color: #682;
@@ -26,21 +24,20 @@ a:hover {color: #9A6;}
 body {
 	color: #333;
 	font: normal 62.5% "Lucida Sans Unicode",sans-serif;
+	margin-top: 20px;
 }
 
-p,ul {
-	padding-bottom: 1em;
-}
+p,ul { padding-bottom: 1em; }
 
-ul {margin-left: 1.6em;}
+ul { margin-left: 1.6em; }
 
-li {list-style: none;}
+li { list-style: none; }
 .main li {
   padding-bottom:1em;
   list-style-image:url(/images/bullet.gif);
 }
 
-h1 {font-size: 1.2em;}
+h1 { font-size: 1.2em; }
 
 blockquote {
 	background: #FFF;
