@@ -12,6 +12,10 @@ html, body{
   padding: 0;
 }
 
+html{
+	background: #333 url(/images/bg.gif);
+}
+
 a {
   color: #682;
   text-decoration: none;
@@ -20,7 +24,6 @@ a {
 a:hover {color: #9A6;}
 
 body {
-	background: #333 url(/images/bg.gif);
 	color: #333;
 	font: normal 62.5% "Lucida Sans Unicode",sans-serif;
 }
