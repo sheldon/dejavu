@@ -45,6 +45,11 @@ class PageController extends ApplicationController {
     $this->rec_form->add_element("Talent Spec", "TextInput");
     $this->rec_form->add_element("About yourself", "TextareaInput");
     $this->rec_form->submit_text = "Apply to Guild";
+    if($this->rec_form->save()){
+      $notifier = new Notifier();
+      $notifier->send_recruitment($this->rec_form->post_data);
+      $this->recruitment_message = "Thanks for your application, we'll get back to your shortly.";
+    }
   }
   
   public function members(){
