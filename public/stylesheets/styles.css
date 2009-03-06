@@ -53,6 +53,8 @@ blockquote p {padding: 3px 0;}
 
 h1,h2,h3 {color: #994;}
 
+strong{font-weight: bold;}
+
 form label, form input.submit_field{
   float: left;
   clear: left;
