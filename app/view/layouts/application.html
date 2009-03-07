@@ -13,8 +13,8 @@
 
 	<h1 class="header"><a href="/">Deja Vu</a></h1>
 
-  <?=partial("page/_right_col")?>
-  <?=partial("page/_subnav")?>
+  <?=partial("page/_right_col", $this)?>
+  <?=partial("page/_subnav", $this)?>
 		
 	<div class="main">
     <?=$content_for_layout?>		

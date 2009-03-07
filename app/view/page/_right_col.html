@@ -6,7 +6,9 @@
   <h1>Vent Server Status</h1>
   <p>This will show who's online on the vent server</p>
 
-  <h1>Some Other Junk here</h1>
-  <p>Interdum nec, metus. Maecenas ornare lobortis risus. Donec mattis quam aliquam risus. Nulla non felis sollicitudin urna blandit egestas. Integer et libero <a href="">varius pede</a> tristique ultricies. Cras nisl. Proin quis massa semper felis euismod ultricies.</p>
+  <?if($model_viewer_width == 180):?>
+  <h1>Random Member</h1>
+  <?=partial("member", $this)?>
+  <?endif?>
 
 </div>

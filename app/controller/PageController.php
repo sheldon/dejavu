@@ -19,6 +19,12 @@ class PageController extends ApplicationController {
   
   public function controller_global(){
     $this->cms();
+    if($this->action != "member"){
+      $this->members();
+      $chosen_one = $this->members[array_rand($this->members)]['name'];
+      $this->member = $this->fetch_member_data($chosen_one);
+      $this->model_viewer_width = 180;
+    }
   }
   
   public function index(){
@@ -53,16 +59,28 @@ class PageController extends ApplicationController {
   }
   
   public function member(){
+    $this->member = $this->fetch_member_data(WaxUrl::get("id"));
+    $this->model_viewer_width = 460;
+  }
+  
+  public function members(){
+    $guild_list_url = "http://eu.wowarmory.com/guild-info.xml?r=".urlencode($this->server_name)."&n=".urlencode($this->guild_name)."&p=1";
+		$xml = $this->cached_feed($guild_list_url);
+		$this->members = $this->parse_xml($xml, "//character");
+		//print_r($this->members); exit;
+  }
+  
+  protected function fetch_member_data($character_name){
     $allowed_item_slots = array(0,2,4,5,6,7,8,9,14,15,16,17);
     
-    $character_data_url = "http://eu.wowarmory.com/character-sheet.xml?r=".urlencode($this->server_name)."&n=".urlencode(WaxUrl::get("id"));
+    $character_data_url = "http://eu.wowarmory.com/character-sheet.xml?r=".urlencode($this->server_name)."&n=".urlencode($character_name);
 		$character_xml = $this->cached_feed($character_data_url);
-		$this->member = $this->parse_xml($character_xml, "//character");
-		$this->member = $this->member[0];
-		$this->member["items"] = $this->parse_xml($character_xml, "//item");
-		foreach($this->member["items"] as $item_id => $item){
+		$member = $this->parse_xml($character_xml, "//character");
+		$member = $member[0];
+		$member["items"] = $this->parse_xml($character_xml, "//item");
+		foreach($member["items"] as $item_id => $item){
   		if(in_array($item['slot'], $allowed_item_slots)){
-		    $item_reference = &$this->member["items"][$item_id];
+		    $item_reference = &$member["items"][$item_id];
         $wowhead_item_data = "http://www.wowhead.com/?item=".$item['id']."&xml";
     		$item_xml = $this->cached_feed($wowhead_item_data, 2592000); //cache wowhead item data for 30 days
     		$display_id = $this->parse_xml($item_xml, "//icon");
@@ -74,14 +92,8 @@ class PageController extends ApplicationController {
     		//print_r($item_reference); exit;
 		  }
 		}
-		//print_r($this->member); exit;
-  }
-  
-  public function members(){
-    $guild_list_url = "http://eu.wowarmory.com/guild-info.xml?r=".urlencode($this->server_name)."&n=".urlencode($this->guild_name)."&p=1";
-		$xml = $this->cached_feed($guild_list_url);
-		$this->members = $this->parse_xml($xml, "//character");
-		//print_r($this->members); exit;
+		//print_r($member); exit;
+		return $member;
   }
   
 	protected function parse_xml($xml, $xpath, $items=false){		
