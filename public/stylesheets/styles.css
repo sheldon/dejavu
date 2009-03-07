@@ -78,6 +78,7 @@ form input.submit_field{
 .meta {font-size: 0.8em; color: #666;}
 .left {float: left;}
 .right {float: right;}
+ul.left-aligned, ul.left-aligned li{text-align: left; margin-left: 20px;}
 
 /* structure */
 .container {

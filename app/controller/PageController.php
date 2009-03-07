@@ -58,6 +58,8 @@ class PageController extends ApplicationController {
     }
   }
   
+  public function guides(){}
+  
   public function member(){
     $this->member = $this->fetch_member_data(WaxUrl::get("id"));
     $this->model_viewer_width = 460;
