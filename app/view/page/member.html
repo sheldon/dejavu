@@ -1,6 +1,6 @@
 <?foreach($member['items'] as $item) if($item['wowhead_slot_id']) $item_string .= $item['wowhead_slot_id'].",".$item['wowhead_display_id'].","; $item_string = substr($item_string, 0, -1);?>
 <div class="member">
-  <h2><a href="http://eu.wowarmory.com/character-sheet.xml?<?=$member['charUrl']?>"><?=$member['name']?></a></h2>
+  <h2><a href="http://eu.wowarmory.com/character-sheet.xml?<?=urlencode($member['charUrl'])?>"><?=urlencode($member['name'])?></a></h2>
   <p class="meta"><?=$member['race']?> <?=$member['class']?></p>
 
 	<object
