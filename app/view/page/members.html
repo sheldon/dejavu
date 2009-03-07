@@ -1,6 +1,6 @@
 <?foreach($members as $member):?>
   <div class="member">
-    <h2><a href="http://eu.wowarmory.com/character-sheet.xml?<?=$member['url']?>"><?=$member['name']?></a></h2>
+    <h2><a href="/member/<?=$member['name']?>"><?=$member['name']?></a></h2>
     <p class="meta"><?=$member['race']?> <?=$member['class']?></p>
   </div>
 <?endforeach?>

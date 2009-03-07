@@ -1,0 +1,19 @@
+<?foreach($member['items'] as $item) if($item['wowhead_slot_id']) $item_string .= $item['wowhead_slot_id'].",".$item['wowhead_display_id'].","; $item_string = substr($item_string, 0, -1);?>
+<div class="member">
+  <h2><a href="http://eu.wowarmory.com/character-sheet.xml?<?=$member['charUrl']?>"><?=$member['name']?></a></h2>
+  <p class="meta"><?=$member['race']?> <?=$member['class']?></p>
+  <object
+    width="460"
+    height="400"
+    type="application/x-shockwave-flash"
+    data="http://static.wowhead.com/modelviewer/ModelView.swf"
+    id="test"
+    style="visibility: visible;"
+  >
+    <param name="quality" value="high"/>
+    <param name="allowscriptaccess" value="always"/>
+    <param name="menu" value="false"/>
+    <param name="wmode" value="transparent"/>
+    <param name="flashvars" value="model=<?=str_replace(" ","",strtolower($member['race'].$member['gender']))?>&amp;modelType=16&amp;contentPath=http://static.wowhead.com/modelviewer/&amp;blur=0&amp;equipList=<?=$item_string?>"/>
+  </object>
+</div>

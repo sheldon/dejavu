@@ -13,7 +13,7 @@
 
 class PageController extends ApplicationController {
   
-  public $cache_time = 3600; //60*60 - 1hr
+  public $cache_time = 3600; //default cache time of 1 hour
   public $guild_name = "Deja Vu";
   public $server_name = "Azuremyst";
   
@@ -52,11 +52,36 @@ class PageController extends ApplicationController {
     }
   }
   
+  public function member(){
+    $allowed_item_slots = array(0,2,4,5,6,7,8,9,14,15,16,17);
+    
+    $character_data_url = "http://eu.wowarmory.com/character-sheet.xml?r=".urlencode($this->server_name)."&n=".urlencode(WaxUrl::get("id"));
+		$character_xml = $this->cached_feed($character_data_url);
+		$this->member = $this->parse_xml($character_xml, "//character");
+		$this->member = $this->member[0];
+		$this->member["items"] = $this->parse_xml($character_xml, "//item");
+		foreach($this->member["items"] as $item_id => $item){
+  		if(in_array($item['slot'], $allowed_item_slots)){
+		    $item_reference = &$this->member["items"][$item_id];
+        $wowhead_item_data = "http://www.wowhead.com/?item=".$item['id']."&xml";
+    		$item_xml = $this->cached_feed($wowhead_item_data, 2592000); //cache wowhead item data for 30 days
+    		$display_id = $this->parse_xml($item_xml, "//icon");
+    		$display_id = $display_id[0]['displayId'];
+    		$item_reference["wowhead_display_id"] = $display_id;
+    		$slot_id = $this->parse_xml($item_xml, "//inventorySlot");
+    		$slot_id = $slot_id[0]['id'];
+    		$item_reference["wowhead_slot_id"] = $slot_id;
+    		//print_r($item_reference); exit;
+		  }
+		}
+		//print_r($this->member); exit;
+  }
+  
   public function members(){
     $guild_list_url = "http://eu.wowarmory.com/guild-info.xml?r=".urlencode($this->server_name)."&n=".urlencode($this->guild_name)."&p=1";
 		$xml = $this->cached_feed($guild_list_url);
 		$this->members = $this->parse_xml($xml, "//character");
-		//print_r($this->members[0]); exit;
+		//print_r($this->members); exit;
   }
   
 	protected function parse_xml($xml, $xpath, $items=false){		
@@ -77,12 +102,13 @@ class PageController extends ApplicationController {
 		return $data;
 	}
 	
-	protected function cached_feed($url, $header=false){
+	protected function cached_feed($url, $cache_time=false, $header=false){
+	  if(!$cache_time) $cache_time = $this->cache_time;
 		$fname = CACHE_DIR . md5($url).".xml";
 		if(!is_readable($fname)) $mod_time = 0;
 		else $mod_time = filemtime($fname);
 		$now = time();
-		if(($now - $mod_time) > $this->cache_time){
+		if(($now - $mod_time) > $cache_time){
 			if($copy = $this->fetch_file($url, $header)){
 				@file_put_contents($fname, $copy);
 				return $copy;
