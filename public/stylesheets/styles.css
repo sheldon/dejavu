@@ -113,6 +113,7 @@ ul.left-aligned, ul.left-aligned li{text-align: left; margin-left: 20px;}
 }
 .subnav {
 	float: left;
+	clear: left;
 	width: 160px;
 }
 .main {
