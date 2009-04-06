@@ -1,7 +1,9 @@
 <?foreach($members as $member):?>
   <div class="member">
-    <h2><a href="/member/<?=$member['name']?>"><?=$member['name']?></a></h2>
-    <p class="meta"><?=$member['race']?> <?=$member['class']?></p>
-    <a href="http://be.imba.hu/?zone=EU&amp;realm=Azuremyst&amp;character=<?=urlencode($member['name'])?>">Check Gear</a>
+    <p>
+      <a href="/member/<?=$member['name']?>"><?=$member['name']?></a> - 
+      <span class="meta"><?=$member['race']?> <?=$member['class']?></span> - 
+      <a href="http://be.imba.hu/?zone=EU&amp;realm=Azuremyst&amp;character=<?=urlencode($member['name'])?>">Check Gear</a>
+    </p>
   </div>
 <?endforeach?>
