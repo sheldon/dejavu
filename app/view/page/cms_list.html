@@ -4,5 +4,8 @@
   
   <div class="cms-content">
     <?=$content->content?>
+    <?if(count($cms_content->images)):?>
+    <p><a href="<?=$cms_content->images[0]->url?>"><img src="<?=$cms_content->images[0]->permalink(460)?>" /></a></p>
+    <?endif?>
   </div>
 <?endforeach?>
