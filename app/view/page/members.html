@@ -2,6 +2,6 @@
   <div class="member">
     <h2><a href="/member/<?=$member['name']?>"><?=$member['name']?></a></h2>
     <p class="meta"><?=$member['race']?> <?=$member['class']?></p>
-    <a href="http://be.imba.hu/?zone=EU&amp;realm=Azuremyst&amp;character=".<?=urlencode($member['name'])?>>Check Gear</a>
+    <a href="http://be.imba.hu/?zone=EU&amp;realm=Azuremyst&amp;character=<?=urlencode($member['name'])?>">Check Gear</a>
   </div>
 <?endforeach?>
