@@ -132,6 +132,9 @@ ul.left-aligned, ul.left-aligned li{text-align: left; margin-left: 20px;}
   width: 76px;
   float: left;
 }
+.member img{
+  margin-top: 5px;
+}
 
 /* sub-navigation */
 .subnav h1 {
