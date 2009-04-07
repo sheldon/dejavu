@@ -71,6 +71,11 @@ class PageController extends ApplicationController {
       return strcmp($a["name"], $b["name"]);
   }
 
+  static function remove_alts($a)
+  {
+      return $a["rank"] != 4;
+  }
+
   public function members(){
     $guild_list_url = "http://eu.wowarmory.com/guild-info.xml?r=".urlencode($this->server_name)."&n=".urlencode($this->guild_name)."&p=1";
 		$xml = $this->cached_feed($guild_list_url);
@@ -78,6 +83,8 @@ class PageController extends ApplicationController {
     
     //sort members by name
     usort($this->members, array("PageController", "sort_members_custom_cmp"));
+    //remove alts from the member list
+    $this->members = array_filter($this->members, array("PageController", "remove_alts"));
     
 		//print_r($this->members); exit;
   }
