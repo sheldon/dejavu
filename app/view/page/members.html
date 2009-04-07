@@ -1,6 +1,8 @@
 <?foreach($members as $member):?>
   <div class="member">
-    <img src="http://eu.wowarmory.com/images/portraits/wow<?=( ($member['level'] == 80) ? '-80' : ( ($member['level'] >= 70) ? '-70' : ( ($member['level'] >= 60) ? '' : '-default' ) ) ).'/'.$member['genderId'].'-'.$member['raceId'].'-'.$member['classId']?>.gif" alt="<?=$member['name']?>" />
+    <a href="/member/<?=$member['name']?>">
+      <img src="http://eu.wowarmory.com/images/portraits/wow<?=( ($member['level'] == 80) ? '-80' : ( ($member['level'] >= 70) ? '-70' : ( ($member['level'] >= 60) ? '' : '-default' ) ) ).'/'.$member['genderId'].'-'.$member['raceId'].'-'.$member['classId']?>.gif" alt="<?=$member['name']?>" />
+    </a>
     <p>
       <a href="/member/<?=$member['name']?>"><?=$member['name']?></a><br />
       <span class="meta"><?=$member['race']?><br /><?=$member['class']?></span><br />
