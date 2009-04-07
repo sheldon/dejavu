@@ -66,10 +66,19 @@ class PageController extends ApplicationController {
     $this->model_viewer_width = 460;
   }
   
+  static function sort_members_custom_cmp($a, $b)
+  {
+      return strcmp($a["name"], $b["name"]);
+  }
+
   public function members(){
     $guild_list_url = "http://eu.wowarmory.com/guild-info.xml?r=".urlencode($this->server_name)."&n=".urlencode($this->guild_name)."&p=1";
 		$xml = $this->cached_feed($guild_list_url);
 		$this->members = $this->parse_xml($xml, "//character");
+    
+    //sort members by name
+    usort($this->members, array("PageController", "sort_members_custom_cmp"));
+    
 		//print_r($this->members); exit;
   }
   
