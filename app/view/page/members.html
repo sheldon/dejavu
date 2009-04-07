@@ -1,8 +1,9 @@
 <?foreach($members as $member):?>
   <div class="member">
+    <img src="http://eu.wowarmory.com/images/portraits/wow<?=( ($member['level'] == 80) ? '-80' : ( ($member['level'] >= 70) ? '-70' : ( ($member['level'] >= 60) ? '' : '-default' ) ) ).'/'.$member['genderId'].'-'.$member['raceId'].'-'.$member['classId']?>.gif" alt="<?=$member['name']?>" />
     <p>
-      <a href="/member/<?=$member['name']?>"><?=$member['name']?></a> - 
-      <span class="meta"><?=$member['race']?> <?=$member['class']?></span> - 
+      <a href="/member/<?=$member['name']?>"><?=$member['name']?></a><br />
+      <span class="meta"><?=$member['race']?><br /><?=$member['class']?></span><br />
       <a href="http://be.imba.hu/?zone=EU&amp;realm=Azuremyst&amp;character=<?=urlencode($member['name'])?>">Check Gear</a>
     </p>
   </div>

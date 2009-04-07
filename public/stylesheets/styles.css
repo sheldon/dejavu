@@ -128,6 +128,10 @@ ul.left-aligned, ul.left-aligned li{text-align: left; margin-left: 20px;}
 	color: #CCC;
 	padding: 10px;
 }
+.member{
+  width: 76px;
+  float: left;
+}
 
 /* sub-navigation */
 .subnav h1 {
