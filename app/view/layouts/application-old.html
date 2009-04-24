@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd" xml:lang="en"><head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/core.css" media="screen"/>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css" media="screen"/>
+	<script type="text/javascript" src="/javascripts/swfobject.js"></script>
+	<script type="text/javascript">
+		swfobject.registerObject("character-viewer", "10.0.0", "expressInstall.swf");
+	</script>
+  <title>Deja Vu</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h1 class="header"><a href="/">Deja Vu</a></h1>
+
+  <?=partial("page/_right_col", $this)?>
+  <?=partial("page/_subnav", $this)?>
+		
+	<div class="main">
+    <?=$content_for_layout?>		
+	</div>
+	
+	<div class="clearfix"></div>
+
+	<div class="footer clearfix">
+		<span class="left">Hosted by <a href="http://oneblackbear.com">oneblackbear</a></span>
+		<span class="right">Template design by <a href="http://templates.arcsin.se">Arcsin</a></span>
+	</div>
+</div>
+</body>
+</html>

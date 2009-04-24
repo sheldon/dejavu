@@ -10,26 +10,25 @@
 	</script>
   <title>Deja Vu</title>
 </head>
-
 <body>
-
-<div class="container">
-
-	<h1 class="header"><a href="/">Deja Vu</a></h1>
-
-  <?=partial("page/_right_col", $this)?>
-  <?=partial("page/_subnav", $this)?>
-		
-	<div class="main">
-    <?=$content_for_layout?>		
-	</div>
-	
-	<div class="clearfix"></div>
-
-	<div class="footer clearfix">
-		<span class="left">Hosted by <a href="http://oneblackbear.com">oneblackbear</a></span>
-		<span class="right">Template design by <a href="http://templates.arcsin.se">Arcsin</a></span>
-	</div>
+<div id="ev_bg">
+  <div id="everything">
+    <div id="header">
+      <h1><a href="/">Deja Vu - World of Warcraft Guild</a></h1>
+    </div>
+    <div id="middle">
+      <div id="left_column">
+        <?=partial("page/_left_col", $this)?>
+      </div>
+      <div id="middle_column" class="two_column">
+        <?=$content_for_layout?>
+      </div>    
+    </div>
+	  <div id="footer">
+      <!--<div id="subnav"><a href="#">SubNav1</a> | <a href="#">SubNav2</a> | <a href="#">SubNav3</a> | <a href="#">SubNav4</a> | <a href="#">SubNav5</a> | <a href="#">SubNav6</a></div>-->
+      <span class="copyright">World of Warcraft&reg; and Blizzard Entertainment&reg; are all trademarks or registered trademarks of Blizzard Entertainment in the United States and/or other countries.<br />These terms and all related materials, logos, and images are copyright &copy; Blizzard Entertainment. This site is in no way associated with or endorsed by Blizzard Entertainment&reg;.</span>
+    </div>
+  </div>
 </div>
 </body>
 </html>

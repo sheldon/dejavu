@@ -1,11 +1,12 @@
 <?foreach($cms_content as $content):?>
+<div class="post">
   <h1><?=$content->title?></h1>
-  <p class="meta"><?=$content->published?> by <?=$content->author->username?></p>
-  
-  <div class="cms-content">
+  <div class="post_body">
     <?=$content->content?>
     <?if(count($content->images)):?>
     <p><a href="<?=$content->images[0]->url?>"><img src="<?=$content->images[0]->permalink(460)?>" /></a></p>
     <?endif?>
   </div>
+  <div class="postedby">Posted by: <?=$content->author->username?></div><div class="timestamp"><?=$content->published?></div>
+</div>
 <?endforeach?>

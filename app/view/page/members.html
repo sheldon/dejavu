@@ -1,11 +1,13 @@
-<?foreach($members as $member):?>
-  <div class="member">
-    <p>
-      <a href="/member/<?=$member['name']?>"><?=$member['name']?>
-        <img src="http://eu.wowarmory.com/images/portraits/wow<?=( ($member['level'] == 80) ? '-80' : ( ($member['level'] >= 70) ? '-70' : ( ($member['level'] >= 60) ? '' : '-default' ) ) ).'/'.$member['genderId'].'-'.$member['raceId'].'-'.$member['classId']?>.gif" alt="<?=$member['name']?>" />
-      </a>
-      <?=$member['race']?><br /><?=$member['class']?><br />
-      <a href="http://be.imba.hu/?zone=EU&amp;realm=Azuremyst&amp;character=<?=urlencode($member['name'])?>">Check Gear</a>
-    </p>
+<div class="post">
+  <h1>Members</h1>
+  <div class="post_body clearfix">
+    <?foreach($members as $member):?>
+      <div class="member center">
+        <p>
+          <a href="/member/<?=$member['name']?>"><?=$member['name']?></a>
+          <a href="/member/<?=$member['name']?>"><img src="http://eu.wowarmory.com/images/portraits/wow<?=( ($member['level'] == 80) ? '-80' : ( ($member['level'] >= 70) ? '-70' : ( ($member['level'] >= 60) ? '' : '-default' ) ) ).'/'.$member['genderId'].'-'.$member['raceId'].'-'.$member['classId']?>.gif" alt="<?=$member['name']?>" /></a>
+        </p>
+      </div>
+    <?endforeach?>
   </div>
-<?endforeach?>
+</div>

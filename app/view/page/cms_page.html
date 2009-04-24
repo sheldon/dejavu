@@ -1,6 +1,10 @@
-<h1><?=$cms_content->title?></h1>
-<p class="meta"><?=$cms_content->published?> by <?=$cms_content->author->username?></p>
-
-<div class="cms-content">
-  <?=$cms_content->content?>
+<div class="post">
+  <h1><?=$cms_content->title?></h1>
+  <div class="post_body">
+    <?=$cms_content->content?>
+    <?if(count($cms_content->images)):?>
+    <p><a href="<?=$cms_content->images[0]->url?>"><img src="<?=$cms_content->images[0]->permalink(460)?>" /></a></p>
+    <?endif?>
+  </div>
+  <div class="postedby">Posted by: <?=$cms_content->author->username?></div><div class="timestamp"><?=$cms_content->published?></div>
 </div>

@@ -23,7 +23,8 @@ class PageController extends ApplicationController {
       $this->members();
       $chosen_one = $this->members[array_rand($this->members)]['name'];
       $this->member = $this->fetch_member_data($chosen_one);
-      $this->model_viewer_width = 180;
+      $this->model_viewer_width = 175;
+      $this->model_viewer_height = 400;
     }
   }
   
@@ -59,11 +60,10 @@ class PageController extends ApplicationController {
     }
   }
   
-  public function guides(){}
-  
   public function member(){
     $this->member = $this->fetch_member_data(WaxUrl::get("id"));
-    $this->model_viewer_width = 460;
+    $this->model_viewer_width = 703;
+    $this->model_viewer_height = 500;
   }
   
   static function sort_members_custom_cmp($a, $b)
