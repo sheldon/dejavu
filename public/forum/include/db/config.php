@@ -15,10 +15,10 @@ $PHORUM['DBCONFIG']=array(
     // Database connection. See the end of this file for a detailed
     // description of the configuration options.
     'type'          => 'mysql',
-    'name'          => 'dejavu_development',
+    'name'          => 'dejavu',
     'server'        => 'localhost',
-    'user'          => 'root',
-    'password'      => '',
+    'user'          => 'dejavu',
+    'password'      => 'dejavu222',
     'table_prefix'  => 'phorum',
     'port'          => '3306',
     'socket'        => NULL,
