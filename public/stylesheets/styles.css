@@ -2,7 +2,7 @@ body {
   text-align: left;
   font-family: Tahoma;
   color: #ddded6;
-  background: url(/images/bg3.jpg) 50% 0 #fdfff4 repeat-x;
+  background: url(/images/bg3.jpg) 50% 0 #fdfff4 repeat-x fixed;
 }
 a{
   color: #F9ECBF;
