@@ -51,6 +51,9 @@ class PageController extends ApplicationController {
     $this->rec_form->add_element("Level", "TextInput");
     $this->rec_form->add_element("Talent Spec", "TextInput");
     $this->rec_form->add_element("Age", "DateInput");
+    $this->rec_form->add_element("Gear level (heroic/naxx10/etc.)", "TextInput");
+    $this->rec_form->add_element("Can you attend 2 of our weekly planned raids", "TextInput");
+    $this->rec_form->add_element("Reason for leaving your previous guild", "TextareaInput");
     $this->rec_form->add_element("About yourself", "TextareaInput");
     $this->rec_form->submit_text = "Apply to Guild";
     if($this->rec_form->save()){
