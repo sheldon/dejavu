@@ -146,7 +146,7 @@ Some Icons courtesy of:
 
       {! Code for logged in users }
       {IF LOGGEDIN}
-        <span class="welcome">{LANG->Welcome}, {USER->username}</span>
+        <span class="welcome">Logged in as: {USER->username}</span>
         <a class="icon icon-key-delete" href="{URL->LOGINOUT}">{LANG->LogOut}</a>
         <a class="icon icon-user-edit" href="{URL->REGISTERPROFILE}">{LANG->MyProfile}</a>
         {IF ENABLE_PM}
@@ -161,7 +161,6 @@ Some Icons courtesy of:
 
       {! Code for anonymous users }
       {ELSE}
-        <span class="welcome">{LANG->Welcome}!</span>
         <a class="icon icon-key-go" href="{URL->LOGINOUT}">{LANG->LogIn}</a>
       {/IF}
 
