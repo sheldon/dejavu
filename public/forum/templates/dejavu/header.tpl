@@ -40,6 +40,17 @@ if ($PHORUM['DATA']['CHARSET']) {
 {! code, template javascript code (templates/.../javascript.tpl) and }
 {! modules that add their code using the "javascript_register" module hook. }
 <script type="text/javascript" src="{URL->JAVASCRIPT}"></script>
+<script src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">	
+  google.load("jquery", "1.3");
+  google.setOnLoadCallback(function() {
+    $(document).ready(function(){
+      if($("body").height() < $(window).height()){
+        $("body").css("padding-bottom",$(window).height() - $("body").height());
+      }
+    });
+  });
+</script>
 
 {! Add links to the available RSS feeds. }
 {IF FEEDS}
