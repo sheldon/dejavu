@@ -139,21 +139,21 @@ h1, h2{
 }
 h1{font-size: 123.1%}
 p{margin: 10px 0;}
-form label, form input.submit_field{
+div.recruitment form label, div.recruitment form input.submit_field{
   float: left;
   clear: left;
   margin: 5px 0 5px 185px;
 }
-form input, form textarea{
+div.recruitment form input, div.recruitment form textarea{
   float: left;
   border: 1px solid #000;
   padding: 2px;
   margin: 5px 0;
 }
-form input.text_field, form textarea {
+div.recruitment form input.text_field, div.recruitment form textarea {
   width: 200px;
 }
-form input.submit_field{
+div.recruitment form input.submit_field{
   margin-left: 305px;
 }
 #footer {
