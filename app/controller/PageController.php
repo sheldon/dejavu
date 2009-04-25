@@ -46,15 +46,15 @@ class PageController extends ApplicationController {
   
   public function recruitment(){
     $this->rec_form = new WaxForm();
-    $this->rec_form->add_element("Character Name", "TextInput");
+    $this->rec_form->add_element("Character Name", "TextInput", array("id"=>"name"));
     $this->rec_form->add_element("Class", "TextInput");
     $this->rec_form->add_element("Level", "TextInput");
-    $this->rec_form->add_element("Talent Spec", "TextInput");
-    $this->rec_form->add_element("Age", "DateInput");
-    $this->rec_form->add_element("Gear level (heroic/naxx10/etc.)", "TextInput");
-    $this->rec_form->add_element("Can you attend 2 of our weekly planned raids", "TextInput");
-    $this->rec_form->add_element("Reason for leaving your previous guild", "TextareaInput");
-    $this->rec_form->add_element("About yourself", "TextareaInput");
+    $this->rec_form->add_element("Talent Spec", "TextInput", array("id"=>"talent"));
+    $this->rec_form->add_element("Age", "TextInput");
+    $this->rec_form->add_element("Gear level (heroic/naxx10/etc.)", "TextInput", array("id"=>"gear"));
+    $this->rec_form->add_element("Can you attend 2 of our weekly planned raids", "CheckboxInput", array("id"=>"attend"));
+    $this->rec_form->add_element("Reason for leaving your previous guild", "TextareaInput", array("id"=>"reason_for_leaving"));
+    $this->rec_form->add_element("About yourself", "TextareaInput", array("id"=>"about_yourself"));
     $this->rec_form->submit_text = "Apply to Guild";
     if($this->rec_form->save()){
       $notifier = new Notifier();
