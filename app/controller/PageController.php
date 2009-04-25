@@ -119,7 +119,7 @@ class PageController extends ApplicationController {
   }
   
 	protected function parse_xml($xml, $xpath, $items=false){		
-		$xml = simplexml_load_string($xml);
+		$xml = @simplexml_load_string($xml, "SimpleXMLElement", LIBXML_NOCDATA);
 		if(!count($xml)) return array();
 		$counter = 0;
 		$data=array();
