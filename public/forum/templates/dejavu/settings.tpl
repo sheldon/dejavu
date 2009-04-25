@@ -46,7 +46,7 @@
 {VAR logo_height     "25"}
 
 {! -- colors -- }
-{VAR body_background_color "transparent"}
+{VAR body_background_color "#fdfff4"}
 {VAR default_font_color "White"}
 {VAR default_background_color "transparent"}
 {VAR alt_background_color "transparent"} {! -- should compliment default_background_color -- }

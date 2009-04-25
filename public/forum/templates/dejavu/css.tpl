@@ -162,7 +162,7 @@ img {
 #phorum div.information {
     padding: 8px;
     border: 1px solid {information_border_color};
-    background-color: {information_background_color};
+    background: transparent url(/images/burlap_foreground.jpg) repeat scroll 0 0;
     margin-bottom: 8px;
 }
 
