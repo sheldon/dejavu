@@ -1,0 +1,48 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.13. Admin interface</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03.html" title="Chapter 3. Module hooks"><link rel="prev" href="ch03s12s04.html" title="3.12.4. file_purge_stale"><link rel="next" href="ch03s14.html" title="3.14. Moderation"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s12s04.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s14.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="hooks.category.admininterface"></a>3.13. Admin interface</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.admin_general"></a>3.13.1. admin_general</h3></div></div></div><p>
+
+This hook can be used for adding items to the form on the
+"General Settings" page of the admin interface.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+Right before the <code class="literal">PhorumInputForm</code> object is shown.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+The <code class="literal">PhorumInputForm</code> object.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+Same as input.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_admin_general ($frm) 
+{
+    // Add a section for the foo settings
+    $frm-&gt;addbreak( "Foo Module Settings" );
+
+    // Add the option to cache the bar
+    $row=$frm-&gt;addrow( "Enable Bar Caching:", $frm-&gt;select_tag( "mod_foo[enable_bar_caching]", array( "No", "Yes" ), $PHORUM["mod_foo"]["enable_bar_caching"] ) );
+    $frm-&gt;addhelp($row, "Enable Bar Caching", "If you select yes for this option, then the bar will be cached." );
+
+    // Return the modified PhorumInputForm
+    return $frm;
+
+}
+</pre><p>
+
+      </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s12s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s14.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

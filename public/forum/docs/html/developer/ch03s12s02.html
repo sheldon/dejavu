@@ -1,0 +1,55 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.12.2. before_attach</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s12.html" title="3.12. File storage"><link rel="prev" href="ch03s12.html" title="3.12. File storage"><link rel="next" href="ch03s12s03.html" title="3.12.3. after_attach"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s12.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s12s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.before_attach"></a>3.12.2. before_attach</h3></div></div></div><p>
+
+The primary use of this hook would be for creating an
+alternate storage system for attachments. You would need to use 
+the <a class="xref" href="ch03s12s03.html" title="3.12.3. after_attach">???</a> hook to complete the process as you
+do not yet have the <code class="literal">file_id</code> for the file. You
+will need to use the <a class="xref" href="">???</a> hook to retreive the file 
+data later.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In 
+<code class="filename">include/posting/action_attachments.php</code>,
+right before a file attachment is saved in the database.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+Two part array where the first element is the message array
+and the second element is a file array that contains the 
+name, size, and file data.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+Same as input.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_reopen_before_attach($data)
+{
+    // Save the file with the amazing alternate_file_storage
+    // function I haven't yet created
+    alternate_file_storage($data[1]);
+
+    // Remove the file data saved with the alterante_file_storage
+    // function
+    $data[1]["file_data"] = "";
+
+    return $data;
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s12.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s12.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s12s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

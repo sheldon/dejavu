@@ -1,0 +1,34 @@
+<bookinfo>
+
+  <title>&book_title;</title>
+
+  <authorgroup>
+    <author>
+      <firstname>Maurice</firstname>
+      <surname>Makaay</surname>
+    </author>
+    <author>
+      <firstname>Brian</firstname>
+      <surname>Moon</surname>
+    </author>
+    <author>
+      <firstname>Thomas</firstname>
+      <surname>Seifert</surname>
+    </author>
+    <author>
+      <firstname>Andy</firstname>
+      <surname>Taylor</surname>
+    </author>
+    <author>
+      <firstname>Joe</firstname>
+      <surname>Curia</surname>
+    </author>    
+  </authorgroup>
+
+  <copyright>
+    <year>2008</year>
+    <holder>Phorum.org</holder>
+  </copyright>
+
+</bookinfo>
+

@@ -1,0 +1,4212 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page mysql.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/mysql.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+									<a href="#sec-includes">Includes</a>
+			|							<a href="#sec-constants">Constants</a>
+			|									<a href="#sec-functions">Functions</a>
+			</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This script implements a MySQL Phorum database layer.</p>
+<p class="description"><p>The other Phorum code does not care how data is stored.  The only requirement is that it is returned from these functions  in the right way. This means each database can use as many or as  few tables as it likes. It can store the fields anyway it wants.</p><p>The only thing to worry about is the table_prefix for the tables.  all tables for a Phorum install should be prefixed with the  table_prefix that will be entered in include/db/config.php.  This  will allow multiple Phorum installations to use the same database.</p></p>
+	<ul class="tags">
+				<li><span class="field">license:</span> Phorum</li>
+				<li><span class="field">copyright:</span> 2007, Phorum Development Team</li>
+			</ul>
+		
+			</div>
+</div>
+		
+
+	<a name="sec-includes"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Includes</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Includes</span>
+			|							<a href="#sec-constants">Constants</a>
+				|													<a href="#sec-functions">Functions</a>
+					</div>
+		<div class="info-box-body">	
+			<a name="_$extfile"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="include-title">
+			<span class="include-type">include</span>
+			(<span class="include-name">$extfile</span>)
+			(line <span class="line-number">7497</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+</div>
+		</div>
+	</div>
+	
+	<a name="sec-constants"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-includes">Includes</a>
+				|						<span class="disabled">Constants</span>
+			|										<a href="#sec-functions">Functions</a>
+					</div>
+		<div class="info-box-body">	
+			<a name="defineDB_DUPFIELDNAMEOK"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_DUPFIELDNAMEOK</span> = 4
+			(line <span class="line-number">167</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_interact() function call $flags parameter.</p>
+	
+		
+</div>
+<a name="defineDB_DUPKEYNAMEOK"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_DUPKEYNAMEOK</span> = 8
+			(line <span class="line-number">168</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_interact() function call $flags parameter.</p>
+	
+		
+</div>
+<a name="defineDB_DUPKEYOK"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_DUPKEYOK</span> = 16
+			(line <span class="line-number">169</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_interact() function call $flags parameter.</p>
+	
+		
+</div>
+<a name="defineDB_GLOBALQUERY"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_GLOBALQUERY</span> = 64
+			(line <span class="line-number">171</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_interact() function call $flags parameter.</p>
+	
+		
+</div>
+<a name="defineDB_MASTERQUERY"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_MASTERQUERY</span> = 128
+			(line <span class="line-number">172</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_interact() function call $flags parameter.</p>
+	
+		
+</div>
+<a name="defineDB_MISSINGTABLEOK"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_MISSINGTABLEOK</span> = 2
+			(line <span class="line-number">166</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_interact() function call $flags parameter.</p>
+	
+		
+</div>
+<a name="defineDB_NOCONNECTOK"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_NOCONNECTOK</span> = 1
+			(line <span class="line-number">165</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_interact() function call $flags parameter.</p>
+	
+		
+</div>
+<a name="defineDB_RETURN_ASSOC"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_ASSOC</span> = 5
+			(line <span class="line-number">127</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return a single database row for a SQL query  as an associative array</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_ASSOCS"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_ASSOCS</span> = 6
+			(line <span class="line-number">134</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return an array of rows for a SQL query  as associative arrays.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_CONN"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_CONN</span> = 0
+			(line <span class="line-number">96</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return a database connection handle.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_ERROR"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_ERROR</span> = 10
+			(line <span class="line-number">160</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return an error for a SQL query or NULL if there  was no error.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_NEWID"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_NEWID</span> = 9
+			(line <span class="line-number">153</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return the new auto_increment id value for  an insert SQL query.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_QUOTED"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_QUOTED</span> = 1
+			(line <span class="line-number">102</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return a SQL quoted value.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_RES"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_RES</span> = 2
+			(line <span class="line-number">108</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return the query statement handle for a SQL query.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_ROW"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_ROW</span> = 3
+			(line <span class="line-number">114</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return a single database row for a SQL query.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_ROWCOUNT"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_ROWCOUNT</span> = 8
+			(line <span class="line-number">146</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return the number of selected rows for a SQL query.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_ROWS"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_ROWS</span> = 4
+			(line <span class="line-number">120</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return an array of rows for a SQL query.</p></p>
+	
+		
+</div>
+<a name="defineDB_RETURN_VALUE"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_RETURN_VALUE</span> = 7
+			(line <span class="line-number">140</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter $return for phorum_db_interact().</p>
+<p class="description"><p>Makes the function return a single value for a SQL query.</p></p>
+	
+		
+</div>
+<a name="defineDB_TABLEEXISTSOK"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">DB_TABLEEXISTSOK</span> = 32
+			(line <span class="line-number">170</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_interact() function call $flags parameter.</p>
+	
+		
+</div>
+<a name="defineLIST_RECENT_MESSAGES"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LIST_RECENT_MESSAGES</span> = 0
+			(line <span class="line-number">179</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_get_recent_messages() function call  $list_type parameter.</p>
+	
+		
+</div>
+<a name="defineLIST_RECENT_THREADS"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LIST_RECENT_THREADS</span> = 1
+			(line <span class="line-number">180</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_get_recent_messages() function call  $list_type parameter.</p>
+	
+		
+</div>
+<a name="defineLIST_UPDATED_THREADS"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">LIST_UPDATED_THREADS</span> = 2
+			(line <span class="line-number">181</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant for the phorum_db_get_recent_messages() function call  $list_type parameter.</p>
+	
+		
+</div>
+		</div>
+	</div>
+	
+	
+	<a name="sec-functions"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Functions</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-includes">Includes</a>
+				|										<a href="#sec-constants">Constants</a>
+				|									<span class="disabled">Functions</span>
+		</div>
+		<div class="info-box-body">	
+			<a name="functionphorum_db_add_forum" id="functionphorum_db_add_forum"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_add_forum</span> (line <span class="line-number">2323</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create a forum.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The forum_id that was assigned to the new forum.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_add_forum
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$forum
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$forum
+</span><span class="var-description">: The forum to create. This is an array, which should contain the      following fields: name, active, description, template, folder_flag,      parent_id, list_length_flat, list_length_threaded, read_length,      moderation, threaded_list, threaded_read, float_to_top,      display_ip_address, allow_email_notify, language, email_moderators,      display_order, edit_post, pub_perms, reg_perms.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_add_group" id="functionphorum_db_add_group"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_add_group</span> (line <span class="line-number">2822</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a group. This will merely create the group in the database. For  changing settings for the group, the function phorum_db_update_group()  has to be used.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The group id of the newly created group.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_add_group
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_name</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_id</span> = <span class="var-default">0</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$group_name
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$group_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$group_name
+</span><span class="var-description">: The name to assign to the group.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$group_id
+</span><span class="var-description">: The group id to assign to the group or 0 (zero) to assign a new      group id. Assigning a specific group id is and should only be      used by conversion scripts.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_add_message_edit" id="functionphorum_db_add_message_edit"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_add_message_edit</span> (line <span class="line-number">2381</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a message-edit item</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The tracking_id that was assigned to that edit</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_add_message_edit
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$edit_data</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$edit_data
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$edit_data
+</span><span class="var-description">: The edit_data to add. This is an array, which should contain the      following fields: diff_body, diff_subject, time, message_id and user_id.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_check_connection" id="functionphorum_db_check_connection"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_check_connection</span> (line <span class="line-number">277</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">return:</span> TRUE if a connection can be made, FALSE otherwise.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_check_connection
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_close_thread" id="functionphorum_db_close_thread"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_close_thread</span> (line <span class="line-number">2263</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Close a thread for posting.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_close_thread
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$thread_id</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread_id</span><span class="var-description">: The id of the thread that has to be closed.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_create_tables" id="functionphorum_db_create_tables"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_create_tables</span> (line <span class="line-number">7027</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create the tables that are needed in the database. This function will  only be called at install time. After installation, changes in the  database schema will be handled by the database upgrade system.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> NULL on success or an error message on failure.</li>
+				<li><span class="field">todo:</span> It might be nice to have some feedback mechanism through a        callback. Using that, table create status can be provided        to the interface which is creating the tables. This is especially        useful in case the create process fails at some point, in which        case you currently have no good feedback about the create        table progress.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_db_create_tables
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_delete_group" id="functionphorum_db_delete_group"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_delete_group</span> (line <span class="line-number">2951</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a group.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_delete_group
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$group_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$group_id
+</span><span class="var-description">: The id of the group to delete.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_delete_message" id="functionphorum_db_delete_message"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_delete_message</span> (line <span class="line-number">1081</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a message or a message tree from the database.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_delete_message
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$mode</span> = <span class="var-default">PHORUM_DELETE_MESSAGE</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$mode
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The message_id of the message which should be deleted.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$mode
+</span><span class="var-description">: The mode of deletion. This is one of: <ul><li>PHORUM_DELETE_MESSAGE: Delete a message and reconnect
+       its reply messages to the parent of the deleted message.</li><li>PHORUM_DELETE_TREE: Delete a message and all its reply messages.</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_del_banitem" id="functionphorum_db_del_banitem"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_del_banitem</span> (line <span class="line-number">5385</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a single ban item from the ban lists.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_del_banitem
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$banid</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$banid
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$banid
+</span><span class="var-description">: The id of the ban item to delete.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_drop_folder" id="functionphorum_db_drop_folder"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_drop_folder</span> (line <span class="line-number">2543</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Drop a forum folder. If the folder contains child forums or folders,  then the parent_id for those will be updated to point to the parent  of the folder that is being dropped.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_drop_folder
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The id of the folder to drop.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_drop_forum" id="functionphorum_db_drop_forum"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_drop_forum</span> (line <span class="line-number">2475</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Drop a forum and all of its messages.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_drop_forum
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The id of the forum to drop.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_file_delete" id="functionphorum_db_file_delete"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_file_delete</span> (line <span class="line-number">4495</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a file.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if the file was deleted successfully. This function will      always return TRUE, so we could do without a return value.      The return value is here for backward compatibility.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_file_delete
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$file_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$file_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$file_id
+</span><span class="var-description">: The id of the file to delete.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_file_get" id="functionphorum_db_file_get"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_file_get</span> (line <span class="line-number">4344</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a file.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array, containing the data for all file table fields.      If the file id cannot be found in the database, an empty      array will be returned instead.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_file_get
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$file_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$include_file_data</span> = <span class="var-default">TRUE</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$file_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$include_file_data
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$file_id
+</span><span class="var-description">: The file id to retrieve from the database.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$include_file_data
+</span><span class="var-description">: If this parameter is set to a false value (TRUE is the default),      the file data will not be included in the return data.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_file_link" id="functionphorum_db_file_link"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_file_link</span> (line <span class="line-number">4532</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update the message to which a file is linked and/or the link type.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if the file link was updated successfully. This function will      always return TRUE, so we could do without a return value.      The return value is here for backward compatibility.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_file_link
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$file_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$link</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$file_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$link
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$file_id
+</span><span class="var-description">: The id of the file to update.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The id of the message to link the file to.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$link
+</span><span class="var-description">: A file can be linked to a number of different types of objects.      See phorum_db_file_save() for the possible link types.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_file_save" id="functionphorum_db_file_save"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_file_save</span> (line <span class="line-number">4425</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add or updates a file.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The file_id that was assigned to the new file or the file_id of      the existing file if the $file_id parameter was used.</li>
+				<li><span class="field">todo:</span> Update docs, because it now is based on separate parameters,        while the function itself requires an array now.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_file_save
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$file</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$filename
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$filesize
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$file_data
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$link
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$file_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user for which to add the file.      If this file is linked to a message by an anonymous      user, then this value can be 0 (zero).</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename
+</span><span class="var-description">: The name of the file.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$filesize
+</span><span class="var-description">: The size of the file in bytes.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$file_data
+</span><span class="var-description">: The file contents. This should be data which is safe to store in a      TEXT field in the database. The calling application has to take      care of this. The database layer will simply store and retrieve      the file data as provided by the caller.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The message_id to link the file to. If this file is not linked to      a posted message (the link type PHORUM_LINK_MESSAGE) then this value      can be 0 (zero).</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$link
+</span><span class="var-description">: A file can be linked to a number of different types of objects.      The available link types are: <ul><li>PHORUM_LINK_USER:
+       The file is linked to a user. This means that the file is
+       available from within the files section in the user's Control Center.</li><li>PHORUM_LINK_MESSAGE:
+       The file is linked to a message. This means that the file is
+       available as an attachment on a posted forum message.</li><li>PHORUM_LINK_EDITOR
+       The file is linked to the editor. This means that the file was
+       uploaded as part of editing a forum message. This message was
+       not yet posted. As soon as the message is posted for final, the
+       link type for the message will be updated to
+       PHORUM_LINK_MESSAGE.
+       Note: these are the official link types. Calling functions are
+       allowed to provide different custom link types if they need to.</li></ul></span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$file_id
+</span><span class="var-description">: If the $file_id is set, then this will be used for updating the      existing file data for the given $file_id.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_banitem" id="functionphorum_db_get_banitem"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_banitem</span> (line <span class="line-number">5350</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a single ban item from the ban lists.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A ban item array, containing the fields: pcre, string, forum_id,      type. If no ban can be found for the $banid, then an empty array      is returned instead.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_banitem
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$banid</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$banid
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$banid
+</span><span class="var-description">: The id of the ban item to retrieve.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_banlists" id="functionphorum_db_get_banlists"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_banlists</span> (line <span class="line-number">5295</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the ban lists for the active forum.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of active bans, indexed by the type of ban. For available      ban types, see the documentation for the function      phorum_db_mod_banlists(). Each value for a ban type is an array of      bans. Each ban in those arrays is an array containing the fields:      prce, string and forum_id.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_banlists
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ordered</span> = <span class="var-default">FALSE</span>], <span class="var-type">boolean</span>&nbsp;<span class="var-name">$ordered
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$ordered
+</span><span class="var-description">: If this parameter has a true value (default is FALSE),      then the results will be ordered by ban type and string.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_file_list" id="functionphorum_db_get_file_list"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_file_list</span> (line <span class="line-number">4258</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of files from the database.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of files, indexed by file_id.      The array elements are arrays containing the fields:      file_id, filename, filesize and add_datetime.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_file_list
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$link_type</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span> = <span class="var-default">NULL</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$link_type
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$link_type
+</span><span class="var-description">: The type of link to retrieve from the database. Normally this is one      of the Phorum built-in link types, but it can also be a custom      link type (e.g. if a module uses the file storage on its own).      This parameter can be NULL to retrieve any link type.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id to retrieve files for or NULL to retrieve files for      any user_id.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The message_id to retrieve files for or NULL to retrieve files for      any message_id.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_forums" id="functionphorum_db_get_forums"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_forums</span> (line <span class="line-number">1966</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of forums. The forums which are returned can be filtered  through the function parameters. Note that only one parameter is  effective at a time.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of forums, indexed by forum_id.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_forums
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_ids</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$parent_id</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$vroot</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$inherit_id</span> = <span class="var-default">NULL</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_ids
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$parent_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$vroot
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$inherit_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$forum_ids
+</span><span class="var-description">: A single forum_id or an array of forum_ids for which to retrieve the      forum data. If this parameter is 0 (zero), then the $parent_id      parameter will be checked.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$parent_id
+</span><span class="var-description">: Retrieve the forum data for all forums that have their parent_id set      to $parent_id. If this parameter is NULL, then the $vroot parameter      will be checked.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$vroot
+</span><span class="var-description">: Retrieve the forum data for all forums that are in the given $vroot.      If this parameter is NULL, then the $inherit_id parameter will be      checked.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$inherit_id
+</span><span class="var-description">: Retrieve the forum data for all forums that inherit their settings      from the forum with id $inherit_id.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_groups" id="functionphorum_db_get_groups"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_groups</span> (line <span class="line-number">2676</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve all groups or one specific group.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of groups, indexed by group_id.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_groups
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_id</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$sorted</span> = <span class="var-default">FALSE</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$sorted
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$group_id
+</span><span class="var-description">: A single group id or an array of group ids for which to retrieve      the group data. If this parameter is 0 (zero), then all groups will      be returned.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$sorted
+</span><span class="var-description">: If this parameter has a true value, then the list of groups will      be sorted by the group name field.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_group_members" id="functionphorum_db_get_group_members"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_group_members</span> (line <span class="line-number">2764</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of members for a group or for a list of groups.</p>
+<p class="description"><p>If the member list for a list of groups is requested, any member matching  the specified status in any of the groups will be included in the return  array. There will be no group info in the return array however, so this  function cannot be used to retrieve a full group to member mapping. This  specific functionality is used from the Phorum scripts to see if there are  unapproved group members in any of the forums for which the active user  can moderate the group members.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing members for the specified group(s). The array      contains a simple mapping from user_id to group permission. Note      that the permission is only useful in case a single group was      requested (see the function description).</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_group_members
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$status</span> = <span class="var-default">NULL</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$status
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$group_id
+</span><span class="var-description">: A single group_id or an array of group_ids, for which to retrieve      the members.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$status
+</span><span class="var-description">: A specific member status to look for. Defaults to all.      Possible statuses are: <ul><li>PHORUM_USER_GROUP_SUSPENDED:  (temporarily) deactivated</li><li>PHORUM_USER_GROUP_UNAPPROVED: on hold, not yet approved</li><li>PHORUM_USER_GROUP_APPROVED:   active in the group</li><li>PHORUM_USER_GROUP_MODERATOR:  active + member moderator</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_max_messageid" id="functionphorum_db_get_max_messageid"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_max_messageid</span> (line <span class="line-number">6500</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the maximum message_id in the database.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The maximum available message_id or 0 (zero)      if no message was found at all.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_get_max_messageid
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_get_message" id="functionphorum_db_get_message"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_message</span> (line <span class="line-number">1270</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve message(s) from the messages table by comparing value(s)  for a specified field in that table.</p>
+<p class="description"><p>You can provide either a single value or an array of values to search  for. If a single value is provided, then the function will return the  first matching message in the table. If an array of values is provided,  the function will return all matching messages in an array.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Either a single message or an array of messages (indexed by      message_id), depending on the $value parameter. If no message is      found at all, then either an empty array or NULL is returned      (also depending on the $value parameter).</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_db_get_message
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">&#039;message_id&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ignore_forum_id</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$write_server</span> = <span class="var-default">FALSE</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$field
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$ignore_forum_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$write_server
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value
+</span><span class="var-description">: The value that you want to search on in the messages table.      This can be either a single value or an array of values.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$field
+</span><span class="var-description">: The message field (database column) to search on.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$ignore_forum_id
+</span><span class="var-description">: By default, this function will only search for messages within the      active forum (as defined by $PHORUM[&quot;forum_id&quot;). By setting this      parameter to a true value, the function will search in any forum.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$write_server
+</span><span class="var-description">: This value can be set to true to specify that the message should be      retrieved from the master (aka write-server) in case replication      is used.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_messages" id="functionphorum_db_get_messages"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_messages</span> (line <span class="line-number">1356</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve messages from a specific thread.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of messages, indexed by message_id. One special key &quot;users&quot;      is set too. This one contains an array of all involved user_ids.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_messages
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$page</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ignore_mod_perms</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$write_server</span> = <span class="var-default">FALSE</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$page
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$ignore_mod_perms
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$write_server
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The id of the thread.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$page
+</span><span class="var-description">: A page offset (based on the configured read_length) starting with 1.      All messages are returned in case $page is 0.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$ignore_mod_perms
+</span><span class="var-description">: If this parameter is set to a true value, then the function will      return hidden messages, even if the active Phorum user is not      a moderator.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$write_server
+</span><span class="var-description">: This value can be set to true to specify that the message should be retrieved      from the master (aka write-server) in case replication is used</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_messagetree" id="functionphorum_db_get_messagetree"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_messagetree</span> (line <span class="line-number">1211</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Build a tree of all child (reply) messages below a message_id.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A string containing a comma separated list of child message_ids      for the given message_id.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			phorum_db_get_messagetree
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The message_id for which to build the message tree.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum_id for the message.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_message_edits" id="functionphorum_db_get_message_edits"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_message_edits</span> (line <span class="line-number">2430</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of message-edits for a message</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of message edits, indexed by track_id. The array elements      are arrays containing the fields: user_id, time, diff_body      and diff_subject.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_message_edits
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The message id for which to retrieve the edits.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_message_file_list" id="functionphorum_db_get_message_file_list"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_message_file_list</span> (line <span class="line-number">4322</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of files for a message (a.k.a. attachments).</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of message files, indexed by file_id.      The array elements are arrays containing the fields:      file_id, filename, filesize and add_datetime.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_message_file_list
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The message id for which to retrieve the file list.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_message_index" id="functionphorum_db_get_message_index"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_message_index</span> (line <span class="line-number">1470</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the index of a message (the offset from the thread starter  message) within a thread.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The index of the message, starting with 0.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_get_message_index
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The thread id.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The message id for which to determine the index.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_neighbour_thread" id="functionphorum_db_get_neighbour_thread"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_neighbour_thread</span> (line <span class="line-number">1895</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the closest neighbour thread. What &quot;neighbour&quot; is, depends on the</p>
+<p class="description"><p>float to top setting. If float to top is enabled, then the  modifystamp is used for comparison (so the time at which the last  message was posted to a thread). Otherwise, the thread id is used  (so the time at which a thread was started).</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The thread id for the requested neigbour thread or 0 (zero) if there      is no neighbour available.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_get_neighbour_thread
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$key</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$direction</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$key
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$direction
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$key
+</span><span class="var-description">: The key value of the message for which the neighbour must be returned.      The key value is either the modifystamp (if float to top is enabled)      or the thread id.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$direction
+</span><span class="var-description">: Either &quot;older&quot; or &quot;newer&quot;.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_recent_messages" id="functionphorum_db_get_recent_messages"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_recent_messages</span> (line <span class="line-number">605</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of recent messages for all forums for which the user has  read permission, for a particular forum, for a list of forums or for a  particular thread. Optionally, only top level thread messages can be  retrieved.</p>
+<p class="description"><p>The original version of this function came from Jim Winstead of mysql.com</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of recent messages, indexed by message_id. One special key      &quot;users&quot; is set too. This one contains an array of all involved      user_ids.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_recent_messages
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$length</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$offset</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$list_type</span> = <span class="var-default">LIST_RECENT_MESSAGES</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$length
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$list_type
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$length
+</span><span class="var-description">: Limit the number of returned messages to this number.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset
+</span><span class="var-description">: When using the $length parameter to limit the number of returned      messages, this parameter can be used to specify the retrieval offset.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: A forum_id, an array of forum_ids or 0 (zero) to retrieve messages      from any forum.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: A thread id or 0 (zero) to retrieve messages from any thread.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$list_type
+</span><span class="var-description">: This parameter determines the type of list that has to be returned.      Options for this parameter are: <ul><li>LIST_RECENT_MESSAGES: return a list of recent messages</li><li>LIST_RECENT_THREADS: return a list of recent threads</li><li>LIST_UPDATED_THREADS: return a list of recently updated threads</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_thread_list" id="functionphorum_db_get_thread_list"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_thread_list</span> (line <span class="line-number">447</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of visible messages for a given page offset.</p>
+<p class="description"><p>By default, the message body is not included in the fetch queries.  To retrieve bodies as well, a true value has to be passed for the  $include_bodies parameter.</p><p>NOTE: ALL dates must be returned as Unix timestamps</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of messages, indexed by message id.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_thread_list
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$page</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$include_bodies</span> = <span class="var-default">FALSE</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$page
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$include_bodies
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$page
+</span><span class="var-description">: The index of the page to return, starting with 0.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$include_bodies
+</span><span class="var-description">: Whether to include the message bodies in the return data or not.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_unapproved_list" id="functionphorum_db_get_unapproved_list"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_unapproved_list</span> (line <span class="line-number">768</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of messages which have not yet been approved by a moderator.</p>
+<p class="description"><p>NOTE: ALL dates must be returned as Unix timestamps</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of messages, indexed by message id.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">-</span>
+		<span class="method-name">
+			phorum_db_get_unapproved_list
+		</span>
+					([<span class="var-type">$forum_id</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">NULL</span>], [<span class="var-type">$on_hold_only</span>&nbsp;<span class="var-name">$on_hold_only</span> = <span class="var-default">FALSE</span>], [<span class="var-type">$moddays</span>&nbsp;<span class="var-name">$moddays</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$countonly</span> = <span class="var-default">FALSE</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$forum_id</span>
+				<span class="var-name">$forum_id</span><span class="var-description">: - The forum id to work with or NULL in case all                         forums have to be searched. You can also pass an                         array of forum ids.</span>			</li>
+					<li>
+				<span class="var-type">$on_hold_only</span>
+				<span class="var-name">$on_hold_only</span><span class="var-description">: - Only take into account messages which have to                         be approved directly after posting. Do not include                         messages which were hidden by a moderator.</span>			</li>
+					<li>
+				<span class="var-type">$moddays</span>
+				<span class="var-name">$moddays</span><span class="var-description">: - Limit the search to the last $moddays number of days.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_user_filesize_total" id="functionphorum_db_get_user_filesize_total"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_user_filesize_total</span> (line <span class="line-number">4567</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the total size for all personal files for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The total size in bytes.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_get_user_filesize_total
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user to compute the total size for.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_get_user_file_list" id="functionphorum_db_get_user_file_list"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_get_user_file_list</span> (line <span class="line-number">4304</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of personal files for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of personal user files, indexed by file_id.      The array elements are arrays containing the fields:      file_id, filename, filesize and add_datetime.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_get_user_file_list
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user id for which to retrieve the file list.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_increment_viewcount" id="functionphorum_db_increment_viewcount"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_increment_viewcount</span> (line <span class="line-number">6525</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Increment the viewcount field for a post.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_increment_viewcount
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$thread_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The id of the message for which to increment the viewcount.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$thread_id
+</span><span class="var-description">: If this parameter is set to a thread_id, then the threadviewcount      for that thread will be incremented as well.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_list_stale_files" id="functionphorum_db_list_stale_files"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_list_stale_files</span> (line <span class="line-number">4603</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of stale files from the database.</p>
+<p class="description"><p>Stale files are files that are not linked to anything anymore.'  These can for example be caused by users that are writing a message  with attachments, but never post it.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of stale Phorum files, indexed by file_id. Every item in      this array is an array on its own, containing the fields: <ul><li>file_id: the file id of the stale file</li><li>filename: the name of the stale file</li><li>filesize: the size of the file</li><li>add_datetime: the time at which the file was added</li><li>reason: the reason why it's a stale file</li></ul></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_list_stale_files
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_load_settings" id="functionphorum_db_load_settings"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_load_settings</span> (line <span class="line-number">337</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Load the Phorum settings in the $PHORUM array.</p>
+<p class="description"><p>These settings are key/value pairs that are read from the settings  table. In the settings table, a data type is provided for each setting.  The supported types are:</p><p><ul><li>V = Value: the value of this field is used as is.</li><li>S = Serialized: the value of this field is a serialzed PHP variable,
+       which will be unserialized before storing it in $PHORUM</li></ul></p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_load_settings
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_maxpacketsize" id="functionphorum_db_maxpacketsize"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_maxpacketsize</span> (line <span class="line-number">7367</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This function is used by the sanity checking system in the admin  interface to determine how much data can be transferred in one query.</p>
+<p class="description"><p>This is used to detect problems with uploads that are larger than the  database server can handle. The function returns the size in bytes.  For database implementations which do not have this kind of limit,  NULL can be returned.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The maximum packet size in bytes.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_maxpacketsize
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_metaquery_compile" id="functionphorum_db_metaquery_compile"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_metaquery_compile</span> (line <span class="line-number">6832</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Translates a message searching meta query into a real SQL WHERE  statement for this database backend. The meta query can be used to  define extended SQL queries, based on a meta description of the  search that has to be performed on the database.</p>
+<p class="description"><p>The meta query is an array, containing: <ul><li>query conditions</li><li>grouping using &quot;(&quot; and &quot;)&quot;</li><li>AND/OR specifications using &quot;AND&quot; and &quot;OR&quot;.</li></ul>  The query conditions are arrays, containing the following elements:  <ul><li>condition<br />
+   <br />
+   A description of a condition. The syntax for this is:
+   &lt;field name to query&gt; &lt;operator&gt; &lt;match specification&gt;<br />
+   <br />
+   The &lt;field name to query&gt; is a field in the message query that
+   we are running in this function.<br />
+   <br />
+   The &lt;operator&gt; can be one of &quot;=&quot;, &quot;!=&quot;, &quot;&lt;&quot;, &quot;&lt;=&quot;, &quot;&gt;&quot;, &quot;&gt;=&quot;.
+   Note that there is nothing like &quot;LIKE&quot; or &quot;NOT LIKE&quot;. If a &quot;LIKE&quot;
+   query has to be done, then that is setup through the
+   &lt;match specification&gt; (see below).<br />
+   <br />
+   The &lt;match specification&gt; tells us with what the field should be
+   matched. The string &quot;QUERY&quot; inside the specification is preserved to
+   specify at which spot in the query the &quot;query&quot; element from the
+   condition array should be inserted. If &quot;QUERY&quot; is not available in
+   the specification, then a match is made on the exact value in the
+   specification. To perform &quot;LIKE&quot; searches (case insensitive wildcard
+   searches), you can use the &quot;*&quot; wildcard character in the specification
+   to do so.<br /><br /></li><li>query<br />
+   <br />
+   The data to use in the query, in case the condition element has a
+   &lt;match specification&gt; that uses &quot;QUERY&quot; in it.</li></ul>  Example:  <pre><ol><code><pre><li> <span class="src-var">$metaquery </span>= <span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>     <span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>         <span class="src-str">&quot;condition&quot;  </span>=&gt;  <span class="src-str">&quot;field1 = *QUERY*&quot;</span><span class="src-sym">,</span></li>
+<li>         <span class="src-str">&quot;query&quot;      </span>=&gt;  <span class="src-str">&quot;test data&quot;</span></li>
+<li>     <span class="src-sym">)</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;AND&quot;</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;(&quot;</span><span class="src-sym">,</span></li>
+<li>     <span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">&quot;condition&quot;  </span>=&gt; <span class="src-str">&quot;field2 = whatever&quot;</span><span class="src-sym">)</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;OR&quot;</span><span class="src-sym">,</span></li>
+<li>     <span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">&quot;condition&quot;  </span>=&gt; <span class="src-str">&quot;field2 = something else&quot;</span><span class="src-sym">)</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;)&quot;</span></li>
+<li> <span class="src-sym">)</span><span class="src-sym">;</span></li>
+</pre></code></ol></pre></p><p>For MySQL, this would be turned into the MySQL WHERE statement:  <pre><ol><code><pre><li> ... <span class="src-id">WHERE field1 LIKE </span><span class="src-str">'%test data%'</span></li>
+<li>     <span class="src-key">AND </span><span class="src-sym">(</span><span class="src-id">field2 </span>= <span class="src-str">'whatever' </span><span class="src-key">OR </span><span class="src-id">field2 </span>= <span class="src-str">'something else'</span><span class="src-sym">)</span></li>
+</pre></code></ol></pre></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing two elements. The first element is either      TRUE or FALSE, based on the success state of the function call      (FALSE means that there was an error). The second argument contains      either a WHERE statement or an error message.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_metaquery_compile
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$metaquery</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$metaquery
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$metaquery
+</span><span class="var-description">: A meta query description array.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_metaquery_messagesearch" id="functionphorum_db_metaquery_messagesearch"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_metaquery_messagesearch</span> (line <span class="line-number">6971</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Run a search on the messages, using a metaquery. See the documentation  for the phorum_db_metaquery_compile() function for more info on the  metaquery syntax.</p>
+<p class="description"><p>The query that is run here, does create a view on the messages, which  includes some thread and user info. This is used so these can also  be taken into account when selecting messages. For the condition elements  in the meta query, you can use fully qualified field names for the  &lt;field name to query&gt;. You can use message.*, user.* and thread.* for this.</p><p>The primary goal for this function is to provide a backend for the  message pruning interface.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of message records.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_metaquery_messagesearch
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$metaquery</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$metaquery
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$metaquery
+</span><span class="var-description">: A metaquery array. See <a href="../PhorumDBLayer/_mysql_php.html#functionphorum_db_metaquery_compile">phorum_db_metaquery_compile()</a> for      more information about the metaquery syntax.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_mod_banlists" id="functionphorum_db_mod_banlists"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_mod_banlists</span> (line <span class="line-number">5432</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add or modify a single ban list item.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if the ban item was created or updated successfully.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_mod_banlists
+		</span>
+					(<span class="var-type">$type</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$pcre</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$string</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$banid</span> = <span class="var-default">0</span>], <span class="var-type">boolean</span>&nbsp;<span class="var-name">$pcre
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$string
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$banid
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$pcre
+</span><span class="var-description">: Whether the ban string has to be handled as a standard match       string or as a pcre (Perl Compatible Regular Expression).</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$string
+</span><span class="var-description">: The ban string for performing the match.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum_id to link the ban to. This can be a real forum_id, a      vroot id or 0 (zero) to indicate a GLOBAL ban item.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$banid
+</span><span class="var-description">: This parameter can be set to the id of a ban item to let the      function update an existing ban. If set to 0 (zero), a new ban      item will be created.</span>			</li>
+					<li>
+				<span class="var-type">$type</span>
+				<span class="var-name">$type</span><span class="var-description">: The type of ban list item. Available ban types are: <ul><li>PHORUM_BAD_IPS:        Match IP address or hostname.</li><li>PHORUM_BAD_NAMES:      Mach name or username.</li><li>PHORUM_BAD_EMAILS:     Match the email address.</li><li>PHORUM_BAD_USERID:     Match the user_id.</li><li>PHORUM_BAD_SPAM_WORDS: Match for spam words.</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_move_thread" id="functionphorum_db_move_thread"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_move_thread</span> (line <span class="line-number">2136</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Move a thread to another forum.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_move_thread
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$toforum</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread_id
+</span><span class="var-description">: The id of the thread that has to be moved.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$toforum</span><span class="var-description">: The id of the destination forum.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_mysql_connect" id="functionphorum_db_mysql_connect"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_mysql_connect</span> (line <span class="line-number">202</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">A wrapper function for connecting to the database.</p>
+<p class="description"><p>This function should not be used from the db layer code. Instead the  phorum_db_interact() function should be used in combination with the  DB_RETURN_CONN return type. This function is only implemented for  module writers that use this function in their code.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> - A database connection resource handle.</li>
+				<li><span class="field">deprecated:</span> </li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">$conn</span>
+		<span class="method-name">
+			phorum_db_mysql_connect
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_newflag_add_read" id="functionphorum_db_newflag_add_read"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_add_read</span> (line <span class="line-number">4946</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mark a message as read for the active Phorum user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_newflag_add_read
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_ids</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_ids
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$message_ids
+</span><span class="var-description">: The message_id of the message to mark read in the active forum or an      array description of messages to mark read. Elements in this array      can be: <ul><li>Simple message_id values, to mark messages read in the active forum.</li><li>An array containing two fields: &quot;forum&quot; containing a forum_id and
+       &quot;id&quot; containing a message_id. This notation can be used to mark
+       messages read in other forums than te active one.</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_newflag_allread" id="functionphorum_db_newflag_allread"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_allread</span> (line <span class="line-number">4634</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mark all messages for a forum read for the active Phorum user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_newflag_allread
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum to mark read or 0 (zero) to mark the current forum read.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_newflag_check" id="functionphorum_db_newflag_check"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_check</span> (line <span class="line-number">4720</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Checks if there are new messages in the forums given in forum_ids</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing forum_ids as the key and a boolean for      the values.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_newflag_check
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_ids</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$forum_ids
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$forum_ids
+</span><span class="var-description">: The forums to check for new messages</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_newflag_count" id="functionphorum_db_newflag_count"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_count</span> (line <span class="line-number">4775</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets a count of new messages and threads for the forum ids given</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing forum_ids as the key and a two element array      for each entry with messages and threads counts.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_newflag_count
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_ids</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$forum_ids
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$forum_ids
+</span><span class="var-description">: The forums to check for new messages.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_newflag_delete" id="functionphorum_db_newflag_delete"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_delete</span> (line <span class="line-number">5032</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Remove newflags for a forum for the active Phorum user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_newflag_delete
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$numdelete</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$numdelete
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$numdelete
+</span><span class="var-description">: The number of newflags to delete or 0 (zero) to delete them all.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum for which to delete the newflags or 0 (zero) to      delete them for the current forum.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_newflag_get_count" id="functionphorum_db_newflag_get_count"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_get_count</span> (line <span class="line-number">5002</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the total number of newflags for a forum for the active  Phorum user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The total number of newflags.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_newflag_get_count
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum to retrieve the count for or 0 (zero) to retrieve it      for the current forum.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_newflag_get_flags" id="functionphorum_db_newflag_get_flags"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_get_flags</span> (line <span class="line-number">4678</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the read messages for a forum for the active Phorum user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing the message_ids that have been read for the      forum (key and value are both the message_id). Also an element      for the key &quot;min_id&quot;, which holds the minimum read message_id. All      message_ids lower than the min_id are also considered to be read.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_newflag_get_flags
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum to retrieve the read messages for or 0 (zero) to      retrieve them for the current forum.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_newflag_get_unread_count" id="functionphorum_db_newflag_get_unread_count"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_get_unread_count</span> (line <span class="line-number">4873</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the number of new threads and messages for a forum for the  active Phorum user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing two elements. The first element is the number      of new messages. The second one is the number of new threads.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_newflag_get_unread_count
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum to retrieve the new counts for or <ol><li>(zero) to retrieve them for the current forum.</li></ol></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_newflag_update_forum" id="functionphorum_db_newflag_update_forum"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_newflag_update_forum</span> (line <span class="line-number">5063</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update the forum_id for the newflags. The newsflags are updated by setting  their forum_ids to the forum_ids of the referenced message table records.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_newflag_update_forum
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_ids</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$message_ids
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$message_ids
+</span><span class="var-description">: An array of message_ids which should be updated.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_buddy_add" id="functionphorum_db_pm_buddy_add"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_buddy_add</span> (line <span class="line-number">6320</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a buddy for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The id that was assigned to the new buddy or the existing id if      the buddy already existed. If no user can be found for the      $buddy_user_id parameter, then NULL will be returned.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_db_pm_buddy_add
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$buddy_user_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$buddy_user_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$buddy_user_id
+</span><span class="var-description">: The user_id that has to be added as a buddy.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id the buddy has to be added for      or NULL to use the active Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_buddy_delete" id="functionphorum_db_pm_buddy_delete"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_buddy_delete</span> (line <span class="line-number">6363</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a buddy for a user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_pm_buddy_delete
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$buddy_user_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$buddy_user_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$buddy_user_id
+</span><span class="var-description">: The user_id that has to be deleted as a buddy.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id the buddy has to be delete for      or NULL to use the active Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_buddy_list" id="functionphorum_db_pm_buddy_list"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_buddy_list</span> (line <span class="line-number">6400</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of buddies for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of buddies. The keys in this array are user_ids. The values      are arrays, which contain the field &quot;user_id&quot; and possibly the      boolean field &quot;mutual&quot; if the $find_mutual parameter was set to      a true value.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_pm_buddy_list
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$find_mutual</span> = <span class="var-default">FALSE</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$find_mutual
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id for which to retrieve the buddies or NULL to user the      active Phorum user (default).</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$find_mutual
+</span><span class="var-description">: Whether to find mutual buddies or not (default FALSE).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_checknew" id="functionphorum_db_pm_checknew"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_checknew</span> (line <span class="line-number">5893</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if the user has any new private messages. This is useful in case  you only want to know whether the user has new messages or not and when  you are not interested in the exact amount of new messages.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> TRUE in case there are new messages, FALSE otherwise.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_pm_checknew
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user to check for or NULL to use the active Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_create_folder" id="functionphorum_db_pm_create_folder"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_create_folder</span> (line <span class="line-number">5632</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create a new private messages folder for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The id that was assigned to the new folder.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_pm_create_folder
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$foldername</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$foldername
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$foldername
+</span><span class="var-description">: The name of the folder to create.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user to create the folder for or NULL to use the      active Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_delete" id="functionphorum_db_pm_delete"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_delete</span> (line <span class="line-number">6094</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a private message from a folder.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_pm_delete
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$pm_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$pm_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$pm_id
+</span><span class="var-description">: The id of the private message to delete</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$folder
+</span><span class="var-description">: The folder from which to delete the message</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user to delete the message for      or NULL to use the active Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_delete_folder" id="functionphorum_db_pm_delete_folder"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_delete_folder</span> (line <span class="line-number">5700</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a private message folder for a user. Along with the folder,  all contained messages are deleted as well.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_pm_delete_folder
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$folder_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$folder_id
+</span><span class="var-description">: The id of the folder to delete.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user to delete the folder for or NULL to use the active      Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_get" id="functionphorum_db_pm_get"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_get</span> (line <span class="line-number">5559</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a private message from the database.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Return the private message on success or NULL if the message      could not be found.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_pm_get
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$pm_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$pm_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$pm_id
+</span><span class="var-description">: The id for the private message to retrieve.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$folder
+</span><span class="var-description">: The folder to retrieve the message from or NULL if the folder      does not matter.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user to retrieve the message for or NULL to use the active      Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_getfolders" id="functionphorum_db_pm_getfolders"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_getfolders</span> (line <span class="line-number">5745</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of private message folders for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of private message folders, indexed by the folder id.      The values are arrays, containing the fields &quot;id&quot; and &quot;name&quot;.      If $count is enabled, the  keys &quot;total&quot; and &quot;new&quot; will be added      to the forum info.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_pm_getfolders
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$count</span> = <span class="var-default">FALSE</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$count
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user to retrieve folders for or NULL to use the active      Phorum user (default).</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$count
+</span><span class="var-description">: If this parameter is set to a true value, the number of messages      for each folder is included in the return data. By default,      this is not done.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_is_buddy" id="functionphorum_db_pm_is_buddy"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_is_buddy</span> (line <span class="line-number">6283</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if a user is buddy of another user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> If the user is a buddy, then the pm_buddy_id for the buddy will be      returned. If not, then NULL will be returned.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_db_pm_is_buddy
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$buddy_user_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$buddy_user_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$buddy_user_id
+</span><span class="var-description">: The user_id for which to check if the user is a buddy.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id for which the buddy list must be checked      or NULL to use the active Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_list" id="functionphorum_db_pm_list"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_list</span> (line <span class="line-number">5494</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve all private messages for a user in a folder.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of private messages for the folder.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_pm_list
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$reverse</span> = <span class="var-default">TRUE</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$reverse
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$folder
+</span><span class="var-description">: The folder to use. Either a special folder (PHORUM_PM_INBOX or      PHORUM_PM_OUTBOX) or the id of a custom user folder.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user to retrieve messages for or NULL to use the active      Phorum user (default).</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$reverse
+</span><span class="var-description">: If set to a true value (default), sorting of messages is done      in reverse (newest first).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_messagecount" id="functionphorum_db_pm_messagecount"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_messagecount</span> (line <span class="line-number">5844</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Compute the total number of private messages a user has and return  both the total number of messages and the number of unread messages.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing the elements &quot;total&quot; and &quot;new&quot;.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_pm_messagecount
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$folder
+</span><span class="var-description">: The id of the folder to use. Either a special folder      (PHORUM_PM_INBOX or PHORUM_PM_OUTBOX), the id of a user's custom      folder or PHORUM_PM_ALLFOLDERS for looking at all folders.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user to retrieve messages for or NULL to use the      active Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_move" id="functionphorum_db_pm_move"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_move</span> (line <span class="line-number">6145</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Move a private message to a different folder.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_pm_move
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$pm_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$from</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$to</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$pm_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$from
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$to
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$pm_id
+</span><span class="var-description">: The id of the private message to move.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$from
+</span><span class="var-description">: The folder to move the message from.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$to
+</span><span class="var-description">: The folder to move the message to.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id or the user to move the message for      or NULL to use the active Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_rename_folder" id="functionphorum_db_pm_rename_folder"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_rename_folder</span> (line <span class="line-number">5667</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Rename a private message folder for a user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_pm_rename_folder
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$folder_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$newname</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$folder_id
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$newname
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$folder_id
+</span><span class="var-description">: The id of the folder to rename.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$newname
+</span><span class="var-description">: The new name for the folder.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user to rename the folder for or NULL to use the active      Phorum user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_send" id="functionphorum_db_pm_send"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_send</span> (line <span class="line-number">5937</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Send a private message.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The id that was assigned to the new message.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_pm_send
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$subject</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$message</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$to</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$from</span> = <span class="var-default">NULL</span>], [<span class="var-type">$keepcopy</span>&nbsp;<span class="var-name">$keepcopy</span> = <span class="var-default">FALSE</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$subject
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$message
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$to
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$from
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$subject
+</span><span class="var-description">: The subject for the private message.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$message
+</span><span class="var-description">: The message text for the private message.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$to
+</span><span class="var-description">: A single user_id or an array of user_ids for specifying the      recipient(s).</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$from
+</span><span class="var-description">: The id of the sending user or NULL to use the active Phorum user      (default).</span>			</li>
+					<li>
+				<span class="var-type">$keepcopy</span>
+				<span class="var-name">$keepcopy</span><span class="var-description">: If set to a true value, a copy of the mail will be kept in the      outbox of the user. Default value is FALSE.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_setflag" id="functionphorum_db_pm_setflag"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_setflag</span> (line <span class="line-number">6044</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update a flag for a private message.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_pm_setflag
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$pm_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$flag</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">$user_id</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$pm_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$flag
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$value
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$pm_id
+</span><span class="var-description">: The id of the message to update.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$flag
+</span><span class="var-description">: The flag to update. Possible flags are: PHORUM_PM_READ_FLAG and      PHORUM_PM_REPLY_FLAG.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$value
+</span><span class="var-description">: The value for the flag (either TRUE or FALSE).</span>			</li>
+					<li>
+				<span class="var-type">$user_id</span>
+				<span class="var-name">$user_id</span><span class="var-description">: The user to set a flag for or NULL to use the active Phorum      user (default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_pm_update_message_info" id="functionphorum_db_pm_update_message_info"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_pm_update_message_info</span> (line <span class="line-number">6201</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update the meta information for a message.</p>
+<p class="description"><p>This function will update the meta information using the information  from the xrefs table. If we find that no xrefs are available for the  message anymore, the message will be deleted from the database.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_pm_update_message_info
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$pm_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$pm_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$pm_id
+</span><span class="var-description">: The id of the private message for which to update the meta information.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_post_message" id="functionphorum_db_post_message"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_post_message</span> (line <span class="line-number">855</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Store a new message in the database.</p>
+<p class="description"><p>The message will not be posted if it is a duplicate and if  $PHORUM['check_duplicate'] is set.</p><p>The $message is passed by reference and in case the function completes  successfully, the &quot;message_id&quot; index will be set to the new value.  If the &quot;thread&quot; index is set to zero, a new thread will be started and the  &quot;thread&quot; index will be filled with the new thread id upon return.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The message_id that was assigned to the new message.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_post_message
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$message</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$convert</span> = <span class="var-default">FALSE</span>], <span class="var-type">array</span>&nbsp;<span class="var-name">$message
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$convert
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$message
+</span><span class="var-description">: The message to post. This is an array, which should contain the      following fields: forum_id, thread, parent_id, author, subject, email,      ip, user_id, moderator_post, status, sort, msgid, body, closed.      Additionally, the following optional fields can be set: meta,      modifystamp, viewcount, threadviewcount.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$convert
+</span><span class="var-description">: True in case the message is being inserted by a database conversion      script. This will let you set the datestamp and message_id of the      message from the $message data. Also, the duplicate message check      will be fully skipped.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_rebuild_search_data" id="functionphorum_db_rebuild_search_data"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_rebuild_search_data</span> (line <span class="line-number">6564</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Rebuild the search table data from scratch.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_rebuild_search_data
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_rebuild_user_posts" id="functionphorum_db_rebuild_user_posts"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_rebuild_user_posts</span> (line <span class="line-number">6595</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Rebuild the user post counts from scratch.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_rebuild_user_posts
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_reopen_thread" id="functionphorum_db_reopen_thread"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_reopen_thread</span> (line <span class="line-number">2289</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">(Re)open a thread for posting.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_reopen_thread
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$thread_id</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread_id</span><span class="var-description">: The id of the thread that has to be opened.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_run_queries" id="functionphorum_db_run_queries"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_run_queries</span> (line <span class="line-number">298</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Execute an array of queries.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> NULL if all queries were executed successfully or an error      message on failure.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_db_run_queries
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$queries</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$queries
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$queries
+</span><span class="var-description">: An array of SQL queries to execute.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_sanitize_mixed" id="functionphorum_db_sanitize_mixed"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_sanitize_mixed</span> (line <span class="line-number">220</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This function will sanitize a mixed variable based on a given type  for safe use in SQL queries.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_sanitize_mixed
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">&$var</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$var
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$var
+</span><span class="var-description">: The variable to be sanitized. Passed by reference, so the original      variable will be updated. It can be either a single variable or an      array containing multiple variables.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: Either &quot;int&quot; or &quot;string&quot; (the default).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_sanitychecks" id="functionphorum_db_sanitychecks"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_sanitychecks</span> (line <span class="line-number">7397</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This function is used by the sanity checking system to let the  database layer do sanity checks of its own. This function can  be used by every database layer to implement specific checks.</p>
+<p class="description"><p>The return value for this function should be exactly the same  as the return value expected for regular sanity checking  function (see include/admin/sanity_checks.php for information).</p><p>There's no need to load the sanity_check.php file for the needed  constants, because this function should only be called from the  sanity checking system.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A return value as expected by Phorum's sanity checking system.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_sanitychecks
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_search" id="functionphorum_db_search"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_search</span> (line <span class="line-number">1550</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search the database using the provided search criteria and return  an array containing the total count of matches and the visible  messages based on the page $offset and $length.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing two fields: <ul><li>&quot;count&quot; contains the total number of matching messages.</li><li>&quot;rows&quot; contains the messages that are visible, based on the page
+       $offset and page $length. The messages are indexed by message_id.</li></ul></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_search
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$search</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$author</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$return_threads</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$length</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$match_type</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$days</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$match_forum</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$search
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$author
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$return_threads
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$length
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$match_type
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$days
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$match_forum
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$search
+</span><span class="var-description">: The query to search on in messages and subjects.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$author
+</span><span class="var-description">: The query to search on in the message authors or a numerical user_id      if searching for all messages for a certain user_id.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$return_threads
+</span><span class="var-description">: Whether to return the results as threads (TRUE) or messages (FALSE).</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset
+</span><span class="var-description">: The result page offset starting with 0.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$length
+</span><span class="var-description">: The result page length (nr. of results per page).</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$match_type
+</span><span class="var-description">: The type of search. This can be one of: <ul><li>ALL:     search on all of the words (uses $search)</li><li>ANY:     search on any of the words (uses $search)</li><li>PHRASE:  search for an exact phrase (uses $search)</li><li>USER_ID: search for an author id (uses $author)</li></ul></span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$days
+</span><span class="var-description">: The number of days to go back in the database for searching      (last [x] days) or zero to search within all dates.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$match_forum
+</span><span class="var-description">: The forum restriction. This can be either the string &quot;ALL&quot; to search      in any of the readable forums or a comma separated list of forum_ids.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_sort_groups" id="functionphorum_db_sort_groups"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_sort_groups</span> (line <span class="line-number">2729</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_sort_groups
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$a</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$b</span>)
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_split_thread" id="functionphorum_db_split_thread"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_split_thread</span> (line <span class="line-number">6456</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Split a thread.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_split_thread
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$message_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$message_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$message_id
+</span><span class="var-description">: The id of the message at which to split a thread.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The id of the forum in which the message can be found.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_update_forum" id="functionphorum_db_update_forum"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_update_forum</span> (line <span class="line-number">2601</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update the settings for one or more forums.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if all settings were stored successfully. This function will      always return TRUE, so we could do without a return value. The      return value is here for backward compatibility.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_update_forum
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$forum
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$forum
+</span><span class="var-description">: The forum to update. This is an array, which should contain at least      the field &quot;forum_id&quot; to indicate what forum to update. Next to that,      one or more of the other fields from phorum_db_add_forum() can be      used to describe changed values. The &quot;forum_id&quot; field can also      contain an array of forum_ids. By using that, the settings can be      updated for all the forum_ids at once.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_update_forum_stats" id="functionphorum_db_update_forum_stats"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_update_forum_stats</span> (line <span class="line-number">2043</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update the forums stats. This function will update the thread count,  message count, sticky message count and last post timestamp for a forum.</p>
+<p class="description"><p>The function can either process delta values for the stats (this is  the most friendly way of updating) or fill the stats from scratch by  querying the database for the correct value.</p><p>When the forum stats are updated, the cache_version for the forum  will be raised by one. This will flag the cache system that cached  data for the forum has to be refreshed.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_update_forum_stats
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$refresh</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$msg_count_change</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$timestamp</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread_count_change</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$sticky_count_change</span> = <span class="var-default">0</span>], <span class="var-type">boolean</span>&nbsp;<span class="var-name">$refresh
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$msg_count_change
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$timestamp
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread_count_change
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$sticky_count_change
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$refresh
+</span><span class="var-description">: If TRUE, the all stats will be filled from scratch by querying      the database.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$msg_count_change
+</span><span class="var-description">: Delta for the message count or zero to query the value      from the database.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$timestamp
+</span><span class="var-description">: The post time of the last message or zero to query the value from      the database.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread_count_change
+</span><span class="var-description">: Delta for the thread count or zero to query the value      from the database.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$sticky_count_change
+</span><span class="var-description">: Delta for the sticky message count or zero to query the value      from the database.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_update_group" id="functionphorum_db_update_group"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_update_group</span> (line <span class="line-number">2876</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update the settings for a group.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if all settings were stored successfully. This function will      always return TRUE, so we could do without a return value.      The return value is here for backward compatibility.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_update_group
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$group
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$group
+</span><span class="var-description">: The group to update. This is an array, which should contain at least      the field &quot;group_id&quot; to indicate what group to update. Next to that,      one or more of the following fields can be used: <ul><li>name:
+       The name for the group.</li></ul><ul><li>PHORUM_GROUP_CLOSED:
+         Only the administrator can add users to this group.</li><li>PHORUM_GROUP_OPEN:
+         The group is open for membership requests by users and
+         membership is assigned on request immediately.</li></ul><ul><li>permissions:
+       An array containing forum permissions for the group
+       (key = forum_id and value = permission value).</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_update_message" id="functionphorum_db_update_message"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_update_message</span> (line <span class="line-number">1004</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update a message in the database.</p>
+<p class="description"><p>Note: an update of the full text searching database is only handled  if all fields that we incorporate in full text searching (author,  subject and body) are in the update fields. If one of the fields is  provided, without providing the other two, then changes in the field  will not reflect in the full text searching info.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_update_message
+		</span>
+					(<span class="var-type">$message_id</span>&nbsp;<span class="var-name">$message_id</span>, <span class="var-type">$message</span>&nbsp;<span class="var-name">$message</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$message_id</span>
+				<span class="var-name">$message_id</span><span class="var-description">: - The message_id of the message to update.</span>			</li>
+					<li>
+				<span class="var-type">$message</span>
+				<span class="var-name">$message</span><span class="var-description">: - An array containing the data for the message fields                       that have to be updated. You can pass as many or                       as few message fields as you wish to update.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_update_settings" id="functionphorum_db_update_settings"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_update_settings</span> (line <span class="line-number">376</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Store or update Phorum settings.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> TRUE if all settings were stored successfully. This function will      always return TRUE, so we could do without a return value. The      return value is here for backward compatibility.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_update_settings
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$settings</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$settings
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$settings
+</span><span class="var-description">: An array containing key/value pairs that have to be stored in the      settings table. Values can be either scalars or arrays. This      function will automatically serialize the arrays before storing them.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_add" id="functionphorum_db_user_add"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_add</span> (line <span class="line-number">3606</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The user_id that was assigned to the new user.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_user_add
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$userdata</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$userdata
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$userdata
+</span><span class="var-description">: An array containing the fields to insert into the user table.      This array should contain at least a &quot;username&quot; field. See      phorum_db_user_save() for some more info on the other data      in this array.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_check_login" id="functionphorum_db_user_check_login"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_check_login</span> (line <span class="line-number">3412</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if a user's authentication credentials are correct.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The user_id if the password is correct or 0 (zero)      if the password is wrong.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_user_check_login
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$password</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$temp_password</span> = <span class="var-default">FALSE</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$username
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$temp_password
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username
+</span><span class="var-description">: The username for the user.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password
+</span><span class="var-description">: The password for the user.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$temp_password
+</span><span class="var-description">: If this parameter has a true value, the password_temp field will      be checked instead of the password field.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_count" id="functionphorum_db_user_count"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_count</span> (line <span class="line-number">3064</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Count the total number of users in the Phorum system.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The number of users.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_user_count
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_user_delete" id="functionphorum_db_user_delete"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_delete</span> (line <span class="line-number">4158</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a user completely. Messages that were posted by the user in the</p>
+<p class="description"><p>forums, will be changed into anonymous messages (user_id = 0). If the  constant PHORUM_DELETE_CHANGE_AUTHOR is set to a true value, then the  author name of all postings will be set to {LANG-&gt;AnonymousUser}. If  it is set to a false value, then the original author name will be kept.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if the user was deleted successfully.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_user_delete
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user to delete.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_display_name_updates" id="functionphorum_db_user_display_name_updates"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_display_name_updates</span> (line <span class="line-number">3822</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Run the updates that are needed after changing the display_name for a user.</p>
+<p class="description"><p>The display_name for users is stored redundant at several places  in the database (this improves the speed of the system, because joins  with the user table do not have to be made). This function will update  that redundant information to match the active display_name field in  the user data.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_user_display_name_updates
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$userdata</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$userdata
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$userdata
+</span><span class="var-description">: A userdata array containing at least the fields &quot;user_id&quot; and      &quot;display_name&quot;.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_get" id="functionphorum_db_user_get"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_get</span> (line <span class="line-number">3138</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve one or more users.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> If $user_id is a single user_id, then either a single user or NULL      (in case the user_id was not found in the database) is returned.      If $user_id is an array of user_ids, then an array of users is      returned, indexed by user_id. For user_ids that cannot be found,      there will be no array element at all.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_db_user_get
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$detailed</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$write_server</span> = <span class="var-default">FALSE</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$detailed
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$write_server
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id or an array of user_ids for which to      retrieve the user data.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$detailed
+</span><span class="var-description">: If this parameter has a true value, then the user's      permissions and groups are included in the return data.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$write_server
+</span><span class="var-description">: This value can be set to true to specify that the user should be      retrieved from the master (aka write-server) in case replication      is used</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_get_all" id="functionphorum_db_user_get_all"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_get_all</span> (line <span class="line-number">3093</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve all users from the database.</p>
+<p class="description"><p>This function returns a query resource handle. This handle can be used  to retrieve the users from the database one-by-one, by calling the  phorum_db_fetch_row() function.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A query resource handle is returned. This handle can be used      to retrieve the users from the database one-by-one, by      calling the phorum_db_fetch_row() function.</li>
+				<li><span class="field">todo:</span> This function might be as well replaced with user search and get        functionality from the user API, if search is extended with an        option to return a resource handle.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">resource</span>
+		<span class="method-name">
+			phorum_db_user_get_all
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$offset</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$length</span> = <span class="var-default">0</span>])
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_user_get_fields" id="functionphorum_db_user_get_fields"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_get_fields</span> (line <span class="line-number">3315</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the data for a couple of user table fields for one or more users.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of users (no matter what type of variable $user_id is),      indexed by user_id. For user_ids that cannot be found, there      will be no array element at all.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_user_get_fields
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$fields</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$fields
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id or an array of user_ids for which to retrieve      the field data.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$fields
+</span><span class="var-description">: The field or an array of fields for which to retrieve the data.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_get_groups" id="functionphorum_db_user_get_groups"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_get_groups</span> (line <span class="line-number">4090</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of group memberships and their statuses for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of groups for the user. The keys are group_ids and the      values are the membership statuses.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_user_get_groups
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user id for which to retrieve the groups.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_get_list" id="functionphorum_db_user_get_list"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_get_list</span> (line <span class="line-number">3369</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of all users for a given type.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of users, indexed by user_id. The values are arrays      containing the fields &quot;user_id&quot;, &quot;username&quot; and &quot;display_name&quot;.</li>
+				<li><span class="field">todo:</span> This function might be as well replaced with user search and get        functionality from the user API,</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_user_get_list
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$type
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of users to retrieve. Available options are: <ul><li>0 = all users</li><li>1 = all active users</li><li>2 = all inactive users</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_get_moderators" id="functionphorum_db_user_get_moderators"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_get_moderators</span> (line <span class="line-number">2998</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of moderators for a particular forum.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of moderators. The keys are user_ids and      the values are email addresses.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_user_get_moderators
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$exclude_admin</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$for_email</span> = <span class="var-default">FALSE</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$exclude_admin
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$for_email
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum for which to retrieve the moderators.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$exclude_admin
+</span><span class="var-description">: If this parameter has a true value, then the admin users are kept      out of the list.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$for_email
+</span><span class="var-description">: If this parameter has a true value, then a list of moderators is      created for sending moderator mail messages. Moderators which      have disabled the moderation_email option will be excluded from      the list in this case.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_get_subscription" id="functionphorum_db_user_get_subscription"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_get_subscription</span> (line <span class="line-number">5258</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the subscription of a user for a thread.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The type of subscription if there is a subscription available or      NULL in case no subscription was found. For a list of available      subscription types see the documentation for function      phorum_db_user_subscribe().</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">integer</span>
+		<span class="method-name">
+			phorum_db_user_get_subscription
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id to retrieve the subscription for.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum_id to retrieve the subscription for.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The thread id to retrieve the subscription for.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_get_unapproved" id="functionphorum_db_user_get_unapproved"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_get_unapproved</span> (line <span class="line-number">4126</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the users that await signup approval.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array or users, indexed by user_id, that await approval.      The elements of the array are arrays containing the fields:      user_id, username and email.</li>
+				<li><span class="field">todo:</span> This function might be as well replaced with user search and get        functionality from the user API.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">$users</span>
+		<span class="method-name">
+			phorum_db_user_get_unapproved
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_db_user_increment_posts" id="functionphorum_db_user_increment_posts"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_increment_posts</span> (line <span class="line-number">4062</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Increment the posts counter for a user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_db_user_increment_posts
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id for which to increment the posts counter.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_list_subscribers" id="functionphorum_db_user_list_subscribers"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_list_subscribers</span> (line <span class="line-number">5107</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the email addresses of the users that are subscribed to a  forum/thread, grouped by the preferred language for these users.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing the subscriber email addresses. The keys in the      result array are language names. The values are arrays. Each array      contains a list of email addresses of users which are using the      language from the key field.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_user_list_subscribers
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ignore_active_user</span> = <span class="var-default">TRUE</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$ignore_active_user
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum_id to check on.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The thread id to check on.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of subscription to check on. See the documentation for the      function <a href="../PhorumDBLayer/_mysql_php.html#functionphorum_db_user_subscribe">phorum_db_user_subscribe()</a> for available      subscription types.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$ignore_active_user
+</span><span class="var-description">: If this parameter is set to FALSE (it is TRUE by default), then the      active Phorum user will be excluded from the list.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_list_subscriptions" id="functionphorum_db_user_list_subscriptions"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_list_subscriptions</span> (line <span class="line-number">5178</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of threads to which a user is subscribed. The list can be  limited to those threads which did receive contributions recently.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of matching threads, indexed by thread id. One special key      &quot;forum_ids&quot; is set too. This one contains an array of all involved      forum_ids.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_db_user_list_subscriptions
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_ids</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$days
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_ids
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user for which to retrieve the subscribed threads.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$days
+</span><span class="var-description">: If set to 0 (zero), then all subscriptions will be returned. If set to      a different value, then only threads which have received contributions      within the last $days days will be included in the list.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_ids
+</span><span class="var-description">: If this parameter is NULL, then subscriptions from all forums will      be included. This parameter can also be an array of forum_ids, in      which case the search will be limited to the forums in this array.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_save" id="functionphorum_db_user_save"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_save</span> (line <span class="line-number">3667</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if all settings were stored successfully. This function will      always return TRUE, so we could do without a return value.      The return value is here for backward compatibility.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_user_save
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$userdata</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$userdata
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$userdata
+</span><span class="var-description">: An array containing the fields to update in the user table.      The array should contain at least the user_id field to identify      the user for which to update the data. The array can contain two      special fields: <ul><li>forum_permissions:
+       This field can contain an array with forum permissions for the user.
+       The keys are forum_ids and the values are permission values.</li><li>user_data:
+       This field can contain an array of key/value pairs which will be
+       inserted in the database as custom profile fields. The keys are
+       profile type ids (as defined by $PHORUM[&quot;PROFILE_FIELDS&quot;]).</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_save_groups" id="functionphorum_db_user_save_groups"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_save_groups</span> (line <span class="line-number">3913</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Save the group memberships for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if all settings were stored successfully. This function will      always return TRUE, so we could do without a return value.      The return value is here for backward compatibility.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_user_save_groups
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$groups</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$groups
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id for which to save the group memberships.</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$groups
+</span><span class="var-description">: The group memberships to save. This is an array in which the keys      are group_ids and the values are group statuses.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_search" id="functionphorum_db_user_search"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_search</span> (line <span class="line-number">3482</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search for users, based on a simple search condition,  which can be used to search on any field in the user table.</p>
+<p class="description"><p>The parameters $field, $value and $operator (which are used for defining  the search condition) can be arrays or single values. If arrays are used,  then all three parameter arrays must contain the same number of elements  and the key values in the arrays must be the same.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of matching user_ids or a single user_id (based on the      $return_array parameter). If no user_ids can be found at all,      then 0 (zero) will be returned.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_db_user_search
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$operator</span> = <span class="var-default">&#039;=&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$return_array</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">&#039;AND&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$offset</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$length</span> = <span class="var-default">0</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$field
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$operator
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$return_array
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$sort
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$length
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field
+</span><span class="var-description">: The user table field (string) or fields (array) to search on.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value
+</span><span class="var-description">: The value (string) or values (array) to search for.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$operator
+</span><span class="var-description">: The operator (string) or operators (array) to use. Valid operators are      &quot;=&quot;, &quot;!=&quot;, &quot;&lt;&gt;&quot;, &quot;&lt;&quot;, &quot;&gt;&quot;, &quot;&gt;=&quot; and &quot;&lt;=&quot;, &quot;*&quot;. The      &quot;*&quot; operator is for executing a &quot;LIKE '%value%'&quot; matching query.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$return_array
+</span><span class="var-description">: If this parameter has a true value, then an array of all matching      user_ids will be returned. Else, a single user_id will be returned.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of search to perform. This can be one of: <ul><li>AND  match against all fields</li><li>OR   match against any of the fields</li></ul></span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$sort
+</span><span class="var-description">: The field (string) or fields (array) to sort the results by. For      ascending sort, &quot;fieldname&quot; or &quot;+fieldname&quot; can be used. For      descending sort, &quot;-fieldname&quot; can be used. By default, the results      will be sorted by user_id.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset
+</span><span class="var-description">: The result page offset starting with 0.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$length
+</span><span class="var-description">: The result page length (nr. of results per page)      or 0 (zero, the default) to return all results.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_search_custom_profile_field" id="functionphorum_db_user_search_custom_profile_field"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_search_custom_profile_field</span> (line <span class="line-number">6674</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search for users, based on a simple search condition,  which can be used to search on custom profile fields.</p>
+<p class="description"><p>The parameters $field_id, $value and $operator (which are used for defining  the search condition) can be arrays or single values. If arrays are used,  then all three parameter arrays must contain the same number of elements  and the key values in the arrays must be the same.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of matching user_ids or a single user_id (based on the      $return_array parameter). If no user_ids can be found at all,      then 0 (zero) will be returned.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_db_user_search_custom_profile_field
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$operator</span> = <span class="var-default">&#039;=&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$return_array</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">&#039;AND&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$offset</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$length</span> = <span class="var-default">0</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$field_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$operator
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$return_array
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$length
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field_id
+</span><span class="var-description">: The custom profile field id (integer) or ids (array) to search on.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value
+</span><span class="var-description">: The value (string) or values (array) to search for.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$operator
+</span><span class="var-description">: The operator (string) or operators (array) to use. Valid operators are      &quot;=&quot;, &quot;!=&quot;, &quot;&lt;&gt;&quot;, &quot;&lt;&quot;, &quot;&gt;&quot;, &quot;&gt;=&quot; and &quot;&lt;=&quot;, &quot;*&quot;. The      &quot;*&quot; operator is for executing a &quot;LIKE '%value%'&quot; matching query.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$return_array
+</span><span class="var-description">: If this parameter has a true value, then an array of all matching      user_ids will be returned. Else, a single user_id will be returned.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of search to perform. This can be one of: <ul><li>AND  match against all fields</li><li>OR   match against any of the fields</li></ul></span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset
+</span><span class="var-description">: The result page offset starting with 0.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$length
+</span><span class="var-description">: The result page length (nr. of results per page)      or 0 (zero, the default) to return all results.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_subscribe" id="functionphorum_db_user_subscribe"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_subscribe</span> (line <span class="line-number">3976</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subscribe a user to a forum or thread.</p>
+<p class="description"><p>Remark: Currently, there is no active support for subscription type  PHORUM_SUBSCRIPTION_DIGEST in the Phorum core.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if the subscription was stored successfully.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_user_subscribe
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$type
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user to create the subscription for.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The id of the thread to describe to.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The if of the forum to subscribe to.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of subscription. Available types are: <ul><li>PHORUM_SUBSCRIPTION_NONE
+       Explicitly note that the user has no subscription at all.</li><li>PHORUM_SUBSCRIPTION_MESSAGE
+       Send a mail message for every new message.</li><li>PHORUM_SUBSCRIPTION_BOOKMARK
+       Make new messages visible from the followed threads interface.</li><li>PHORUM_SUBSCRIPTION_DIGEST
+       Periodically, send a mail message containing a list of new messages.</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_user_unsubscribe" id="functionphorum_db_user_unsubscribe"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_db_user_unsubscribe</span> (line <span class="line-number">4031</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Unsubscribe a user from a forum/thread.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> True if the subscription was stored successfully.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_user_unsubscribe
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user to remove a suscription for.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The id of the thread to unsubscribe from.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The id of the forum to unsubscribe from (or 0 (zero)      to simply unsubscribe by the thread id alone).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_db_validate_field" id="functionphorum_db_validate_field"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_db_validate_field</span> (line <span class="line-number">251</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if a value that will be used as a field name in a SQL query  contains only characters that would appear in a field name.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Whether the field name is valid or not (TRUE or FALSE).</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_db_validate_field
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field_name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$field_name
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$field_name
+</span><span class="var-description">: The field name to check.</span>			</li>
+				</ul>
+		
+	
+</div>
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 16 Jan 2008 08:31:30 -0600 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC5</a>
+	</p>
+	</div></body>
+</html>

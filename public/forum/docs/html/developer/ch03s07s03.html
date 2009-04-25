@@ -1,0 +1,53 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.7.3. common_no_forum</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.70.1"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s07.html" title="3.7. Request initialization"><link rel="prev" href="ch03s07s02.html" title="3.7.2. common_pre"><link rel="next" href="ch03s07s04.html" title="3.7.4. common_post_user"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s07s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s07s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.common_no_forum"></a>3.7.3. common_no_forum</h3></div></div></div><p>
+
+This hook is called in case a forum_id is requested for
+an unknown or inaccessible forum. It can be used for
+doing things like logging the bad requests or fully
+overriding Phorum's default behavior for these cases
+(which is redirecting the user back to the index page).
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In <code class="filename">common.php</code>, right after detecting
+that a requested forum does not exist or is inaccessible
+and right before redirecting the user back to the Phorum
+index page.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+No input.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+No output.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_common_no_forum()
+{
+    // Return a 404 Not found error instead of redirecting
+    // the user back to the index.
+    header("HTTP/1.0 404 Not Found");
+    print "&lt;html&gt;&lt;head&gt;\n";
+    print "  &lt;title&gt;404 - Not Found&lt;/title&gt;\n";
+    print "&lt;/head&gt;&lt;body&gt;";
+    print "  &lt;h1&gt;404 - Forum Not Found&lt;/h1&gt;";
+    print "&lt;/body&gt;&lt;/html&gt;";
+    exit();
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s07s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s07.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s07s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

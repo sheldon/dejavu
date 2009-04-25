@@ -1,0 +1,34 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.3.4. Create a database and a database user</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Administrator Reference Manual"><link rel="up" href="ch01s03.html" title="1.3. Detailed installation instructions"><link rel="prev" href="ch01s03s03.html" title="1.3.3. Place the Phorum files in your website's document root"><link rel="next" href="ch01s03s05.html" title="1.3.5. Configure the database access for Phorum"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s03s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s03s05.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="installation.createdb"></a>1.3.4. Create a database and a database user</h3></div></div></div><p>
+        Phorum stores all its data in a database. So if you do not already
+        have a database which you will be using for Phorum, you now need to
+        create one. Officially, only the
+        <a class="ulink" href="http://www.mysql.com/" target="_top">MySQL</a>
+        database server is supported
+        by Phorum, so we recommend to use MySQL whenever possible.
+      </p><p>
+        If you have hosted your site with a hosting provider,
+        you should have access to a control panel (usually cPanel or similar).
+        There should be a MySQL database link on the main page of the control
+        panel, and from there you can create a database. Alternatively, you
+        could have access to phpMyAdmin. Log into phpMyAdmin using the
+        username and password that your host has provided, and use the
+        "create new database" function on the main page. If none of these
+        options are available to you, contact your host and they will be
+        able to do it for you.
+      </p><p>
+        If you run your own database server, then you will have to
+        create the database and the user yourself. If you are using
+        a control panel, like phpmyadmin, then use that control panel
+        to create them. You can use the mysql SQL prompt to create
+        the database by issuing the appropriate commands. For example:
+        </p><pre class="screen">
+mysql&gt; <code class="literal">CREATE DATABASE phorum;</code>
+mysql&gt; <code class="literal">GRANT ALL ON phorum.* TO 'myuser'@'localhost' IDENTIFIED BY 'mypassword';</code></pre><p>
+        Of course, for security reasons you would not use "myuser" and
+        "mypassword" but a username and password that you made up
+        yourself. Also "localhost" should match the hostname of the MySQL
+        server to which Phorum will connect.
+      </p><p>
+        If you are unsure on how to create a database and a database user,
+        then please refer to your system's documentation.
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s03s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s03s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

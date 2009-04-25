@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Todo List</title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<div align="center"><h1>Todo List</h1></div>
+<h2>PhorumDBLayer</h2>
+<h3><a href="PhorumDBLayer/_mysql.php.html">mysql.php</a></h3>
+<ul>
+    <li>phorum_api_user_check_access() is used in this layer, but the      include file for that is not included here. Keep it like that      or add the required include? Or is it functionality that doesn't      belong here and could better go into the core maybe?</li>
+</ul>
+<h3><a href="PhorumDBLayer/_mysql.php.html#functionphorum_db_check_connection">phorum_db_check_connection()</a></h3>
+<ul>
+    <li><p>we can save a function call by directly calling      phorum_db_interact(). I'm also not sure if we need      to do this check from common.php. We could take care      of this in the db layer error handling too. Have to      think about this ...</p><p>Checks if a database connection can be made.</p></li>
+</ul>
+<h3><a href="PhorumDBLayer/_mysql.php.html#functionphorum_db_create_tables">phorum_db_create_tables()</a></h3>
+<ul>
+    <li>It might be nice to have some feedback mechanism through a        callback. Using that, table create status can be provided        to the interface which is creating the tables. This is especially        useful in case the create process fails at some point, in which        case you currently have no good feedback about the create        table progress.</li>
+</ul>
+<h3><a href="PhorumDBLayer/_mysql.php.html#functionphorum_db_file_save">phorum_db_file_save()</a></h3>
+<ul>
+    <li>Update docs, because it now is based on separate parameters,        while the function itself requires an array now.</li>
+</ul>
+<h3><a href="PhorumDBLayer/_mysql.php.html#functionphorum_db_user_get_all">phorum_db_user_get_all()</a></h3>
+<ul>
+    <li>This function might be as well replaced with user search and get        functionality from the user API, if search is extended with an        option to return a resource handle.</li>
+</ul>
+<h3><a href="PhorumDBLayer/_mysql.php.html#functionphorum_db_user_get_list">phorum_db_user_get_list()</a></h3>
+<ul>
+    <li>This function might be as well replaced with user search and get        functionality from the user API,</li>
+</ul>
+<h3><a href="PhorumDBLayer/_mysql.php.html#functionphorum_db_user_get_unapproved">phorum_db_user_get_unapproved()</a></h3>
+<ul>
+    <li>This function might be as well replaced with user search and get        functionality from the user API.</li>
+</ul>
+	<p class="notes" id="credit">
+		Documentation generated on Sun, 25 Jan 2009 01:45:32 -0600 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.1</a>
+	</p>
+	</body>
+</html>

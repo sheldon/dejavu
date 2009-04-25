@@ -1,0 +1,60 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.18.2. cc_save_user</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s18.html" title="3.18. Control center"><link rel="prev" href="ch03s18.html" title="3.18. Control center"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s18.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> </td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.cc_save_user"></a>3.18.2. cc_save_user</h3></div></div></div><p>
+
+This hook works the same way as the <a class="xref" href="ch03s16s06.html" title="3.16.6. before_register">???</a>
+hook, so you can also use it for changing and checking the user data
+that will be saved in the database. There's one difference. If you
+want to check a custom field, you'll also need to check the panel
+which you are on, because this hook is called from multiple panels.
+The panel that you are on will be stored in the 
+<code class="literal">panel</code> field of the user data.<br>
+<br>
+The example hook belows demonstrates code which could be used if you
+have added a custom field to the template for the option 
+<code class="literal">Edit My Profile</code> in the control panel.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In <code class="filename">control.php</code>, right before data for a user is
+saved in the control panel.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+An array containing the user data to save.
+</p><div class="itemizedlist"><ul type="disc"><li>error:
+modules can fill this field with an error message to show.</li></ul></div><p>
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+The same array as the one that was used for the hook call
+argument, possibly with the "error" field updated in it.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_cc_save_user ($data)
+{
+    // Only check data for the panel "user".
+    if ($data['panel'] != "user") return $data;
+
+    $myfield = trim($data['your_custom_field']);
+    if (empty($myfield)) {
+        $data['error'] = 'You need to fill in my custom field';
+    }
+
+    return $data;
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s18.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s18.html">Up</a></td><td width="40%" align="right"> </td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

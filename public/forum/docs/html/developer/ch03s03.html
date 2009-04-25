@@ -1,0 +1,66 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.3. Templating</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03.html" title="Chapter 3. Module hooks"><link rel="prev" href="ch03s02s02.html" title="3.2.2. search_output"><link rel="next" href="ch03s03s02.html" title="3.3.2. javascript_filter"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s02s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s03s02.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="hooks.category.templating"></a>3.3. Templating</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.javascript_register"></a>3.3.1. javascript_register</h3></div></div></div><p>
+
+Modules can provide JavaScript code that has to be added to the
+Phorum pages. Modules that make use of this facility should
+register the JavaScript code using this hook.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+At the start of the javascript.php script.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+An array of registrations. Modules can register their JavaScript
+code for inclusion by adding a registration to this array.
+A registration is an array, containing the following fields:
+</p><div class="itemizedlist"><ul type="disc"><li><span class="bold"><strong>module</strong></span><br>
+The name of the module that adds the registration.
+</li><li><span class="bold"><strong>source</strong></span><br>
+Specifies the source of the JavaScript data. This can be one of:
+<div class="itemizedlist"><ul type="circle"><li><span class="bold"><strong>file(&lt;path to filename&gt;)</strong></span><br>
+For including a static JavaScript file. The path should be
+absolute or relative to the Phorum install directory,
+e.g. "<code class="literal">file(mods/foobar/baz.js</code>)".
+Because this file is loaded using a PHP include() call,
+it is possible to include PHP code in this file. Mind that
+this code is stored interpreted in the cache.</li><li><span class="bold"><strong>template(&lt;template name&gt;)</strong></span><br>
+For including a Phorum template,
+e.g. "<code class="literal">template(foobar::baz)</code>"</li><li><span class="bold"><strong>function(&lt;function name&gt;)</strong></span><br>
+For calling a function to retrieve the JavaScript code,
+e.g. "<code class="literal">function(mod_foobar_get_js</code>)"</li></ul></div></li><li><span class="bold"><strong>cache_key</strong></span><br>
+To make caching of the generated JavaScript code
+possible, the module should provide a cache key using this
+field. This cache key needs to change if the module will
+provide different JavaScript code.<br><br>
+Note: in case "file" or "template" is used as the source,
+you are allowed to omit the cache_key. In that case, the
+modification time of the involved file(s) will be used as
+the cache key.<br><br>
+It is okay for the module to provide multiple cache keys
+for different situations (e.g. if the JavaScript code depends on
+a group). Keep in mind though that for each different
+cache key, a separate cache file is generated. If you are
+generating different JavaScript code per user or so, then it might
+be better to add the JavaScript code differently (e.g. through a
+custom JavaScript generating script or by adding the code to
+the <code class="literal">$PHORUM['DATA']['HEAD_DATA']</code> variable).
+Also, do not use this to only add JavaScript code to certain
+phorum pages. Since the resulting JavaScript data is cached,
+it is no problem if you add the JavaScript code for your module
+to the code for every page.
+</li></ul></div><p>
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+The same array as the one that was used as the hook call
+argument, possibly extended with one or more registrations.
+      </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s02s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s03s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

@@ -1,0 +1,59 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.4.4.5. IF .. ELSEIF .. ELSE ..</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch01s04s04.html" title="1.4.4. Statements"><link rel="prev" href="ch01s04s04s04.html" title="1.4.4.4. VAR"><link rel="next" href="ch01s04s04s06.html" title="1.4.4.6. LOOP"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s04s04s04.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s04s04s06.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="templates.if"></a>1.4.4.5. IF .. ELSEIF .. ELSE ..</h4></div></div></div><p>
+          </p><div class="variablelist"><dl><dt><span class="term">Function</span></dt><dd><p>
+                  Using these statements, you can control if certain blocks
+                  of code in your template are processed or not, based on
+                  a given <code class="literal">&lt;CONDITION&gt;</code>.
+                  This can for example be useful if you want certain
+                  parts of the page to be only visible for registered users.
+                </p></dd><dt><span class="term">Syntax</span></dt><dd><p>
+                  </p><div class="literallayout"><p><code class="literal"><br>
+{IF &lt;CONDITION&gt;}<br>
+  .. conditional code ..<br>
+[{ELSEIF &lt;CONDITION&gt;}<br>
+  .. conditional code ..]<br>
+[{ELSE}<br>
+  .. conditional code ..]<br>
+{/IF}<br>
+<br>
+&lt;CONDITION&gt; Syntax: [NOT] &lt;TEMPLATE VARIABLE&gt; [&lt;VALUE&gt;]<br>
+                  </code></p></div><p>
+                </p><p>
+                  The <code class="literal">&lt;TEMPLATE VARIABLE&gt;</code> in a
+                  <code class="literal">&lt;CONDITION&gt;</code> has to be an
+                  existing variable name.
+                  The <code class="literal">&lt;VALUE&gt;</code> can be any of
+                  the data types that are supported by the template
+                  language (see <a class="xref" href="ch01s04s03.html" title="1.4.3. Data types">Section 1.4.3, &#8220;Data types&#8221;</a>).
+                </p><p>
+                  If a <code class="literal">&lt;VALUE&gt;</code> is used, the
+                  <code class="literal">&lt;TEMPLATE VARIABLE&gt;</code> will be
+                  compared to the <code class="literal">&lt;VALUE&gt;</code>.
+                  If the <code class="literal">&lt;VALUE&gt;</code> is omitted,
+                  then the condition will check whether the
+                  <code class="literal">&lt;TEMPLATE VARIABLE&gt;</code> is set
+                  and not empty.
+                </p><p>
+                  A condition can be negated by prepending the keyword
+                  <code class="literal">NOT</code> to it.
+                </p><p>
+                  Multiple conditions can be chained using the keywords
+                  <code class="literal">AND</code> or <code class="literal">OR</code>.
+                </p></dd><dt><span class="term">Example code</span></dt><dd><p>
+                </p><div class="example"><a name="id2496689"></a><p class="title"><b>Example 1.17. IF .. ELSEIF .. ELSE .. statement usage</b></p><div class="example-contents"><pre class="programlisting">
+{IF NOT LOGGEDIN}
+   You are currently not logged in.
+{ELSEIF USER-&gt;username "John"}
+   Hey, it's good to see you again, mr. John!
+{ELSE}
+   Welcome, {USER-&gt;username}!
+{/IF}
+
+{IF ADMINISTRATOR true OR USER-&gt;username "John"}
+   You are either an administrator or John.
+{/IF}
+
+{IF VARIABLE1 VARIABLE2}
+   Variable 1 and 2 have the same value.
+{/IF} </pre></div></div><p><br class="example-break">
+              </p></dd></dl></div><p>
+        </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s04s04s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01s04s04.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04s04s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

@@ -1,0 +1,66 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.17.2. user_session_create</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s17.html" title="3.17. User authentication and session handling"><link rel="prev" href="ch03s17.html" title="3.17. User authentication and session handling"><link rel="next" href="ch03s17s03.html" title="3.17.3. user_session_restore"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s17.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s17s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.user_session_create"></a>3.17.2. user_session_create</h3></div></div></div><p>
+
+Allow modules to override Phorum's session create management or
+to even fully omit creating a session (for example useful
+if the hook <a class="xref" href="ch03s17s03.html" title="3.17.3. user_session_restore">???</a> is used
+to inherit an external session from some 3rd party application).
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+Just before Phorum runs its own session initialization code
+in the user API function
+<code class="literal">phorum_api_user_session_create()</code>.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+The session type for which a session must be created.
+This can be either <code class="literal">PHORUM_FORUM_SESSION</code>
+or <code class="literal">PHORUM_ADMIN_SESSION</code>.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+Same as input if Phorum has to run its standard session
+initialization code or NULL if that code should be fully skipped.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_user_session_create($type)
+{
+    // Let Phorum handle admin sessions on its own.
+    if ($type == PHORUM_ADMIN_SESSION) return $type;
+
+    // Override the session handling for front end forum sessions.
+    // We could for example put the session in a standard PHP
+    // session by first starting a PHP session if that was
+    // not done yet...
+    if (!session_id()) session_start();
+
+    // ...and then storing the user_id of the current user in the
+    // PHP session data. The user_id is really the only thing
+    // that needs to be remembered for a Phorum session, because
+    // all other data for the user is stored in the database.
+    $phorum_user_id = $GLOBALS["PHORUM"]["user"]["user_id"];
+    $_SESSION['phorum_user_id'] = $phorum_user_id;
+
+    // Tell Phorum not to run its own session initialization code.
+    return NULL;
+}
+</pre><p>
+
+See the <a class="xref" href="ch03s17s03.html" title="3.17.3. user_session_restore">???</a> hook for an example
+of how to let Phorum pick up this PHP based session.
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s17.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s17.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s17s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

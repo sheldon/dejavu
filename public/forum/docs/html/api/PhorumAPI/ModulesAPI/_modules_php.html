@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page modules.php</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/modules.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-functions">Functions</a>
+			</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This script implements the Phorum module admin API.</p>
+<p class="description"><p>This API is used for managing Phorum modules. It can be used to retrieve  information about the available modules and takes care of activating  and deactivating them.</p></p>
+	<ul class="tags">
+				<li><span class="field">license:</span> Phorum</li>
+				<li><span class="field">copyright:</span> 2007, Phorum Development Team</li>
+			</ul>
+		
+			</div>
+</div>
+		
+
+	
+	
+	
+	<a name="sec-functions"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Functions</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<span class="disabled">Functions</span>
+		</div>
+		<div class="info-box-body">	
+			<a name="functionmodule_sort" id="functionmodule_sort"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">module_sort</span> (line <span class="line-number">527</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">A small utility function which can be used to sort modules by name  using the uasort() command.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			module_sort
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$a</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$b</span>)
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_api_modules_check_updated_info" id="functionphorum_api_modules_check_updated_info"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_modules_check_updated_info</span> (line <span class="line-number">474</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if there are modules for which the module information is updated.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of module names for which the module information was updated.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_api_modules_check_updated_info
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$do_reset</span> = <span class="var-default">FALSE</span>], <span class="var-type">boolean</span>&nbsp;<span class="var-name">$do_reset
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$do_reset
+</span><span class="var-description">: If this parameter has a true value, then the active status for      the module information is stored in the database.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_modules_disable" id="functionphorum_api_modules_disable"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_modules_disable</span> (line <span class="line-number">251</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Flag a module as disabled.</p>
+<p class="description"><p>This will only flag the module as disabled. After calling this function,  <a href="../../PhorumAPI/ModulesAPI/_modules_php.html#functionphorum_api_modules_save">phorum_api_modules_save()</a> has to be called to store the  new module settings in the database.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_modules_disable
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$module</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$module
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$module
+</span><span class="var-description">: The name of the module to disabled.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_modules_enable" id="functionphorum_api_modules_enable"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_modules_enable</span> (line <span class="line-number">221</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Flag a module as enabled.</p>
+<p class="description"><p>This will only flag the module as enabled. After calling this function,  <a href="../../PhorumAPI/ModulesAPI/_modules_php.html#functionphorum_api_modules_save">phorum_api_modules_save()</a> has to be called to store the  new module settings in the database.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_modules_enable
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$module</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$module
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$module
+</span><span class="var-description">: The name of the module to enable.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_modules_list" id="functionphorum_api_modules_list"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_modules_list</span> (line <span class="line-number">71</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of all available modules.</p>
+<p class="description"><p>This function will scan the mods directory to find all available  modules. For each module, the module information (info.txt or  inline module info) is collected.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array, containing the following fields: <ul><li>modules:
+       An array of available modules. The keys are module names and the
+       values are arrays, containing detailed module information.</li><li>priorities:
+       An array containing scheduling priority rules.</li><li>deprecated:
+       An array of warnings about deprecated module hooks or an empty
+       array if there are no deprecation warnings.</li><li>problems:
+       An array of (HTML formatted) errors and warnings regarding module
+       problems.</li></ul></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_api_modules_list
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionphorum_api_modules_save" id="functionphorum_api_modules_save"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_modules_save</span> (line <span class="line-number">269</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Store the module information in the database.</p>
+<p class="description"><p>This function will sort out all module and hook priorities for the  enabled modules and write the result data ($PHORUM[&quot;mods&quot;] and  $PHORUM[&quot;hooks&quot;]) to the database.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_modules_save
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 16 Jan 2008 08:31:14 -0600 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC5</a>
+	</p>
+	</div></body>
+</html>

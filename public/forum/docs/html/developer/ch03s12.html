@@ -1,0 +1,57 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.12. File storage</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03.html" title="Chapter 3. Module hooks"><link rel="prev" href="ch03s11s05.html" title="3.11.5. end_output"><link rel="next" href="ch03s12s02.html" title="3.12.2. before_attach"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s11s05.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s12s02.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="hooks.category.filestorage"></a>3.12. File storage</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.after_detach"></a>3.12.1. after_detach</h3></div></div></div><p>
+
+The primary use of this hook would be for creating an
+alternate storage system for attachments. Using this hook,
+you can delete the file from your alternate storage.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In 
+<code class="filename">include/posting/action_attachments.php</code>,
+right after a file attachment is deleted from the database.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+Two part array where the first element is the message array
+and the second element is a file array that contains the 
+name, size, and <code class="literal">file_id</code> of the deleted
+file.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+Same as input.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_reopen_after_detach($data)
+{
+    global $PHORUM;
+
+    // Remove the attachment from the log of messages with
+    // attachments
+    unset($PHORUM["mod_foo"]["messages_with_attachments"][$data[0]["message_id"]][$data[1]["file_id"]]);
+
+    // If there are now no attachments on the current
+    // message, remove the message from the log
+    if (empty($PHORUM["mod_foo"]["messages_with_attachments"][$data[0]["message_id"]]))
+        unset($PHORUM["mod_foo"]["messages_with_attachments"][$data[0]["message_id"]]);
+    phorum_db_update_settings(array("mod_foo" =&gt; $PHORUM["mod_foo"]));
+
+    return $data;
+}
+</pre><p>
+
+      </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s11s05.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s12s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

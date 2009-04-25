@@ -1,0 +1,30 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.4. Additional issues</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Administrator Reference Manual"><link rel="up" href="ch01.html" title="Chapter 1. Installation instructions"><link rel="prev" href="ch01s03s07.html" title="1.3.7. Things to do after installing Phorum"><link rel="next" href="ch01s04s02.html" title="1.4.2. Additional issues for Windows"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s03s07.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s04s02.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="install.additionalissues"></a>1.4. Additional issues</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2496359"></a>1.4.1. Additional issues for UNIX (Linux, BSD, Solaris, etc.)</h3></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2496366"></a>1.4.1.1. Cache directory</h4></div></div></div><p>
+          In the Phorum settings, there is an entry called "Cache Directory".
+          On UNIX systems, the installer will have set that to the default
+          location <code class="filename">/tmp</code>.
+          The cache directory is used
+          for storing cached data and compiled templates. You can change
+          the location of your cache directory if you do not want the
+          Phorum files to be in <code class="filename">/tmp</code> or if you see
+          the following kind of error message:
+          </p><pre class="screen">
+Warning:
+fopen(/tmp/tpl-default-header-a72fb9dd20915e5953aa9b07d3eb3871.php):
+failed to open stream: permission denied in
+/path/to/phorum/include/templates.php on line 184</pre><p>
+          If you want to change the cache directory settings, we advise
+          you to change it to <code class="filename">./cache</code> (this directory
+          is already in the Phorum directory).
+        </p><p>
+          You will have to make sure
+          that this directory is writable by the webserver. Most likely
+          this means that you have to make it world writable. On a
+          UNIX shell prompt, you can do this using the following
+          commands:
+          </p><pre class="screen">
+shell&gt; <code class="literal">cd /path/to/phorum</code>
+shell&gt; <code class="literal">chmod 777 cache</code></pre><p>
+          If you do not have access to the shell prompt of the server and
+          are using FTP to access the server, please check your FTP
+          client's help on how to set the permissions for a directory.
+        </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s03s07.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

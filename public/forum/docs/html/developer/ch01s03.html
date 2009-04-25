@@ -1,0 +1,41 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.3. How to start your own template</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch01.html" title="Chapter 1. Templates"><link rel="prev" href="ch01s02.html" title="1.2. Template structure"><link rel="next" href="ch01s04.html" title="1.4. The Phorum template language"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2495323"></a>1.3. How to start your own template</h2></div></div></div><p>
+      Although you can start writing a new template totally from scratch,
+      it is of course much easier to take an existing template and modify
+      that one for your needs. Here are the steps that you have to take
+      for accomplishing this:
+    </p><div class="itemizedlist"><ul type="disc"><li><p>
+          <span class="bold"><strong>Copy the default template</strong></span><br>
+          Take the default template directory from
+          <code class="filename">{phorum dir}/templates/default</code> and
+          copy it over to another directory, for example
+          <code class="filename">{phorum dir}/templates/mytpl</code>.
+        </p></li><li><p>
+          <span class="bold"><strong>Edit info.php for your template</strong></span><br>
+          Edit
+          <code class="filename">{phorum dir}/templates/mytpl/info.php</code>.
+          In this file you have to edit at least the <code class="literal">$name</code>
+          variable, e.g. to <code class="literal">$name = "My very own template";</code>
+        </p><p>
+          You can hide the template from the user template selection
+          boxes by setting <code class="literal">$template_hide = 1</code>.
+          If you do this, you can only select this template through
+          the admin interface.
+        </p></li><li><p>
+          <span class="bold"><strong>Configure Phorum to use your template</strong></span><br>
+          Open Phorum's admin page
+          <code class="filename">{phorum url}/admin.php</code> and go to
+          "Default Settings". There you will find the "Template" option.
+          Set that option to your own template. All forums that
+          inherit their settings from the default settings will use the
+          template automatically. For other folders and forums, you will
+          have to go to their settings pages to set their template to
+          the default template as well.
+        </p></li></ul></div><p>
+      That is it! You are now using your own template. From here on,
+      you can start tweaking the template files in your
+      <code class="filename">{phorum dir}/templates/mytpl</code> directory.
+    </p><p>
+      Phorum uses its own template language to allow for dynamic templates
+      without using PHP. More information on this can be found in
+      the section about the <a class="xref" href="ch01s04.html" title="1.4. The Phorum template language">Phorum template language</a>.
+    </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

@@ -1,0 +1,63 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.7.5. Full module settings page example</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s03s07.html" title="2.3.7. Implementing a settings screen for your module"><link rel="prev" href="ch02s03s07s04.html" title="2.3.7.4. Prevent settings.php from being loaded directly"><link rel="next" href="ch03.html" title="Chapter 3. Module hooks"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03s07s04.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="modules.example"></a>2.3.7.5. Full module settings page example</h4></div></div></div><p>
+          Here is a full example settings page, using the tools from above.
+          A real settings page will often be much larger than this, but the
+          basics are the same.
+          </p><div class="example"><a name="id2501236"></a><p class="title"><b>Example 2.11. 
+              An example module settings.php script
+            </b></p><div class="example-contents"><pre class="programlisting">
+  &lt;?php
+
+  if (!defined("PHORUM_ADMIN")) return;
+
+  // If data is posted, then store the posted settings in the database.
+  if (count($_POST))
+  {
+      $PHORUM['mod_foo']['field1'] = empty($_POST['field1']) ? 0 : 1;
+      $PHORUM['mod_foo']['field2'] = (int) $_POST['field2'];
+
+      // Do some error checking.
+      if ($PHORUM['mod_foo']['field2'] &gt; 1000) {
+          phorum_admin_error("The value for field 2 is too high!");
+      }
+      // The data was okay. Store the settings.
+      else {
+          phorum_db_update_settings(array("mod_foo" =&gt; $PHORUM["mod_foo"]));
+          phorum_admin_okmsg('The settings were saved successfully');
+      }
+  }
+
+  // This block is standard for every settings page. The "mod" field
+  // must be set to the name of the module for which the settings
+  // page is written.
+  include_once "./include/admin/PhorumInputForm.php";
+  $frm = new PhorumInputForm ("", "post", "Submit this form");
+  $frm-&gt;hidden("module", "modsettings");
+  $frm-&gt;hidden("mod", "foo");
+
+  // Add a header row to the form.
+  $frm-&gt;addbreak("Foo module settings");
+
+  // Add a checkbox to the form.
+  $row = $frm-&gt;addrow(
+      "Field 1",
+      $frm-&gt;checkbox("field1", "1", "Yes", $PHORUM['mod_foo']['field1'])
+  );
+
+  // Add a help balloon to Field 1.
+  $frm-&gt;addhelp(
+      $row, "Field 1",
+      "This is a help balloon text for Field 1."
+  );
+
+  // Add a text field to the form.
+  $frm-&gt;addrow(
+      "Field 2",
+      $frm-&gt;text_box("field2", $PHORUM['mod_foo']['field2'], 50)
+  );
+
+  // Display the form.
+  $frm-&gt;show();
+
+  ?&gt;
+  </pre></div></div><p><br class="example-break">
+        </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03s07s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03s07.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

@@ -1,0 +1,147 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.5.3. Storing data for users</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s03s05.html" title="2.3.5. Module data storage"><link rel="prev" href="ch02s03s05s02.html" title="2.3.5.2. Storing data for messages"><link rel="next" href="ch02s03s06.html" title="2.3.6. Building URLs for Phorum"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03s05s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03s06.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="modules.storeuserdata"></a>2.3.5.3. Storing data for users</h4></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="modules.customuserfields"></a>2.3.5.3.1. Custom profile fields for users</h5></div></div></div><p>
+            If your module needs to store data along with a Phorum user,
+            you can make use of custom profile fields. These fields will
+            be accessible from within the user data. E.g. if you create
+            a custom profile field named "foobar", the value of that field
+            will be stored in $user["foobar"] (so right next to the standard
+            fields like $user["username"] and $user["email"]).
+          </p><p>
+            Creating custom profile fields can be done from the admin
+            interface, under "Custom Profiles". It is also possible to
+            let your module create the custom profile field fully
+            automatical, by using the <a class="ulink" href="../api/PhorumAPI/CustomProfileFieldAPI/_custom_profile_fields.php.html" target="_top">Custom Profile Fields API</a>.
+            If you choose to let the user of your module create the field by
+            hand, then please include a thorough description of what
+            configuration the user has to do. A lot of problems with modules
+            that require manual configuration come from using wrong
+            options for a custom profile field.
+          </p><p>
+            <span class="bold"><strong>
+              Using a separate field for each piece of data
+            </strong></span>
+          </p><p>
+            When using a custom profile field for storing module information,
+            you can use a separate field for each piece of data you want to
+            store. The advantage of doing this, is that you can then use the
+            option "Disable HTML" for the fields that you will be sending to
+            the user's browser. In fields with this option enabled, characters
+            that have a special meaning in HTML will be escaped after loading
+            the user from the database. This prevents the field from being
+            vulnerable to XSS attacks. Recommended settings for storing a single
+            value in a profile field are:
+            </p><div class="itemizedlist"><ul type="disc"><li><span class="bold"><strong>Field Name:</strong></span><br>
+                Name your field <code class="literal">mod_&lt;module name&gt;</code>
+                if you only need to store one single value. If you need to
+                store more values, then use the format
+                <code class="literal">mod_&lt;module name&gt;_&lt;field name&gt;</code>.
+                This prevents the risk of clashing with standard Phorum user
+                fields or custom fields that are added for other modules.
+                For example, the "foo" module could use the field names
+                <code class="literal">mod_foo_size</code> and
+                <code class="literal">mod_foo_name</code>.
+              </li><li><span class="bold"><strong>Field Length:</strong></span><br>
+                If you want some field to contain a predefined maximum number
+                of characters, then fill in that number of characters in this
+                field. Before storing the field data to the database, Phorum
+                will trim the data down if it is longer than the defined number
+                of characters. If you need no limit, you can also use
+                <code class="literal">65000</code> here.
+              </li><li><span class="bold"><strong>Disable HTML:</strong></span><br>
+                Enable this option, unless you are absolutely sure that the
+                data for this field is either not shown in the browser or
+                escaped by your module before showing it.
+              </li><li><span class="bold"><strong>Show in user admin:</strong></span><br>
+                If you want the field to be visible along with the user data
+                for a user in the admin interface, then enable this option.
+              </li></ul></div><p>
+          </p><p>
+            <span class="bold"><strong>
+              Using a single field for storing a complex data structure
+            </strong></span>
+          </p><p>
+            Instead, you can also create a single field for storing
+            a complete array of information. Phorum will automatically take care
+            of storing this information (serialized) in the database. You only
+            should make sure that the custom profile field is large enough to
+            store all the data and that HTML is allowed for the field, so the
+            special PHP serialization code will not be broken by escaping special
+            characters. When your module needs to store multiple fields,
+            this is the preferred way. Recommended settings for storing a full
+            array in a profile field are:
+            </p><div class="itemizedlist"><ul type="disc"><li><span class="bold"><strong>Field Name:</strong></span><br>
+                Name your field <code class="literal">mod_&lt;module name&gt;</code>,
+                so you will not risk clashes with standard Phorum user fields
+                or custom fields that are added for other modules. For example,
+                the "foo" module would use the field name
+                <code class="literal">mod_foo</code>.
+              </li><li><span class="bold"><strong>Field Length:</strong></span><br>
+                Use <code class="literal">65000</code> here. Using smaller values will
+                not make the database storage smaller. This value is only used
+                to trim down the data to the provided length. So for storing
+                serialized data, it is best to set this value as high as
+                possible.
+              </li><li><span class="bold"><strong>Disable HTML:</strong></span><br>
+                Disable this option, so the serialize data will not be
+                broken by escaping special characters.
+              </li><li><span class="bold"><strong>Show in user admin:</strong></span><br>
+                Disable this option. There is currently no support for showing
+                serialized fields in the user admin pages in a readable way.
+              </li></ul></div><p>
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="modules.storeuserdata.type1"></a>2.3.5.3.2. 
+            From hooks that get an editable user array as their argument
+          </h5></div></div></div><p>
+            There are some hooks that send a full message structure to the
+            hook functions. These can change the message structure before
+            returning it to Phorum. An example is the hook
+            "<a class="xref" href="ch03s16.html#hook.user_save" title="3.16.1. user_save">???</a>".
+            For these kind of hooks, you can update the custom profile
+            field data in the user structure and be done with it. Here's
+            an example of what this could look like in your hook function:
+            </p><pre class="programlisting">
+function phorum_mod_foo_user_save ($user)
+{
+    // Some data to store in the "mod_foo" custom field.
+    $data = array(
+        "user_id" =&gt; $user_id,
+        "mod_foo" =&gt; array (
+            "foodata" =&gt; "Some user data",
+            "bardata" =&gt; "Some more user data"
+        )
+    );
+
+    // Put the data in the user sructure.
+    $user["mod_foo"] = $data;
+
+    // Return the updated user. Phorum will take care of
+    // storing the "mod_foo" array in the database.
+    return $user;
+} </pre><p>
+          </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h5 class="title"><a name="modules.storeuserdata.type2"></a>2.3.5.3.3. From other hooks</h5></div></div></div><p>
+            For storing data in the custom profile field, you can make use of
+            the <code class="literal">phorum_api_user_save()</code> function. This
+            function needs the user_id of the user and all fields that need
+            to be updated. Below are two pieces of code which show how our
+            example module might store data for a user (asuming $user_id is
+            the id of the user that must be changed).
+            </p><div class="example"><a name="id2500733"></a><p class="title"><b>Example 2.6. Filling custom profile fields for a user with data</b></p><div class="example-contents"><pre class="programlisting">
+  // When using multiple fields "mod_foo_foodata" and "mod_foo_bardata".
+
+  $userdata = array(
+      "user_id"         =&gt; $user_id,
+      "mod_foo_foodata" =&gt; "Some user data",
+      "mod_foo_bardata" =&gt; "Some more user data"
+  );
+  phorum_api_user_save($userdata);
+
+  // When using a single custom field "mod_foo" for this module:
+
+  $userdata = array(
+      "user_id" =&gt; $user_id,
+      "mod_foo" =&gt; array (
+          "foodata" =&gt; "Some user data",
+          "bardata" =&gt; "Some more user data"
+      )
+  );
+  phorum_api_user_save($userdata);</pre></div></div><p><br class="example-break">
+
+          </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03s05s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03s05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

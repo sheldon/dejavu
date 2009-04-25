@@ -1,0 +1,20 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.2.5. Hook functions</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s02.html" title="2.2. Terminology"><link rel="prev" href="ch02s02s04.html" title="2.2.4. Hooks"><link rel="next" href="ch02s03.html" title="2.3. Writing your own modules"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s02s04.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="modules.hookfunctions"></a>2.2.5. Hook functions</h3></div></div></div><p>
+        A module contains PHP functions that act as hook functions.
+        Hook functions will receive some data from Phorum
+        through their arguments and have to return the (possibly modified)
+        data, which will then go either back to Phorum or to the input
+        of another module which also handles the same hook
+        (see <a class="xref" href="ch02s02s04.html" title="2.2.4. Hooks">???</a>).
+        Based on this, the most basic (and useless) hook function you could
+        write would look somewhat like this (see XXX for an explanation
+        of the naming scheme that was used for the function):
+        </p><pre class="programlisting">
+function phorum_mod_foo_some_hook ($data) {
+  return $data;
+}</pre><p>
+      </p><p>
+        The exact nature of the data that is sent to the hook functions
+        depends solely on the hook that is run. See <a class="xref" href="ch03.html" title="Chapter 3. Module hooks">Chapter 3, <i>Module hooks</i></a>
+        for a description of all supported hooks, including a specification
+        of the type of data that is sent.
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s02s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

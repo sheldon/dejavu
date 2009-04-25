@@ -1,0 +1,52 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.6.2. Build URLs for Phorum PHP scripts: phorum_get_url()</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s03s06.html" title="2.3.6. Building URLs for Phorum"><link rel="prev" href="ch02s03s06.html" title="2.3.6. Building URLs for Phorum"><link rel="next" href="ch02s03s06s03.html" title="2.3.6.3. Build URLs to files in the Phorum tree"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03s06.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03s06s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="modules.scripturls"></a>2.3.6.2. Build URLs for Phorum PHP scripts: phorum_get_url()</h4></div></div></div><p>
+          Phorum uses the function <code class="literal">phorum_get_url()</code> to
+          consistenly build URLs that point to Phorum PHP scripts. It is
+          recommended that you use this function as well when creating
+          URLs to scripts yourself, so special features and future changes
+          will automatically be incorporated in the links you use.
+        </p><p>
+          Here is an example of building an URL, which will open the
+          profile page for the user with user_id = 17:
+          </p><div class="example"><a name="id2500891"></a><p class="title"><b>Example 2.7. 
+              Generating a profile URL using phorum_get_url()
+            </b></p><div class="example-contents"><pre class="programlisting">
+$url = phorum_get_url(PHORUM_PROFILE_URL, 17); </pre></div></div><p><br class="example-break">
+          The argument list that this function takes, depends on the first
+          argument which tells Phorum what URL type has to be built.
+          When building other URLs, other arguments will be used.
+        </p><p>
+          About all URL types that <code class="literal">phorum_get_url()</code>
+          supports are used for building URLs that point to the scripts
+          that are bundled with Phorum. Sometimes, you might want to add
+          an extra script of your own to the Phorum tree (see
+          <a class="xref" href="ch02s02s03.html" title="2.2.3. Add-ons">Section 2.2.3, &#8220;Add-ons&#8221;</a>). For those, you can use
+          <code class="literal">phorum_get_url()</code> as well. The way to go is
+          simple. You need to use <code class="literal">PHORUM_CUSTOM_URL</code> as
+          the first argument and add the following parameters to it:
+          </p><div class="itemizedlist"><ul type="disc"><li>
+              The first parameter needs to be the filename of the file to link
+              to, without the (.php) extension.
+            </li><li>
+              The second parameter needs to be FALSE or TRUE. If it is TRUE,
+              then the current forum_id is added to the URL.
+            </li><li>
+              All other parameters are added directly to the URL.
+            </li></ul></div><p>
+        </p><p>
+          Here is an example of building a URL which links to the
+          add-on file <code class="filename">myfile.php</code> in the Phorum
+          installation directory. Lets asume that the URL has to have the
+          forum_id in it and that it needs to contain the additional
+          parameters <code class="filename">foo=bar</code> and
+          <code class="filename">baz=foo</code>:
+          </p><div class="example"><a name="id2500971"></a><p class="title"><b>Example 2.8. 
+              Generating a custom script URL using phorum_get_url()
+            </b></p><div class="example-contents"><pre class="programlisting">
+// Build the URL for the add-on script.
+$url = phorum_get_url(PHORUM_CUSTOM_URL, "myfile", 1, "foo=bar", "baz=foo");
+
+// After this, you could store the URL in the template data, so you
+// can use it from the templates to link to the add-on script.
+// Here an example for filling the template variable {URL-&gt;MYFILE}:
+$PHORUM["DATA"]["URL"]["MYFILE"] = $url; </pre></div></div><p><br class="example-break">
+        </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03s06.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03s06.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03s06s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

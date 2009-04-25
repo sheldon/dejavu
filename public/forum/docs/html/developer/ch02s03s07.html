@@ -1,0 +1,31 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.7. Implementing a settings screen for your module</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s03.html" title="2.3. Writing your own modules"><link rel="prev" href="ch02s03s06s03.html" title="2.3.6.3. Build URLs to files in the Phorum tree"><link rel="next" href="ch02s03s07s02.html" title="2.3.7.2. Error and success feedback messages"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03s06s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03s07s02.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="modules.settings"></a>2.3.7. Implementing a settings screen for your module</h3></div></div></div><p>
+        Note: this feature is only available for modules that use the
+        <a class="xref" href="ch02s03s03s03.html" title="2.3.3.3. Multiple file modules">multiple file module structure</a>
+      </p><p>
+        Some modules that you write might need to store settings for later
+        use. For those, you can create a settings page that can be
+        accessed from the "Modules" page in the admin interface.
+      </p><p>
+        The settings page must be put in your module's directory by the
+        name of "<code class="filename">settings.php</code>".
+        So for our example module "foo" the file would go in
+        {phorum dir}/mods/foo/settings.php. In the admin interface under
+        the option "Modules", a link to the settings.php page will
+        automatically be added if the settings.php file is available
+        for your module.
+      </p><p>
+        Although you can do anything you want in your settings.php script,
+        it is recommended that you use the tools that are handed to you
+        by Phorum for building pages and storing settings.<br>
+        If the standard tools are not enough for building your settings
+        page, then it is of course fine to do things differently
+        (e.g. let your module create and use database tables or build the
+        full settings interface using your own form code.)
+      </p><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="modules.phoruminputform"></a>2.3.7.1. Building input forms</h4></div></div></div><p>
+          The Phorum PHP object "PhorumInputForm" can be used to build
+          input forms and table displays in the admin interface.
+          The best thing you can do for learning the possibilities of
+          this class is to look at other Phorum modules (like "bbcode"
+          or "replace") or the core admin scripts from the
+          <code class="filename">{phorum dir}/include/admin</code> directory.
+        </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03s06s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03s07s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

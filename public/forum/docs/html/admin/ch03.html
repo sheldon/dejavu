@@ -1,0 +1,363 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Chapter 3. How to configure and use the Phorum Features</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Administrator Reference Manual"><link rel="up" href="index.html" title="Phorum Administrator Reference Manual"><link rel="prev" href="ch02s04.html" title="2.4. Support"><link rel="next" href="ch03s02.html" title="3.2. Virtual Roots"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s04.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s02.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="features.main"></a>Chapter 3. How to configure and use the Phorum Features</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="ch03.html#features.settings">3.1. Global Settings</a></span></dt><dd><dl><dt><span class="section"><a href="ch03.html#features.settings.general">3.1.1. General Settings</a></span></dt><dt><span class="section"><a href="ch03.html#features.settings.cache">3.1.2. Cache Settings</a></span></dt><dt><span class="section"><a href="ch03.html#feautures.settings.banlists">3.1.3. Ban Lists</a></span></dt></dl></dd><dt><span class="section"><a href="ch03s02.html">3.2. Virtual Roots</a></span></dt><dd><dl><dt><span class="section"><a href="ch03s02.html#features.vroots.intro">3.2.1. What are Virtual Roots?</a></span></dt><dt><span class="section"><a href="ch03s02s02.html">3.2.2. How do I create a virtual root?</a></span></dt></dl></dd><dt><span class="section"><a href="ch03s03.html">3.3. Phorum Modules</a></span></dt><dd><dl><dt><span class="section"><a href="ch03s03.html#features.modules.intro">3.3.1. What are Phorum Modules?</a></span></dt><dt><span class="section"><a href="ch03s03s02.html">3.3.2. How do I install a module?</a></span></dt><dt><span class="section"><a href="ch03s03s03.html">3.3.3. Modules included in the distribution</a></span></dt><dd><dl><dt><span class="section"><a href="ch03s03s03.html#features.modules.included.announcements">3.3.3.1. Announcements</a></span></dt><dt><span class="section"><a href="ch03s03s03s02.html">3.3.3.2. BBCode</a></span></dt><dt><span class="section"><a href="ch03s03s03s03.html">3.3.3.3. Editor tools</a></span></dt><dt><span class="section"><a href="ch03s03s03s04.html">3.3.3.4. Event Logging</a></span></dt><dt><span class="section"><a href="ch03s03s03s05.html">3.3.3.5. HTML in posts</a></span></dt><dt><span class="section"><a href="ch03s03s03s06.html">3.3.3.6. Send mail through SMTP</a></span></dt><dt><span class="section"><a href="ch03s03s03s07.html">3.3.3.7. Simple Text Replacement</a></span></dt><dt><span class="section"><a href="ch03s03s03s08.html">3.3.3.8. Smileys</a></span></dt><dt><span class="section"><a href="ch03s03s03s09.html">3.3.3.9. Spam Hurdles</a></span></dt><dt><span class="section"><a href="ch03s03s03s10.html">3.3.3.10. Tidy Output</a></span></dt><dt><span class="section"><a href="ch03s03s03s11.html">3.3.3.11. Username Restrictions</a></span></dt></dl></dd></dl></dd></dl></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="features.settings"></a>3.1. Global Settings</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="features.settings.general"></a>3.1.1. General Settings</h3></div></div></div><p>
+     <span class="bold"><strong> Phorum Title:</strong></span>
+     Enter the title of your forum here. This will be displayed on
+     the index page of your forum.
+   </p><p>
+     <span class="bold"><strong> Phorum Description:</strong></span> A description of
+     your forum. This will be displayed on the index page of your forum.
+     This is also useful from a Search Engine Optimization perspective.
+   </p><p>
+     <span class="bold"><strong>DNS Lookups:</strong></span>
+     If enabled, this instructs forum to perform a DNS lookup on certain
+     items, such as:
+     </p><div class="itemizedlist"><ul type="disc"><li><p>
+         logging the hostname from which a message was posted, instead
+         of the plain IP address;
+       </p></li><li><p>
+         being able to create IP ban items based on host and domain names;
+       </p></li><li><p>
+         checking the email address that is for user registrations.
+       </p></li></ul></div><p>
+     Generally this is a useful function for an administrator, and should
+     be left enabled. However, if Phorum keeps reporting illegal email
+     addresses during signup or if you are suffering from massive delays
+     during posting messages, then there might be DNS problems on your
+     server. In that case, disable DNS lookups as a work around.
+   </p><p>
+     <span class="bold"><strong>Hide Forums:</strong></span>
+     If this is enabled, forums which a user does
+     not have the permissions to read will be hidden from them.
+   </p><p>
+     <span class="bold"><strong> Show New Count in Forum List:</strong></span>
+     This feature will show registered users how many new messages and
+     threads there are in each forum on the forum list page. If you have
+     a large number of posts, a large number of forums, a large number
+     of users or some combination of the three, this setting could cause
+     some performance issues. If you see performance issues, try setting
+     it "No count, indicator only" or "No"
+   </p><p>
+     <span class="bold"><strong>Folder/Forum Display Style:</strong></span>
+     Since version 3, Phorum has included folders.
+     Until version 5.1, forums inside folders did not show until you
+     clicked on the folder. In 5.1, the list of forums in a folder can
+     now be shown under that folder in the forum list. This allows admins
+     to organize a large list of forums all on one page.
+     </p><p>
+     <span class="bold"><strong>Enable Moderator Notifications:</strong></span>
+     By setting this to Yes, Phorum will display a notice to the various
+     kinds of moderators when they have a new item that requires their
+     attention. For example, if this setting is enabled, moderators
+     will see a notice whenever there is an unapproved message.
+   </p><p>
+     <span class="bold"><strong>User Post Edit Time Limit:</strong></span>
+     If set to a value larger then 0, this acts as a time limit for post
+     editing. Users will only be able to edit their own posts within
+     this time limit. This only applies if a user has the necessary
+     permissions to edit their post, and does not affect moderators.
+   </p><p>
+     <span class="bold"><strong>Track Edit Changes:</strong></span>
+     When enabled, the changes made to a message will be stored
+     and viewed by users. It can optionaly only be viewed by moderators.
+   </p><p>
+     <span class="bold"><strong>Reply form appears:</strong></span>
+     This setting specifies where the reply form for threads is
+     displayed, either on the read page or on a separate page.
+   </p><p>
+     <span class="bold"><strong>After posting goto:</strong></span>
+     This setting specifies where the user is redirected after
+     posting, either to the message read page or the message list.
+   </p><p>
+     <span class="bold"><strong>After submitting a search query:</strong></span>
+     On large forums or slow servers, searching for messages might take a
+     little while. To prevent users from submitting the same search
+     query over and over again (in case they think the search didn't work,
+     because they didn't get their results fast enough), you can show an
+     intermediate page, telling the user that the search is running.
+     If your system can deliver search results quickly enough, then you can
+     skip the intermediate page and go directly to the search results page.
+   </p><p>
+     <span class="bold"><strong>Database error handling:</strong></span>
+     This setting determines how Phorum handles database errors. The default
+     is to show the errors on screen. "Errors will go to a logfile" is useful
+     if you don't want your users to see the errors, and "Errors will be
+     emailed" is useful if you want immediate notification of any database
+     errors on your forums.
+   </p><p>
+     <span class="bold"><strong>Secret private key for signing data:</strong></span>
+     On several occasions, data is transferred from the Phorum system to
+     the user's system and back again. To be sure that there was no
+     tampering with this data on the way, it is signed by Phorum using
+     this secret key. If you do not understand what this is for, then
+     it is safe to simply keep the pre-configured value.
+     <br>
+     </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+       If you change this key, users who are active right now might
+       experience problems.
+     </div><p>
+   </p><p>
+     <span class="bold"><strong>Allow Linking to Uploaded Files:</strong></span>
+     You may not want to allow other web sites to link to files that users
+     have uploaded to your forums. If not, then set this option to
+     "Only from the forum". If you want to use links on other parts
+     of your web site, then use "From this web site". If you want to
+     allow other websites to link to your forum file uploads, then select
+     "From any web site".
+   </p><p>
+     If your needs are more specific than this (e.g. if you want to allow
+     access from a specific group of web sites), you will need to use your
+     web server's security features to accomplish this. Apache users can
+     reference Prevent "Image Theft" at
+     <a class="ulink" href="http://httpd.apache.org/docs/env.html#examples" target="_top">http://httpd.apache.org/docs/env.html#examples</a>.
+     Users of the cPanel system can also configure this through the
+     "Hotlink Protection" feature.
+   </p><p>
+     <span class="bold"><strong>Put file name in pathinfo for file download URLs:</strong></span>
+     All Phorum file downloads (for user files and forum message attachments)
+     run through the file.php script. As a result, users who right-click a
+     file URL and choose "Save link as .." will end up in their browser with
+     file.php as the default file name. With this option enabled however,
+     Phorum will try to give the browser a real file name instead. This is
+     done by putting the file name in the URL as pathinfo (which makes the
+     download link look like
+     <code class="filename">/file.php/downloadfile.ext?1,2,file=3</code>).
+   </p><p>
+     The webserver needs to support the use of pathinfo for this feature to
+     work. So if you are unable to download files after enabling this option,
+     your webserver probably lacks pathinfo support and you cannot use
+     this feature.
+   </p><p>
+     <span class="bold"><strong>Phorum PHP extension support:</strong></span>
+     For very busy Phorum web sites, a special PHP extension can be installed
+     for speeding up some time and memory consuming Phorum tasks. This
+     extension needs to be installed in the global PHP extensions directory
+     (<code class="filename">/usr/lib/php/modules</code>), so you either need to be
+     the system administrator yourself or have to get help from a willing
+     administrator.
+   </p><p>
+     The extension source can be found in the directory "extension_src" in
+     the Phorum package. See the README file in that directory for
+     compilation and installation instructions.
+   </p><p>
+     If the extension is successfully installed, then you will see a green
+     square in the option line. If you see a red square, then there is no
+     use in enabling this option, because Phorum was unable to detect a
+     working extension in that case.
+   </p><p>
+   Most people can keep this option set to disabled.
+   </p><p>
+       <span class="bold"><strong>Phorum HTML Title:</strong></span>
+       This can be used to set the title of your Phorum. Equivalent to
+       changing the HTML title tag.
+     </p><p>
+       <span class="bold"><strong>Phorum Head Tags:</strong></span>
+       This option can be used to provide additional HTML code that will
+       be added to the head section of the pages. This could for example
+       be used for adding meta keywords.
+     </p><p>
+       <span class="bold"><strong>Show and allow feed links:</strong></span>
+       A feed is a standardized format for providing information about
+       new content on a web site. Various programs can be used to process
+       and read feed information (e.g. specialized "feed readers",
+       Firefox, Google's on line feed reader, Thunderbird mail). If you
+       enable this feature, then your visitors will be able to subscribe to
+       feeds for your forums.
+     </p><p>
+       Note that feed readers will automatically poll for feed updates using
+       a client side defined time interval, so with a lot of active feed
+       subscriptions, the number of requests to your web server will rise.
+       Phorum uses server side caching of the feed data to keep the server
+       load that is required for supporting feeds to a minimum.
+     </p><p>
+       <span class="bold"><strong>Default feed type:</strong></span>
+       There are multiple standards for providing content feeds. Phorum
+       supports RSS and ATOM, which are the most widely spread XML based
+       feed formats.
+       <br>
+       If you are unsure what to use, then select "RSS".
+     </p><p>
+      <span class="bold"><strong>HTTP Path:</strong></span> This is the base URL of your Phorum.
+     </p><p>
+      <span class="bold"><strong>Disabled URL:</strong></span> This url will be redirected to 
+       when the Phorum status is disabled. If no URL is given, a message in English 
+       will be displayed.
+      </p><p>
+      <span class="bold"><strong>Time Zone Offset:</strong></span> If you and/or your users are 
+      in a different timezone than the server, you can have the default displayed time 
+      adjusted by using this option.
+     </p><p>
+     <span class="bold"><strong>Use Cookies:</strong></span> Phorum can track logged in users by
+     using cookies or session information on URLs.
+     </p><p>
+     <span class="bold"><strong>Use No Cookies:</strong></span> The session information will 
+     always be included on the URL.
+     </p><p>
+     <span class="bold"><strong>Allow Cookies:</strong></span> The session information will be 
+     stored in cookies, if the user's browser supports it. Otherwise, the information
+     is included in the URL.
+     </p><p>
+     <span class="bold"><strong>Require Cookies:</strong></span> Session information is only
+     stored in cookies. If the user's browser does not support cookies, the user will
+     not be able to log in.
+     </p><p>
+     <span class="bold"><strong>Main Session Timeout (days):</strong></span> When users log in
+     to your Phorum, they are issued a cookie. You can set the timeout value to a 
+     number of days that you want the cookies to stay on the users computer. If you 
+     set it to 0, the cookie will only last as long as the user has the browser open.
+     </p><p> 
+     <span class="bold"><strong>Session Path (start with /):</strong></span>: When cookies are 
+     sent to the client's browser, part of the cookies determines the path (URL) for
+     which the cookies are valid. For example, if the URL is http://example.com/phorum,
+     you could set the path to /phorum. Then, the user's browser would only send the 
+     cookie information when the user accessed the Phorum. You could also simply / and
+     the cookie info will be sent for any page on your site. This could be useful if 
+     you want to use Phorum's login system for other parts of your site.
+     </p><p>
+     <span class="bold"><strong>Session Domain:</strong></span> Usually you can leave this blank.
+     If you know you need to use a different domain (like if you use forums.example.com, 
+     you may want to just use example.com as the domain) you may enter it here.
+     </p><p>
+     <span class="bold"><strong>Track User Usage:</strong></span> When set, the last time a user
+     accessed the Phorum will be recorded as often as you have decided upon. This will
+     require constant updates to your database. If you have a busy forum on weak
+     equipment, it may be ill advised to use a short update interval.
+     </p><p>
+     <span class="bold"><strong>Enable Tighter Security:</strong></span> Tight security in
+     Phorum will require that users confirm their login information from time to time
+     before posting messages, accessing private messages or using their Control Center.
+     The length of time is determined by Short Session Timeout.
+     </p><p>
+     <span class="bold"><strong>Short Session Timeout:</strong></span> When tight security is 
+     enabled, the users will be issued a second cookie when they type in their login
+     information. If the user does not use the site for the period of time you set here,
+     they will have to re-enter their login information before posting messages, 
+     accessing private messages or using their Control Center. They will still be allowed
+     to read the Phorum as long as their Main Session is still good. The time is in
+     minutes. The minimum is 5 minutes; otherwise, your users will be very angry at 
+     you. 
+     <br>
+     P.S. 1 day = 1440 minutes
+     </p><p>
+      <span class="bold"><strong>Allow Time Zone Selection:</strong></span> If enabled, this will
+     allow users to change the timezone of the forum (specific to their account).
+     </p><p>
+      <span class="bold"><strong>Allow Template Selection:</strong></span> If enabled, users will
+     find an option in their Control Center to select the template to use.
+       <br>
+     Note: The user selected template will only be used for forums, which do not have
+     "Fixed Display Settings" enabled in the forum settings.
+     </p><p>
+      <span class="bold"><strong>Registration Verification:</strong></span> This allows you to 
+     force users to follow a verification process after registration. You can have
+     them verify either: 
+      </p><div class="itemizedlist"><ul type="disc"><li><p>
+     by email - a link is sent to the user's email address, which they have to click
+     on to activate their account)
+       </p></li><li><p>
+     by moderator - a moderator must approve the user before their account is activated
+       </p></li></ul></div><p>
+     Or both. This is a useful function to prevent spam, but keep in mind it adds extra
+     hurdles for users trying to register, which could put certain people off.
+     </p><p>
+      <span class="bold"><strong>Enable Drop-down user list:</strong></span> By setting this to
+      Yes, Phorum will display a drop-down list of users instead of an empty text
+      box on pages where you can select a user. Two examples of such pages are when 
+      sending a private message, and when adding users to a group in the grou 
+      moderation page. This option should be disabled if you have a large number of 
+      users, as a list of thousands of users will slow performance dramatically. 
+     </p><p>
+      <span class="bold"><strong>What to use as the display name:</strong></span> You can choose
+      to use either the user's username of the real name (which can be edited by the
+      user from the Control Center) as the name which the user is referenced to 
+      throughout all Phorum pages.
+       </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+       This is not an option that you normally would want to change on a live
+       system that has been running for a while. One reason is that all stored names 
+       will have to be updated in the database (e.g. the posting authors), which can 
+       take quite a while on a big forum (it will work though). More important is that
+       you might confuse your users by changing their display names.
+       </div><p>
+     </p><p>
+      <span class="bold"><strong>Hide Email Addresses:</strong></span> You can choose to set
+      whether all email addresses should be hidden. This includes the email
+      addresses of anonymous users and registered users in their profile. The separate
+      option to hide the email address in the user Control Center will be hidden too.
+     </p><p>
+      <span class="bold"><strong>File Uploads:</strong></span> These settings apply to personal
+      file uploads that users can do in their Control Center. The users can link to
+      these files by copying and pasting the file URLs. Some modules (like the avatar
+      module) also make user of personal files (for example, for storing images that
+      the user can use as the avatar to show). Keep in mind that upload file size is
+      also restricted by the upload size limit of php.ini.
+        <br>
+      These settings do not control uploading of forum message attachments. For 
+      changing message attachment settings, you have to edit the settings of the forum
+      for which you want to enable attachments.
+     </p><p>
+      <span class="bold"><strong>Private Messaging (PM):</strong></span>: If enabled, this will
+      allow users to access/use the private messaging system.
+     </p><p>
+      <span class="bold"><strong>Check for new PM:</strong></span> By settings this to Yes, 
+      Phorum will check if a user has new private messages, and display an indicator.
+      On a Phorum with a lot of users and private messages, this may hurt 
+      performance. This option has no effect if Private Messaging is disabled.
+     </p><p>
+      <span class="bold"><strong>Maximum number of stored messages:</strong></span> This is the
+      maximum number of private messages that a user may store on the server. The
+      numbr of private messages is the total of all messages in all PM folders combined.
+      Setting this value to 0 will allow for unlimited messages.
+     </p><p>
+      <span class="bold"><strong>Allow notification of PM by email:</strong></span> If this option
+     is enabled, Phorum will send a notification email to users that receive a new
+     private message. The user will find an option in their Control Center which can be
+     used to disable the notification email.
+     </p><p>
+      <span class="bold"><strong>System Emails from Name:</strong></span> This allows you to
+      specify what name system emails are signed by.
+     </p><p>
+      <span class="bold"><strong>System Emails from Address:</strong></span> Specify which email
+      address system emails are sent from.
+     </p><p>
+      <span class="bold"><strong>Use Bcc in emails:</strong></span> This prevents recipients seeing 
+      the complete list of recipient addresses. If this is disabled, the system will
+      use CC (carbon copy), so each recipient can see all recipient email addresses.
+     </p><p>
+      <span class="bold"><strong>Ignore admin for moderator emails:</strong></span> If you select
+      Yes for this option, then the moderator notifications and report message emails
+      will not be sent to the administrator, only to moderators.
+     </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="features.settings.cache"></a>3.1.2. Cache Settings</h3></div></div></div><p>
+    <span class="bold"><strong>Cache Directory:</strong></span> 
+    Caching is used to take some load off the database and web server. The cache directory
+    is used for caching preprocessed Phorum templates and for caching data in case "file 
+    system based" is selected as the cache layer below.
+    </p><p>
+    For most installations, it will be fine to set it to the default temp directory for the server 
+    (/tmp on UNIX systems and C:\Windows\Temp for Windows system).
+    </p><p>
+    If your server has PHP Safe Mode enabled, you will need to create a directory under your 
+    Phorum directory and make it writable by the web server (you can use the directory "./cache"
+    which was included in the Phorum distribution for this purpose). Additionally, if you are
+    running Phorum on a shared server, it is generally advantageous to use the "./cache" directory
+    instead of "/tmp".
+    </p><p>
+    <span class="bold"><strong>Enable Caching stylesheet data (CSS):</strong></span>
+    Phorum uses a system where modules can add data to the main stylesheet for the pages. 
+    By enabling this feature, Phorum can cache the dynamically generated data and improve 
+    caching of the stylesheet data in the browsers of your visitors. Enabling this 
+    feature is highly recommended. Only disable it if you are having problems with it.
+    </p><p>
+    <span class="bold"><strong>Enable Caching JavaScript code:</strong></span>
+    Phorum uses a system where modules can provide JavaScript code for the pages. By enabling 
+    this feature, Phorum can cache the dynamically generated data and improve caching of the 
+    JavaScript data in the browsers of your visitors. Enabling this feature is highly recommended.
+    Only disable it if you are having problems with it.
+    </p><p>
+    <em><span class="remark">TODO: which data to cache/cache layer</span></em>
+    </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="feautures.settings.banlists"></a>3.1.3. Ban Lists</h3></div></div></div><p>
+     Ban items can be used to deny new user registrations and posting of (private) messages, based on 
+     various criteria. If a ban item applies to a user action, then this action will be fully blocked by
+     Phorum. This can for example be used to block user registrations and postings from certain IP addresses
+     or to prevent certain words from being used in forum messages.
+     </p><p>
+     If you want to fully ban a user, then it's best to set "Active" to "No" for the user in the "Edit Users"
+     interface.
+     </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s04.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch03s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

@@ -1,0 +1,1653 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page user.php</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/user.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+											<a href="#sec-constants">Constants</a>
+			|									<a href="#sec-functions">Functions</a>
+			</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This script implements the Phorum user API.</p>
+<p class="description"><p>The user API is used for managing users and user related data. The API  does also implement the Phorum session system, which is used for  remembering authenticated users. See the documentation for the function  <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_session_create">phorum_api_user_session_create()</a> for more information on  Phorum user sessions.</p><p>The Phorum user API supports modules which can override Phorum's  authentication and session handling. And example module is provided  with the user API documentation.</p></p>
+	<ul class="tags">
+				<li><span class="field">todo:</span> Document what fields are in a user record.</li>
+				<li><span class="field">todo:</span> Create in line docs for all hook calls.</li>
+				<li><span class="field">example:</span> <a href="../../__examplesource/exsource_um5-docs_include_api_examples_user_auth_module.php_7598515aa6231339afc2525e2e2d9ecc.html">Authentication override module example</a></li>
+				<li><span class="field">license:</span> Phorum</li>
+				<li><span class="field">copyright:</span> 2007, Phorum Development Team</li>
+			</ul>
+		
+			</div>
+</div>
+		
+
+	
+	<a name="sec-constants"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+									<span class="disabled">Constants</span>
+			|										<a href="#sec-functions">Functions</a>
+					</div>
+		<div class="info-box-body">	
+			<a name="definePHORUM_ACCESS_ANY"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_ACCESS_ANY</span> = -2
+			(line <span class="line-number">164</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_check_access">phorum_api_user_check_access()</a>  and <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_check_group_access">phorum_api_user_check_group_access()</a> to check if the user  is granted access for respectively any forum or group.</p>
+	
+		
+</div>
+<a name="definePHORUM_ACCESS_LIST"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_ACCESS_LIST</span> = -1
+			(line <span class="line-number">157</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_check_access">phorum_api_user_check_access()</a>  and <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_check_group_access">phorum_api_user_check_group_access()</a> to return an array  of respectively forums or groups for which a user is granted access.</p>
+	
+		
+</div>
+<a name="definePHORUM_ADMIN_SESSION"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_ADMIN_SESSION</span> = 2
+			(line <span class="line-number">86</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells various functions that  an admin back end session has to be handled.</p>
+	
+		
+</div>
+<a name="definePHORUM_FLAG_HTML"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_FLAG_HTML</span> = 1
+			(line <span class="line-number">109</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call flag, which tells <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_get_display_name">phorum_api_user_get_display_name()</a>  that the returned display names have to be HTML formatted, so they can be  used for showing the name in HTML pages.</p>
+	
+		
+</div>
+<a name="definePHORUM_FLAG_PLAINTEXT"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_FLAG_PLAINTEXT</span> = 2
+			(line <span class="line-number">117</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call flag, which tells <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_get_display_name">phorum_api_user_get_display_name()</a>  that the returned display names should be stripped down to plain text  format, so they can be used for showing the name in things like mail  messages and message quoting.</p>
+	
+		
+</div>
+<a name="definePHORUM_FLAG_RAW_PASSWORD"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_FLAG_RAW_PASSWORD</span> = 1
+			(line <span class="line-number">102</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call flag, which tells <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_save">phorum_api_user_save()</a> that the  password field should be stored as is.</p>
+<p class="description"><p>This can be used to feed Phorum MD5 encrypted passwords. Normally,  the password field would be MD5 encrypted by the function. This will  keep the phorum_api_user_save() function from double encrypting the password.</p></p>
+	
+		
+</div>
+<a name="definePHORUM_FLAG_SESSION_ST"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_FLAG_SESSION_ST</span> = 1
+			(line <span class="line-number">93</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call flag, which tells <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_set_active_user">phorum_api_user_set_active_user()</a>  that the short term forum session has to be activated.</p>
+	
+		
+</div>
+<a name="definePHORUM_FORUM_SESSION"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_FORUM_SESSION</span> = 1
+			(line <span class="line-number">80</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells various functions that  a front end forum session has to be handled.</p>
+	
+		
+</div>
+<a name="definePHORUM_GET_ACTIVE"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_GET_ACTIVE</span> = 1
+			(line <span class="line-number">144</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells phorum_api_user_get_list()  that all active users have to be returned.</p>
+	
+		
+</div>
+<a name="definePHORUM_GET_ALL"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_GET_ALL</span> = 0
+			(line <span class="line-number">138</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells phorum_api_user_get_list()  that all users have to be returned.</p>
+	
+		
+</div>
+<a name="definePHORUM_GET_INACTIVE"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_GET_INACTIVE</span> = 2
+			(line <span class="line-number">150</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells phorum_api_user_get_list()  that all inactive users have to be returned.</p>
+	
+		
+</div>
+<a name="definePHORUM_ORIGINAL_USER_CODE"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_ORIGINAL_USER_CODE</span> = TRUE
+			(line <span class="line-number">55</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">If a user API is written as a replacement for the standard Phorum user API,  where the replacement API is incompatible with the standard API, then this  define should be set to FALSE. That will disable the user management  functions in the admin interface.</p>
+	
+		
+</div>
+<a name="definePHORUM_SESSID_RESET_ALL"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SESSID_RESET_ALL</span> = 2
+			(line <span class="line-number">132</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_session_create">phorum_api_user_session_create()</a>  that all session ids have to be reset to new values. This is for example  appropriate after a user changed the password (so active sessions on  other computers or browsers will be ended).</p>
+	
+		
+</div>
+<a name="definePHORUM_SESSID_RESET_LOGIN"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SESSID_RESET_LOGIN</span> = 1
+			(line <span class="line-number">124</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Function call parameter, which tells <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_session_create">phorum_api_user_session_create()</a>  that session ids have to be reset to new values as far as that is sensible  for a newly logged in user.</p>
+	
+		
+</div>
+<a name="definePHORUM_SESSION_ADMIN"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SESSION_ADMIN</span> = 'phorum_admin_session'
+			(line <span class="line-number">74</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Used for identifying admin sessions. The value is used as  the name for the session cookie for admin sessions.</p>
+	
+		
+</div>
+<a name="definePHORUM_SESSION_LONG_TERM"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SESSION_LONG_TERM</span> = 'phorum_session_v5'
+			(line <span class="line-number">61</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Used for identifying long term sessions. The value is used as  the name for the session cookie for long term sessions.</p>
+	
+		
+</div>
+<a name="definePHORUM_SESSION_SHORT_TERM"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SESSION_SHORT_TERM</span> = 'phorum_session_st'
+			(line <span class="line-number">68</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Used for identifying short term sessions. The value is used as  the name for the session cookie for short term sessions  (this is used by the tighter authentication scheme).</p>
+	
+		
+</div>
+<a name="definePHORUM_SUBSCRIPTION_BOOKMARK"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SUBSCRIPTION_BOOKMARK</span> = 2
+			(line <span class="line-number">279</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subscription type, which tells Phorum to make the forums or threads that  a user is subscribed to accessible from the followed threads interface in  the control center. No mail is sent for new messages, but the user can  check for new messages using that interface.</p>
+	
+		
+</div>
+<a name="definePHORUM_SUBSCRIPTION_DIGEST"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SUBSCRIPTION_DIGEST</span> = 1
+			(line <span class="line-number">271</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subscription type, which tells Phorum to periodially send a mail message,  containing a list of new messages in forums or threads that a user is  subscribed to. There is currently no support for this type of subscription  in the Phorum core code.</p>
+	
+		
+</div>
+<a name="definePHORUM_SUBSCRIPTION_MESSAGE"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SUBSCRIPTION_MESSAGE</span> = 0
+			(line <span class="line-number">263</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subscription type, which tells Phorum to send out a mail message for  every new forum or thread that a user is subscribed to.</p>
+	
+		
+</div>
+<a name="definePHORUM_SUBSCRIPTION_NONE"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_SUBSCRIPTION_NONE</span> = -1
+			(line <span class="line-number">257</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subscription type, which tells Phorum explicitly that the user  does not have a subscription of any kind for the forum or thread.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_ACTIVE"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_ACTIVE</span> = 1
+			(line <span class="line-number">194</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">User status, indicating that the registration has been completed and that  the user can access the forums.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_ALLOW_ATTACH"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_ALLOW_ATTACH</span> = 32
+			(line <span class="line-number">219</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Permission flag which allows users to attach files to their forum messages.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_ALLOW_EDIT"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_ALLOW_EDIT</span> = 4
+			(line <span class="line-number">209</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Permission flag which allows users to edit their own forum messages.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_ALLOW_MODERATE_MESSAGES"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_ALLOW_MODERATE_MESSAGES</span> = 64
+			(line <span class="line-number">224</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Permission flag which allows users to edit other users' messages.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_ALLOW_MODERATE_USERS"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_ALLOW_MODERATE_USERS</span> = 128
+			(line <span class="line-number">230</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Permission flag which allows users to moderate user signup  requests within the vroot.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_ALLOW_NEW_TOPIC"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_ALLOW_NEW_TOPIC</span> = 8
+			(line <span class="line-number">214</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Permission flag which allows users to start new forum topics.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_ALLOW_READ"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_ALLOW_READ</span> = 1
+			(line <span class="line-number">199</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Permission flag which allows users to read forum messages.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_ALLOW_REPLY"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_ALLOW_REPLY</span> = 2
+			(line <span class="line-number">204</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Permission flag which allows users to reply to forum messages.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_GROUP_APPROVED"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_GROUP_APPROVED</span> = 1
+			(line <span class="line-number">246</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Group permission flag for users which are active approved group members.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_GROUP_MODERATOR"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_GROUP_MODERATOR</span> = 2
+			(line <span class="line-number">251</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Group permission flag for users which are group moderator.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_GROUP_SUSPENDED"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_GROUP_SUSPENDED</span> = -1
+			(line <span class="line-number">235</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Group permission flag for users which are suspended by a group moderator.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_GROUP_UNAPPROVED"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_GROUP_UNAPPROVED</span> = 0
+			(line <span class="line-number">241</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Group permission flag for users which are not yet approved by  a group moderator.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_INACTIVE"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_INACTIVE</span> = 0
+			(line <span class="line-number">188</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">User status, indicating that the user has been deactivated.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_PENDING_BOTH"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_PENDING_BOTH</span> = -3
+			(line <span class="line-number">171</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">User status, indicating that the user has not yet confirmed the registration  by email and that a user moderator will have to approve the registration  as well.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_PENDING_EMAIL"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_PENDING_EMAIL</span> = -2
+			(line <span class="line-number">177</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">User status, indicating that the user has not yet confirmed the registration  by email.</p>
+	
+		
+</div>
+<a name="definePHORUM_USER_PENDING_MOD"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="const-title">
+			<span class="const-name">PHORUM_USER_PENDING_MOD</span> = -1
+			(line <span class="line-number">183</span>)
+		</span>
+	</div>
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">User status, indicating that the registration has not yet been approved  by a user moderator.</p>
+	
+		
+</div>
+		</div>
+	</div>
+	
+	
+	<a name="sec-functions"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Functions</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-constants">Constants</a>
+				|									<span class="disabled">Functions</span>
+		</div>
+		<div class="info-box-body">	
+			<a name="functionphorum_api_user_authenticate" id="functionphorum_api_user_authenticate"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_authenticate</span> (line <span class="line-number">1483</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check the authentication credentials for a user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> If the authentication credentials are correct, this function returns      the user_id of the authenticated user. Otherwise, FALSE is returned.</li>
+				<li><span class="field">example:</span> <a href="../../__examplesource/exsource_s_phorum5-docs_include_api_examples_user_login.php_7f899d2ceefd744ae047286ae7cff51e.html">Handle a user forum login</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_authenticate
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$username</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$password</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$username
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: <p>The type of session for which authentication is run. This must be      one of <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a> or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ADMIN_SESSION">PHORUM_ADMIN_SESSION</a>.</p><p>This parameter is mostly used for logging purposes and for giving      mods a chance to handle user authentication for only a certain type      of session. It is not used for denying authentication if for example      a standard user tries to authenticate for the admin interface. Those      restrictions are handled in a different part of the user API.</p><p>See the documentation for <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_session_create">phorum_api_user_session_create()</a>      for more information on Phorum user sessions.</p></span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username
+</span><span class="var-description">: The username for the user.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password
+</span><span class="var-description">: The password for the user.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_check_access" id="functionphorum_api_user_check_access"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_check_access</span> (line <span class="line-number">2726</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if a user has certain access right for forum(s).</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> <p>The return value depends on the $forum_id argument that was used:</p><p><ul><li>Single forum_id , 0 (zero) or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ACCESS_ANY">PHORUM_ACCESS_ANY</a>:
+       return either TRUE (access granted) or FALSE (access denied).</li></ul> <ul><li>An array of forum_ids or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ACCESS_LIST">PHORUM_ACCESS_LIST</a>:
+       return an array, containing all forum_ids for which
+       permission was granted (both keys and values are forum_ids
+       in this array).</li></ul></p></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_check_access
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$permission</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$permission
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$permission
+</span><span class="var-description">: The permission to check for. Multiple permissions can be OR-ed      together. The available permissions are: <ul><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ALLOW_READ">PHORUM_USER_ALLOW_READ</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ALLOW_REPLY">PHORUM_USER_ALLOW_REPLY</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ALLOW_EDIT">PHORUM_USER_ALLOW_EDIT</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ALLOW_NEW_TOPIC">PHORUM_USER_ALLOW_NEW_TOPIC</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ALLOW_ATTACH">PHORUM_USER_ALLOW_ATTACH</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ALLOW_MODERATE_MESSAGES">PHORUM_USER_ALLOW_MODERATE_MESSAGES</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ALLOW_MODERATE_USERS">PHORUM_USER_ALLOW_MODERATE_USERS</a></li></ul></span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: Specifies the forum(s) to look at. Available options are: <ul><li>The id of the forum for which to check the access</li><li>0 (zero, the default) to check access for the active forum</li><li>An array of forum_ids to check</li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ACCESS_ANY">PHORUM_ACCESS_ANY</a> to check if the user has access rights
+       for any of the available forums</li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ACCESS_LIST">PHORUM_ACCESS_LIST</a> to return a list of forum_ids for which the
+       user has access rights</li></ul></span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user
+</span><span class="var-description">: Specifies the user to look at. Available options are: <ul><li>0 (zero, the default) to look at the active Phorum user.</li><li>A full user data array.</li><li>A single user_id.</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_check_group_access" id="functionphorum_api_user_check_group_access"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_check_group_access</span> (line <span class="line-number">2887</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">return:</span> <p>The return value depends on the $group_id argument that was used:</p><p><ul><li>Single group_id or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ACCESS_ANY">PHORUM_ACCESS_ANY</a>:
+       return either TRUE (access granted) or FALSE (access denied).</li></ul> <ul><li>An array of group_ids or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ACCESS_LIST">PHORUM_ACCESS_LIST</a>:
+       return an array, containing all groups for which permission was
+       granted. The keys in this array are group_ids and the values are
+       group info arrays. These arrays contain the fields &quot;group_id&quot;,
+       &quot;name&quot;, &quot;open&quot;, &quot;permissions&quot; (which contains an array of
+       forum permissions, indexed by forum_id), &quot;user_status&quot; (which contains
+       the group status for the user, i.e. one of the PHORUM_USER_GROUP_*
+       constants).</li></ul></p></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_check_group_access
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$permission</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$permission
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$group_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$permission
+</span><span class="var-description">: The permission level to check for. The function will check if the      user has equal or higher permissions for the group(s). The available      permission levels in low-to-high level order are: <ul><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_GROUP_SUSPENDED">PHORUM_USER_GROUP_SUSPENDED</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_GROUP_UNAPPROVED">PHORUM_USER_GROUP_UNAPPROVED</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_GROUP_APPROVED">PHORUM_USER_GROUP_APPROVED</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_GROUP_MODERATOR">PHORUM_USER_GROUP_MODERATOR</a></li></ul></span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$group_id
+</span><span class="var-description">: Specifies the group(s) to look at. Available options are: <ul><li>The id of the group for which to check the access.</li><li>An array of group_ids to check.</li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ACCESS_ANY">PHORUM_ACCESS_ANY</a> to check if the user has access rights
+       for any of the available groups.</li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ACCESS_LIST">PHORUM_ACCESS_LIST</a> to return a list of group_ids for which the
+       user has access rights.</li></ul></span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user
+</span><span class="var-description">: Specifies the user to look at. Available options are: <ul><li>0 (zero, the default) to look at the active Phorum user.</li><li>A full user data array.</li><li>A single user_id.</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_delete" id="functionphorum_api_user_delete"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_delete</span> (line <span class="line-number">1391</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a Phorum user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_user_delete
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id of the user that has to be deleted.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_get" id="functionphorum_api_user_get"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_get</span> (line <span class="line-number">875</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve data for Phorum users.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> If the $user_id parameter is a single user_id, then either an array      containing user data is returned or NULL if the user was not found.      If the $user_id parameter is an array of user_ids, then an array      of user data arrays is returned, indexed by the user_id.      Users for user_ids that are not found are not included in the      returned array.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_get
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$detailed</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$use_write_server</span> = <span class="var-default">FALSE</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$detailed
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$use_write_server
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: Either a single user_id or an array of user_ids.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$detailed
+</span><span class="var-description">: If this parameter is TRUE (default is FALSE), then the user's      groups and permissions are included in the user data.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$use_write_server
+</span><span class="var-description">: This parameter is for internal use only. It is used to flag that      the database layer has to run the query against the master database      server (known as the &quot;write server&quot;; only applicable if the database      system is setup as a replicated master/slave environment). When you      are using this API call in your own code, then you most probably do      not need to use this parameter.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_get_display_name" id="functionphorum_api_user_get_display_name"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_get_display_name</span> (line <span class="line-number">1097</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the display name to use for one or more users.</p>
+<p class="description"><p>The name to use depends on the &quot;display_name_source&quot; setting. This  one points to either the username or the real_name field of the  user. If the display_name is requested for an unknown user, then  a fallback name will be used.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> If the $user_id parameter was NULL or a single user_id, then this      function will return a single display name. If it was an array,      then this function will return an array of display names, indexed      by user_id.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_get_display_name
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$fallback</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$flags</span> = <span class="var-default">PHORUM_FLAG_HTML</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$fallback
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$flags
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: Either a single user_id, an array of user_ids or NULL to use the      user_id of the active Phorum user.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$fallback
+</span><span class="var-description">: The fallback display name to use in case the user is unknown or NULL      to use the &quot;AnonymousUser&quot; language string.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$flags
+</span><span class="var-description">: One of <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FLAG_HTML">PHORUM_FLAG_HTML</a> (the default) or      <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FLAG_PLAINTEXT">PHORUM_FLAG_PLAINTEXT</a>. These determine what output format      is used for the display names.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_get_setting" id="functionphorum_api_user_get_setting"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_get_setting</span> (line <span class="line-number">1053</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This function can be used to retrieve the value for a user setting  that was stored by the <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_save_settings">phorum_api_user_save_settings()</a> function  for the active Phorum user.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The value of the setting or NULL if it is not available.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_get_setting
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$name</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$name
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$name
+</span><span class="var-description">: The name of the setting for which to retrieve the setting value.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_get_subscription" id="functionphorum_api_user_get_subscription"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_get_subscription</span> (line <span class="line-number">3095</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the type of a single subscription.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The type of subscription if there is a subscription available or      NULL in case no subscription was found. Available types are: <ul><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_NONE">PHORUM_SUBSCRIPTION_NONE</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_MESSAGE">PHORUM_SUBSCRIPTION_MESSAGE</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_BOOKMARK">PHORUM_SUBSCRIPTION_BOOKMARK</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_DIGEST">PHORUM_SUBSCRIPTION_DIGEST</a></li></ul></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_get_subscription
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user to retrieve a subscription for.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The id of the thread to retrieve a subscription for.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The id of the forum to retrieve a subscription for.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_increment_posts" id="functionphorum_api_user_increment_posts"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_increment_posts</span> (line <span class="line-number">1373</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Increment the posts counter for a user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_user_increment_posts
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span> = <span class="var-default">NULL</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id for which to increment the posts counter      or NULL (the default) to increment the posts counter for the      active Phorum user.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_list" id="functionphorum_api_user_list"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_list</span> (line <span class="line-number">1299</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of Phorum users.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of users, indexed by user_id. Each element in the array      is an array, containing the fields &quot;user_id&quot;, &quot;username&quot; and      &quot;display_name&quot;.</li>
+				<li><span class="field">todo:</span> Do we really need phorum_api_user_list() or could we use the        phorum_api_user_search() functionality in combination with        phorum_api_user_get() instead?</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_api_user_list
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">PHORUM_GET_ALL</span>], <span class="var-type">int</span>&nbsp;<span class="var-name">$flags
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$flags
+</span><span class="var-description">: One of: <ul><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_GET_ALL">PHORUM_GET_ALL</a>: retrieve a list of all users (the default)</li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_GET_ACTIVE">PHORUM_GET_ACTIVE</a>: retrieve a list of all active users</li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_GET_INACTIVE">PHORUM_GET_INACTIVE</a>: retrieve a list of all inactive users</li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_list_moderators" id="functionphorum_api_user_list_moderators"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_list_moderators</span> (line <span class="line-number">3004</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of moderators.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of moderator users, indexed by user_id.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_api_user_list_moderators
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$exclude_admin</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$for_mail</span> = <span class="var-default">FALSE</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$exclude_admin
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$for_mail
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The id of the forum for which to retrieve a list of moderators or <ol><li>(zero, the default) to use the active forum.</li></ol></span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$exclude_admin
+</span><span class="var-description">: If TRUE, then the admin users are kept out of the list. The default      is to include admin users.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$for_mail
+</span><span class="var-description">: If TRUE, then a list of moderators is created for sending moderator      mail messages. Moderators which have disabled the moderation_email      option will be excluded from the list in this case. The default      is to include all moderators.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_list_subscribers" id="functionphorum_api_user_list_subscribers"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_list_subscribers</span> (line <span class="line-number">3158</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve the email addresses of the users that are subscribed to a  forum/thread, grouped by the preferred language for these users.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array containing the subscriber email addresses. The keys in the      result array are language names. The values are arrays. Each array      contains a list of email addresses of users which are using the      language from the key field.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_api_user_list_subscribers
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ignore_active_user</span> = <span class="var-default">TRUE</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$ignore_active_user
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The forum_id to check on.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The thread id to check on.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of subscription. Available types are: <ul><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_MESSAGE">PHORUM_SUBSCRIPTION_MESSAGE</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_BOOKMARK">PHORUM_SUBSCRIPTION_BOOKMARK</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_DIGEST">PHORUM_SUBSCRIPTION_DIGEST</a></li></ul></span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$ignore_active_user
+</span><span class="var-description">: If this parameter is set to FALSE (it is TRUE by default), then the      active Phorum user will be excluded from the list.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_list_subscriptions" id="functionphorum_api_user_list_subscriptions"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_list_subscriptions</span> (line <span class="line-number">3124</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a list of threads to which a user is subscribed. The list can be  limited to those threads which did receive contributions recently.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of matching threads, indexed by thread id. One special key      &quot;forum_ids&quot; is set too. This one contains an array of all involved      forum_ids.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phorum_api_user_list_subscriptions
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_ids</span> = <span class="var-default">NULL</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$days
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_ids
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user for which to retrieve the subscribed threads.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$days
+</span><span class="var-description">: If set to 0 (zero), then all subscriptions will be returned. If set to      a different value, then only threads which have received contributions      within the last $days days will be included in the list.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_ids
+</span><span class="var-description">: If this parameter is NULL, then subscriptions from all forums will      be included. This parameter can also be an array of forum_ids, in      which case the search will be limited to the forums in this array.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_save" id="functionphorum_api_user_save"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_save</span> (line <span class="line-number">397</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create or update Phorum users.</p>
+<p class="description"><p>This function can be used for both creating and updating Phorum users.  If no user_id is provided in the user data, a new user will be created.  If a user_id is provided, then the existing user will be updated or a  new user with that user_id is created.</p><p>Often when calling this function yourself, you will be doing that for  synchronizing a user from some external system with the Phorum database.  For those cases, the most basic use of this API function can be found  in the examples below.  <pre><ol><code><pre><li> <span class="src-var">$user </span>= <span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>     <span class="src-str">&quot;user_id&quot;   </span>=&gt; <span class="src-num">1234</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;username&quot;  </span>=&gt; <span class="src-str">'johndoe'</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;password&quot;  </span>=&gt; <span class="src-str">'#barbar#'</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;email&quot;     </span>=&gt; <span class="src-str">'john.doe@example.com'</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;admin&quot;     </span>=&gt; <span class="src-num">0</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;active&quot;    </span>=&gt; <span class="src-id"><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ACTIVE">PHORUM_USER_ACTIVE</a></span></li>
+<li> <span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li> <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_save">phorum_api_user_save</a><span class="src-sym">(</span><span class="src-var">$user</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+</pre></code></ol></pre></p><p>If you do not have the plain text password available, but only an MD5  hash for the password, then you can use the following code instead.  <pre><ol><code><pre><li> <span class="src-var">$user </span>= <span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>     <span class="src-str">&quot;user_id&quot;   </span>=&gt; <span class="src-num">1234</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;username&quot;  </span>=&gt; <span class="src-str">'johndoe'</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;password&quot;  </span>=&gt; <span class="src-str">'5d61ed116ffdecf2d29cd1ed9bd9d4cb'</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;email&quot;     </span>=&gt; <span class="src-str">'john.doe@example.com'</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;admin&quot;     </span>=&gt; <span class="src-num">0</span><span class="src-sym">,</span></li>
+<li>     <span class="src-str">&quot;active&quot;    </span>=&gt; <span class="src-id"><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_USER_ACTIVE">PHORUM_USER_ACTIVE</a></span></li>
+<li> <span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li> <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_save">phorum_api_user_save</a><span class="src-sym">(</span><span class="src-var">$user</span><span class="src-sym">, </span><span class="src-id"><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FLAG_RAW_PASSWORD">PHORUM_FLAG_RAW_PASSWORD</a></span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+</pre></code></ol></pre></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The user_id of the user. For new users, the newly assigned user_id      will be returned.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			phorum_api_user_save
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$flags</span> = <span class="var-default">0</span>], <span class="var-type">array</span>&nbsp;<span class="var-name">$user
+</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$flags
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$user
+</span><span class="var-description">: An array containing user data. This array should at least contain      a field &quot;user_id&quot;. This field can be NULL to create a new user      with an automatically assigned user_id. It can also be set to a      user_id to either update an existing user or to create a new user      with the provided user_id.      If a new user is created, then all user fields must be provided      in the user data.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$flags
+</span><span class="var-description">: If the flag <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FLAG_RAW_PASSWORD">PHORUM_FLAG_RAW_PASSWORD</a> is set, then the      password fields (&quot;password&quot; and &quot;password_temp&quot;) are considered to be      MD5 encrypted already. So this can be used to feed Phorum existing MD5      encrypted passwords.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_save_groups" id="functionphorum_api_user_save_groups"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_save_groups</span> (line <span class="line-number">2652</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Save the groups and group permissions for a user.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_user_save_groups
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$groups</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$groups
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The user_id of the user for which to store the group permissions.</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$groups
+</span><span class="var-description">: An array of groups and their permissions. The keys in this array are      group ids. The values are either group permission values or arrays      containing at least the key &quot;user_status&quot; (which has the group      permission as its value) in them. The group permission value must be      one of the PHORUM_USER_GROUP_* constants.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_save_raw" id="functionphorum_api_user_save_raw"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_save_raw</span> (line <span class="line-number">755</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This function quickly updates the Phorum users table, using all fields in  the user data as real user table fields.</p>
+<p class="description"><p>This is the quickest way to update the user table. Care has to be taken  by the calling function though, to provide the information exactly as the  Phorum users table expects it. Only use this function if speed is really  an issue.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_user_save_raw
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$user
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$user
+</span><span class="var-description">: An array containing user data. This array should at least contain      a field &quot;user_id&quot;, pointing to the user_id of an existing user to      update. Besides &quot;user_id&quot;, this array can contain other fields,      which should all be valid fields from the users table.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_save_settings" id="functionphorum_api_user_save_settings"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_save_settings</span> (line <span class="line-number">811</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create or update user settings for the active Phorum user.</p>
+<p class="description"><p>This function can be used to store arbitrairy settings for the active  Phorum user in the database. The main goal for this function is to store  user settings which are not available as a Phorum user table field in  the database. These are settings which do not really belong to the Phorum  core, but which are for example used for remembering some kind of state  in a user interface (templates). Since each user interface might require  different settings, a dynamic settings storage like this is required.</p><p>If you are writing modules that need to store data for a user, then please  do not use this function. Instead, use custom profile fields. The data  that is stored using this function can be best looked at as if it were  session data.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_user_save_settings
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$settings</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$settings
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$settings
+</span><span class="var-description">: An array of setting name =&gt; value pairs to store as user      settings in the database.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_search" id="functionphorum_api_user_search"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_search</span> (line <span class="line-number">1226</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search for users, based on simple search conditions, which act on  fields in the user table.</p>
+<p class="description"><p>The parameters $field, $value and $operator (which are used for defining  the search condition) can be arrays or single values. If arrays are used,  then all three parameter arrays must contain the same number of elements  and the key values in the arrays must be the same.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of matching user_ids or a single user_id (based on the      $return_array parameter). If no user_ids can be found at all,      then 0 (zero) will be returned.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_search
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$operator</span> = <span class="var-default">&#039;=&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$return_array</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">&#039;AND&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$sort</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$offset</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$length</span> = <span class="var-default">0</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$field
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$operator
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$return_array
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$sort
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$length
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field
+</span><span class="var-description">: The user table field (string) or fields (array) to search on.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value
+</span><span class="var-description">: The value (string) or values (array) to search for.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$operator
+</span><span class="var-description">: The operator (string) or operators (array) to use. Valid operators are      &quot;=&quot;, &quot;!=&quot;, &quot;&lt;&gt;&quot;, &quot;&lt;&quot;, &quot;&gt;&quot;, &quot;&gt;=&quot; and &quot;&lt;=&quot;, &quot;*&quot;. The      &quot;*&quot; operator is for executing a &quot;LIKE '%value%'&quot; matching query.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$return_array
+</span><span class="var-description">: If this parameter has a true value, then an array of all matching      user_ids will be returned. Else, a single user_id will be returned.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of search to perform. This can be one of: <ul><li>AND  match against all fields</li><li>OR   match against any of the fields</li></ul></span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$sort
+</span><span class="var-description">: The field (string) or fields (array) to sort the results by. For      ascending sort, &quot;fieldname&quot; or &quot;+fieldname&quot; can be used. For      descending sort, &quot;-fieldname&quot; can be used. By default, the results      will be sorted by user_id.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset
+</span><span class="var-description">: The result page offset starting with 0.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$length
+</span><span class="var-description">: The result page length (nr. of results per page)      or 0 (zero, the default) to return all results.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_search_custom_profile_field" id="functionphorum_api_user_search_custom_profile_field"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_search_custom_profile_field</span> (line <span class="line-number">1274</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search for users, based on a simple search condition,  which can be used to search on custom profile fields.</p>
+<p class="description"><p>The parameters $field_id, $value and $operator (which are used for defining  the search condition) can be arrays or single values. If arrays are used,  then all three parameter arrays must contain the same number of elements  and the key values in the arrays must be the same.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> An array of matching user_ids or a single user_id (based on the      $return_array parameter). If no user_ids can be found at all,      then 0 (zero) will be returned.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			phorum_api_user_search_custom_profile_field
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$operator</span> = <span class="var-default">&#039;=&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$return_array</span> = <span class="var-default">FALSE</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">&#039;AND&#039;</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$offset</span> = <span class="var-default">0</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$length</span> = <span class="var-default">0</span>], <span class="var-type">mixed</span>&nbsp;<span class="var-name">$field_id
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$operator
+</span>, <span class="var-type">boolean</span>&nbsp;<span class="var-name">$return_array
+</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$offset
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$length
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field_id
+</span><span class="var-description">: The custom profile field id (integer) or ids (array) to search on.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value
+</span><span class="var-description">: The value (string) or values (array) to search for.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$operator
+</span><span class="var-description">: The operator (string) or operators (array) to use. Valid operators are      &quot;=&quot;, &quot;!=&quot;, &quot;&lt;&gt;&quot;, &quot;&lt;&quot;, &quot;&gt;&quot;, &quot;&gt;=&quot; and &quot;&lt;=&quot;, &quot;*&quot;. The      &quot;*&quot; operator is for executing a &quot;LIKE '%value%'&quot; matching query.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$return_array
+</span><span class="var-description">: If this parameter has a true value, then an array of all matching      user_ids will be returned. Else, a single user_id will be returned.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of search to perform. This can be one of: <ul><li>AND  match against all fields</li><li>OR   match against any of the fields</li></ul></span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$offset
+</span><span class="var-description">: The result page offset starting with 0.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$length
+</span><span class="var-description">: The result page length (nr. of results per page)      or 0 (zero, the default) to return all results.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_session_create" id="functionphorum_api_user_session_create"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_session_create</span> (line <span class="line-number">1895</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create a Phorum user session.</p>
+<p class="description"><p>Before calling this function, the variable $PHORUM['use_cookies']  should be set to one of PHORUM_NO_COOKIES,  PHORUM_USE_COOKIES or PHORUM_REQUIRE_COOKIES.</p><p>Phorum does not use PHP sessions. Instead, it uses its own session  management system for remembering logged in users. There are  multiple reasons for that, amongst which are:</p><p><ul><li>the lack of session support (on some PHP installs);</li><li>missing out of the box load balancing support (sessions are normally
+   written to local session state files, so multiple machines would not
+   work well together);</li><li>file I/O problems (both performance and file system permissions can
+   be a problem);</li><li>the amount of unneeded overhead that is caused by the PHP session system;</li><li>the fact that Phorum also supports URI based sessions (without cookie).</li></ul>  This function can be used to create or maintain a login session for a  Phorum user. A prerequisite is that an active Phorum user is set through  the <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_set_active_user">phorum_api_user_set_active_user()</a> function, before calling  this function.</p><p>There are two session types available: <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a>  (used for the front end application) and <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ADMIN_SESSION">PHORUM_ADMIN_SESSION</a>  (used for the administrative back end).</p><p>Admin sessions are used for the administrative back end system. For  security reasons, the back end does not share the front end session,  but uses a fully separate session instead. This session does not  have a timeout restriction, but it does not survive closing the  browser. It is always tracked using a cookie, never using URI  authentication (for security reasons).</p><p>The forum sessions can be split up into long term and short term sessions:</p><p><ul><li>Long term session:
+   The standard Phorum user session. This session is long lasting and will
+   survive after closing the browser (unless the long term session timeout
+   is set to zero). If tighter security is not enabled, then this session
+   is all a user needs to fully use all forum options. This session is
+   tracked using either a cookie or URI authentication.</li></ul> <ul><li>Short term session:
+   This session has a limited life time and will not survive closing the
+   browser. If tighter security is enabled, then the user will not be able
+   to use all forum functions, unless there is a short term session active
+   (e.g. posting forum messages and reading/writing private messages are
+   restricted). This session is tracked using a cookie. If URI authentication
+   is in use (because of admin config or cookie-less browsers) Phorum will
+   only look at the long term session (even in tighter security mode), since
+   URI authentication can be considered to be short term by nature.</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> TRUE in case the session was initialized successfully.      Otherwise, FALSE will be returned. The functions      <a href="../../PhorumAPI/BaseAPI/_base_php.html#functionphorum_api_strerror">phorum_api_strerror()</a> and <a href="../../PhorumAPI/BaseAPI/_base_php.html#functionphorum_api_errno">phorum_api_errno()</a> can be      used to retrieve information about the error which occurred.</li>
+				<li><span class="field">example:</span> <a href="../../__examplesource/exsource_s_phorum5-docs_include_api_examples_user_login.php_7f899d2ceefd744ae047286ae7cff51e.html">Handle a user forum login</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_api_user_session_create
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$reset</span> = <span class="var-default">0</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$reset
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of session to initialize. This must be one of      <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a> or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ADMIN_SESSION">PHORUM_ADMIN_SESSION</a>.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$reset
+</span><span class="var-description">: <p>If it is set to 0 (zero, the default), then existing session_ids      will be reused if possible.</p><p>If this parameter is set to PHORUM_SESSID_RESET_LOGIN, then a new      session id will be generated for short term forum sessions and if      cookies are disabled for some reason, for long term forum sessions      as well (to prevent accidental distribution of URLs with auth info      in them). This is the type of session id reset that is appropriate      after handling a login action.</p><p>If this parameter is set to PHORUM_SESSID_RESET_ALL, then all session      ids will be reset to new values. This is for example      appropriate after a user changed the password (so active sessions on      other computers or browsers will be ended).</p></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_session_destroy" id="functionphorum_api_user_session_destroy"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_session_destroy</span> (line <span class="line-number">2516</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Destroy a Phorum user session.</p>
+<p class="description"><p>This will destroy a Phorum user session and set the active  Phorum user to the anonymous user.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_user_session_destroy
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of session to destroy. This must be one of      <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a> or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ADMIN_SESSION">PHORUM_ADMIN_SESSION</a>.      See the documentation for <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_session_create">phorum_api_user_session_create()</a>      for more information on Phorum user sessions.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_session_restore" id="functionphorum_api_user_session_restore"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_session_restore</span> (line <span class="line-number">2168</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Restore a Phorum user session.</p>
+<p class="description"><p>This function will check for a valid user session for either the  forum or the admin interface (based on the $type parameter). If a valid  session is found, then the user session will be restored.</p><p>Before calling this function, the variable $PHORUM['use_cookies']  should be set to one of PHORUM_NO_COOKIES,  PHORUM_USE_COOKIES or PHORUM_REQUIRE_COOKIES.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> TRUE in case a valid session is detected, otherwise FALSE.      Note that a <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a> will return TRUE if      a long term session is detected and that the sort term session      might be missing. Code which depends on short term sessions should      investigate the $PHORUM[&quot;DATA&quot;][&quot;FULLY_LOGGEDIN&quot;] variable.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_api_user_session_restore
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of session to check for. This must be one of      <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a> or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ADMIN_SESSION">PHORUM_ADMIN_SESSION</a>.      See the documentation for <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_session_create">phorum_api_user_session_create()</a>      for more information on Phorum user sessions.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_set_active_user" id="functionphorum_api_user_set_active_user"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_set_active_user</span> (line <span class="line-number">1682</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the active Phorum user.</p>
+<p class="description"><p>This function can be used to setup the Phorum data to indicate which  user is logged in or to setup the anonymous user. Calling this function  is all that is needed to tell Phorum which user is logged in (or to  tell that no user is logged in by setting up the anonymous user).</p><p>Next to setting up the user data, the function will handle user activity  tracking (based on the &quot;track_user_activity&quot; setting) and setup some  special (template) variables:</p><p>The variabe $PHORUM[&quot;DATA&quot;][&quot;ADMINISTRATOR&quot;] will be set to TRUE if  the active user is an administrator, FALSE otherwise.</p><p>For type <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a>, the following extra variables  will be filled:</p><p><ul><li>$PHORUM[&quot;DATA&quot;][&quot;LOGGEDIN&quot;]:
+   TRUE if the user is logged in, FALSE otherwise.</li></ul> <ul><li>$PHORUM[&quot;DATA&quot;][&quot;FULLY_LOGGEDIN&quot;]:
+   TRUE if a short term session is active (by setting the
+   <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FLAG_SESSION_ST">PHORUM_FLAG_SESSION_ST</a> flag for the $flags parameter),
+   FALSE otherwise.</li></ul></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> TRUE if a real user was set as the active user successfully      or FALSE if the anonymous user was set (either because that was      requested or because setting the real user failed). If setting a      real user as the active user failed, the functions      <a href="../../PhorumAPI/BaseAPI/_base_php.html#functionphorum_api_strerror">phorum_api_strerror()</a> and <a href="../../PhorumAPI/BaseAPI/_base_php.html#functionphorum_api_errno">phorum_api_errno()</a> can be      used to retrieve information about the error which occurred.</li>
+				<li><span class="field">example:</span> <a href="../../__examplesource/exsource_s_phorum5-docs_include_api_examples_user_login.php_7f899d2ceefd744ae047286ae7cff51e.html">Handle a user forum login</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			phorum_api_user_set_active_user
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$flags</span> = <span class="var-default">0</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$type
+</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$user
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$flags
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of session for which to set the active user. This must be      one of <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a> or <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_ADMIN_SESSION">PHORUM_ADMIN_SESSION</a>.      See the documentation for <a href="../../PhorumAPI/UserAPI/_user_php.html#functionphorum_api_user_session_create">phorum_api_user_session_create()</a>      for more information on Phorum user sessions.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$user
+</span><span class="var-description">: The user_id or the full user data array for the user that has to be      the active user or NULL if the active user has to be set to the      anonymous user (the default).</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$flags
+</span><span class="var-description">: If the flag <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FLAG_SESSION_ST">PHORUM_FLAG_SESSION_ST</a> is set, then the short      term session will be enabled for <a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_FORUM_SESSION">PHORUM_FORUM_SESSION</a>      based sessions.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_subscribe" id="functionphorum_api_user_subscribe"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_subscribe</span> (line <span class="line-number">3041</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subscribe a user to a thread.</p>
+<p class="description"><p>Remark: Currently, there is no active support for subscribing to forums  using subscription type PHORUM_SUBSCRIPTION_DIGEST in the Phorum core.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_user_subscribe
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$type
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user to create the subscription for.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The id of the thread to describe to.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The id of the forum in which the thread to subscribe to resides.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$type
+</span><span class="var-description">: The type of subscription. Available types are: <ul><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_NONE">PHORUM_SUBSCRIPTION_NONE</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_MESSAGE">PHORUM_SUBSCRIPTION_MESSAGE</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_BOOKMARK">PHORUM_SUBSCRIPTION_BOOKMARK</a></li><li><a href="../../PhorumAPI/UserAPI/_user_php.html#definePHORUM_SUBSCRIPTION_DIGEST">PHORUM_SUBSCRIPTION_DIGEST</a></li></ul></span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionphorum_api_user_unsubscribe" id="functionphorum_api_user_unsubscribe"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">phorum_api_user_unsubscribe</span> (line <span class="line-number">3067</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Unsubscribe a user from a thread.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			phorum_api_user_unsubscribe
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$user_id</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$thread</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$forum_id</span> = <span class="var-default">0</span>], <span class="var-type">integer</span>&nbsp;<span class="var-name">$user_id
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$thread
+</span>, <span class="var-type">integer</span>&nbsp;<span class="var-name">$forum_id
+</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$user_id
+</span><span class="var-description">: The id of the user to remove the subscription for.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$thread
+</span><span class="var-description">: The id of the thread to describe from.</span>			</li>
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$forum_id
+</span><span class="var-description">: The id of the forum in which the thread to unsubscribe from resides.      This parameter can be 0 (zero) to simply unsubscribe by thread id alone.</span>			</li>
+				</ul>
+		
+	
+</div>
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 16 Jan 2008 08:31:14 -0600 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC5</a>
+	</p>
+	</div></body>
+</html>

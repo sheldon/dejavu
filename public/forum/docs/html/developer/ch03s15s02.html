@@ -1,0 +1,48 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.15.2. user_register</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s15.html" title="3.15. User data handling"><link rel="prev" href="ch03s15.html" title="3.15. User data handling"><link rel="next" href="ch03s15s03.html" title="3.15.3. user_get"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s15.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s15s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.user_register"></a>3.15.2. user_register</h3></div></div></div><p>
+
+This hook is called when a user registration is completed by
+setting the status for the user to PHORUM_USER_ACTIVE.
+This hook will not be called right after filling in the
+registration form (unless of course, the registration has been
+setup to require no verification at all in which case the user
+becomes active right away).
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+Right after a new user registration becomes active.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+An array containing user data for the registered user.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+The same array as the one that was used for the hook call
+argument, possibly with some updated fields in it.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_user_register($user)
+{
+    // Log user registrations through syslog.
+    openlog("Phorum", LOG_PID | LOG_PERROR, LOG_LOCAL0);
+    syslog(LOG_NOTICE, "New user registration: $user[username]");
+
+    return $user;
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s15.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s15.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s15s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

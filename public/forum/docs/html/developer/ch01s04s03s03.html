@@ -1,0 +1,21 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.4.3.3. PHP constants</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch01s04s03.html" title="1.4.3. Data types"><link rel="prev" href="ch01s04s03s02.html" title="1.4.3.2. Strings"><link rel="next" href="ch01s04s03s04.html" title="1.4.3.4. Template variables"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s04s03s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s04s03s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="templates.phpconstants"></a>1.4.3.3. PHP constants</h4></div></div></div><p>
+          It is possible to define constants within PHP. This is done using
+          the define() PHP statement. Here's an example:
+          </p><pre class="programlisting">
+&lt;?php define("MY_CONSTANT", "The constant value") ?&gt;</pre><p>
+          You can reference PHP constants from the template language by
+          using its name, without any quotes. So the constant that was
+          defined in the code above, can be used like this in a template:
+          </p><div class="example"><a name="id2496039"></a><p class="title"><b>Example 1.8. Code using a PHP constant definition</b></p><div class="example-contents"><pre class="programlisting">The value of my PHP constant is {MY_CONSTANT}</pre></div></div><p><br class="example-break">
+          Apart from defining your own PHP constants, you can also use
+          constants that are already defined by PHP. Two useful constants to
+          use are <code class="literal">true</code> (value = 1) and
+          <code class="literal">false</code> (value = 0). Using these, you can
+          write template code like this:
+          </p><div class="example"><a name="id2496058"></a><p class="title"><b>Example 1.9. Code using built-in PHP constants</b></p><div class="example-contents"><pre class="programlisting">
+{VAR SOME_OPTION true}
+
+{IF SOME_OPTION true}
+  The option SOME_OPTION is true.
+{/IF} </pre></div></div><p><br class="example-break">
+        </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s04s03s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01s04s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04s03s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

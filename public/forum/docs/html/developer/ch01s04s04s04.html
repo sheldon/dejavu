@@ -1,0 +1,25 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.4.4.4. VAR</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch01s04s04.html" title="1.4.4. Statements"><link rel="prev" href="ch01s04s04s03.html" title="1.4.4.3. DEFINE"><link rel="next" href="ch01s04s04s05.html" title="1.4.4.5. IF .. ELSEIF .. ELSE .."></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s04s04s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s04s04s05.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="templates.var"></a>1.4.4.4. VAR</h4></div></div></div><p>
+          </p><div class="variablelist"><dl><dt><span class="term">Function</span></dt><dd><p>
+                  Using this statement, you can set variable definitions
+                  that can be used by the Phorum template language.
+                </p></dd><dt><span class="term">Syntax</span></dt><dd><p>
+                  <code class="literal">{VAR &lt;TEMPLATE VARIABLE&gt; &lt;VALUE&gt;}</code>
+                </p><p>
+                  <code class="literal">&lt;TEMPLATE VARIABLE&gt;</code> can be an
+                  existing or a new variable name
+                  (see <a class="xref" href="ch01s04s03s04.html" title="1.4.3.4. Template variables">Section 1.4.3.4, &#8220;Template variables&#8221;</a>).
+                  The <code class="literal">&lt;VALUE&gt;</code> can be any of
+                  the data types that are supported by the template
+                  language (see <a class="xref" href="ch01s04s03.html" title="1.4.3. Data types">Section 1.4.3, &#8220;Data types&#8221;</a>).
+                </p></dd><dt><span class="term">Example code</span></dt><dd><p>
+                </p><div class="example"><a name="id2496538"></a><p class="title"><b>Example 1.16. VAR statement usage</b></p><div class="example-contents"><pre class="programlisting">
+{VAR MY_VAR "This is my first variable!"}
+{VAR MY_VAR OTHER_VAR}
+{VAR MY_VAR 1234}
+
+{VAR IS_COOL true}
+{IF IS_COOL}
+  Yes, this is cool
+{/IF} </pre></div></div><p><br class="example-break">
+              </p></dd></dl></div><p>
+        </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s04s04s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01s04s04.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04s04s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

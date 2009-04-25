@@ -1,0 +1,56 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.10.2. common_pre</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s10.html" title="3.10. Request initialization"><link rel="prev" href="ch03s10.html" title="3.10. Request initialization"><link rel="next" href="ch03s10s03.html" title="3.10.3. common_no_forum"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s10.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s10s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.common_pre"></a>3.10.2. common_pre</h3></div></div></div><p>
+
+This hook can be used for overriding settings that were loaded and
+setup at the start of the <code class="filename">common.php</code> script.
+If you want to dynamically assign and tweak certain settings, then
+this is the designated hook to use for that.<br>
+<br>
+Because the hook was put after the request parsing phase, you can
+make use of the request data that is stored in the global variables
+<code class="literal">$PHORUM['forum_id']</code> and
+<code class="literal">$PHORUM['args']</code>.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+Right after loading the settings from the database and parsing the
+request, but before making descisions on user, language and template.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+No input.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+No output.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_common_pre()
+{
+    global $PHORUM;
+
+    // If we are in the forum with id = 10, we set the administrator
+    // email information to a different value than the one configured
+    // in the general settings.
+    if ($PHORUM["forum_id"] == 10)
+    {
+        $PHORUM["system_email_from_name"] = "John Doe";
+        $PHORUM["system_email_from_address"] = "John.Doe@example.com";
+    }
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s10.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s10.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s10s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

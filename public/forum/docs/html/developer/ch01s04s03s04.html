@@ -1,0 +1,40 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.4.3.4. Template variables</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch01s04s03.html" title="1.4.3. Data types"><link rel="prev" href="ch01s04s03s03.html" title="1.4.3.3. PHP constants"><link rel="next" href="ch01s04s04.html" title="1.4.4. Statements"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s04s03s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s04s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="templates.templatevars"></a>1.4.3.4. Template variables</h4></div></div></div><p>
+          About the most important data type for the template language is
+          the template variable. Template variables are used by Phorum to
+          store dynamic data, which can be used by your templates.
+          You can also use the variables for storing dynamic data of
+          your own from the templates. Template variables can contain both
+          simple values and complex arrays of data.
+        </p><p>
+          You can reference a template variable by using the variable's name,
+          without any quotes.
+          </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+            This is the same type of notation as the one that is used for
+            referencing PHP constants
+            (see <a class="xref" href="ch01s04s03s03.html" title="1.4.3.3. PHP constants">Section 1.4.3.3, &#8220;PHP constants&#8221;</a>).
+            If there are both
+            a constant and a variable with the same name, the value of the
+            contstant will take precedence over the template variable.
+          </div><p>
+          </p><div class="example"><a name="id2496106"></a><p class="title"><b>Example 1.10. Template variables</b></p><div class="example-contents"><pre class="programlisting">
+NAME
+HTML_TITLE
+MESSAGES</pre></div></div><p><br class="example-break">
+          In case the variable represents an array, you can reference
+          the array elements by using the following pointer notation:
+          </p><div class="example"><a name="id2496116"></a><p class="title"><b>Example 1.11. Referencing elements in a template variable array</b></p><div class="example-contents"><pre class="programlisting">
+ARRAYVARIABLE-&gt;SIMPLE_ELEMENT
+ARRAYVARIABLE-&gt;ARRAY_ELEMENT-&gt;SIMPLE_ELEMENT</pre></div></div><p><br class="example-break">
+          Within a template, variables are used like this:
+          </p><div class="example"><a name="id2496127"></a><p class="title"><b>Example 1.12. Code using template variables</b></p><div class="example-contents"><pre class="programlisting">
+{VAR MY_VAR "Assign a value to a variable from the template"}
+
+You username is: {USER-&gt;username}&lt;br/&gt;
+The current forum's name is: {NAME}&lt;br/&gt;
+
+{LOOP MESSAGES}
+  Subject: {MESSAGES-&gt;subject}&lt;br/&gt;
+{/LOOP MESSAGES} </pre></div></div><p><br class="example-break">
+          What variables are available for what template pages is fully
+          determined by Phorum.
+        </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s04s03s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01s04s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

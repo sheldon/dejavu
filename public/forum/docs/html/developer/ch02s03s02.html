@@ -1,0 +1,269 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.2. Module information</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s03.html" title="2.3. Writing your own modules"><link rel="prev" href="ch02s03.html" title="2.3. Writing your own modules"><link rel="next" href="ch02s03s03.html" title="2.3.3. Module file structure"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="modules.moduleinfo"></a>2.3.2. Module information</h3></div></div></div><p>
+        Module information is the glue between your module and Phorum.
+        It provides information to Phorum about your module.
+        Before we explain how to add this module information to your
+        module, we will first explain what data can be put in there
+        and how that data is formatted.
+      </p><p>
+        Module information is formatted using lines of plain text. Each line
+        contains a piece of information about the module. The general format
+        for each of the lines in the module information is:
+        </p><pre class="programlisting"> &lt;key&gt;: &lt;value&gt; </pre><p>
+        Empty lines are allowed between these key/value pairs.
+        Below, you can find a list of the keys and values that can be
+        used in the module information.
+        </p><div class="table"><a name="modules.moduleinfokeys"></a><p class="title"><b>Table 2.1. Keys and values in module information</b></p><div class="table-contents"><table summary="Keys and values in module information" border="1"><colgroup><col><col></colgroup><thead><tr><th>&lt;key&gt;</th><th>&lt;value&gt;</th></tr></thead><tbody><tr><td>
+                <span class="bold"><strong>title</strong></span>
+              </td><td>
+                <p>
+                  This is the title for the module that is displayed in the
+                  "Modules" page of the admin interface.
+                </p>
+                <p>
+                  Example:<br>
+                  <code class="literal">title: Foo</code>
+                </p>
+              </td></tr><tr><td>
+                <span class="bold"><strong>desc</strong></span>
+              </td><td>
+                <p>
+                  This is the description that is displayed along with the
+                  title in the admin interface, to give a little more
+                  information about the module. Using HTML in the
+                  &lt;value&gt; part is allowed.
+                </p>
+                <p>
+                  Example:<br>
+                  <code class="literal">desc: This is a very cool module to do stuff.</code>
+                </p>
+              </td></tr><tr><td>
+                <span class="bold"><strong>hook</strong></span>
+              </td><td>
+                <p>
+                  This describes which
+                  <a class="xref" href="ch02s02s05.html" title="2.2.5. Hook functions">hook functions</a>
+                  are called for which Phorum hooks. The value consists of
+                  two fields, separated by a pipe "|" symbol. The first
+                  field contains the name of the hook that this module is
+                  hooking into. The second field contains the name of the
+                  hook function that will be called for the hook.
+                </p>
+                <p>
+                  Example:<br>
+                  <code class="literal">hook: some_hook|phorum_mod_foo_some_hook</code>
+                </p>
+              </td></tr><tr><td>
+                <span class="bold"><strong>priority</strong></span>
+              </td><td>
+                <p>
+                  This can be used for changing priorities and dependancies
+                  for modules and hooks. Possible values are (in order in
+                  which they are processed):
+                  </p><div class="itemizedlist"><ul type="disc"><li><code class="literal">
+                      run module before|after *
+                    </code></li><li><code class="literal">
+                      run module before|after &lt;other module name&gt;
+                    </code></li><li><code class="literal">
+                      run hook &lt;hook name&gt; before|after *
+                    </code></li><li><code class="literal">
+                      run hook &lt;hook name&gt; before|after &lt;other module name&gt;
+                    </code></li></ul></div><p>
+                </p>
+                <p>
+                  Examples:<br>
+
+                  </p><p>
+                    Run this module before all other modules:<br>
+                    <code class="literal">
+                      priority: run module before *
+                    </code>
+                  </p><p>
+
+                  </p><p>
+                    Run this module before the bbcode module.<br>
+                    <code class="literal">
+                      priority: run module before bbcode
+                    </code>
+                  </p><p>
+
+                  </p><p>
+                    Run the "format" hook for this module before the
+                    "format" hook of the smileys module.<br>
+                    <code class="literal">
+                      priority: run hook format before smileys
+                    </code>
+                  </p><p>
+
+                  </p><p>
+                    Run the "after_header" hook for this module after all
+                    other "after_header" hooks.<br>
+                    <code class="literal">
+                      priority: run hook after_header after *
+                    </code>
+                  </p><p>
+                </p>
+
+                <p>
+                  The main difference between "run module" and "run hook"
+                  is that "run module" will affect the priority for each
+                  hook of the module and that "run hook" is used to
+                  specifically change the priority of a single hook.
+                  So to run all hooks for a module as early as possible,
+                  but run the "foo" hook as late as possible and the
+                  "bar" hook before the smileys mod, one could use the
+                  following priority lines:
+                </p>
+                <p>
+                  <code class="literal">
+                  priority: run module before *<br>
+                  priority: run hook foo after *<br>
+                  priority: run hook bar before smileys
+                  </code>
+                </p>
+              </td></tr><tr><td>
+                <span class="bold"><strong>require_version</strong></span>
+              </td><td>
+                <p>
+                  This describes which phorum version is required to use
+                  this module. Modules with a requirement above the current
+                  phorum version are automatically disabled when going to
+                  the modules page. This feature was added in Phorum 5.2.
+                </p>
+                <p>
+                  Example:<br>
+                  <code class="literal">require_version: 5.2.2</code>
+                </p>
+              </td></tr><tr><td>
+                <span class="bold"><strong>
+                  author<br>
+                  url<br>
+                  version<br>
+                  release_date
+                </strong></span>
+              </td><td>
+                <p>
+                  These fields are all informational. The information
+                  from these fields will be shown on the Modules admin
+                  page. You are allowed to omit these fields from the
+                  module information, but we advice you to fill them to
+                  provide as much useful info to the users of your module.
+                </p>
+                <p>
+                  The fields are free form. The "url" field should contain
+                  a URL to a page where more information about the module
+                  can be found. This can for example be a dedicated page
+                  about your module or a discussion page in the phorum.org
+                  support forums.
+                </p>
+                <p>
+                  Example:<br>
+                  <code class="literal">
+                    author: John Doe, Phorum hacker<br>
+                    url: http://example.com/phorum/mod_foo/<br>
+                    version: 0.9.1-alpha<br>
+                    release_date: May 17th, 2007
+                  </code>
+                </p>
+              </td></tr><tr><td>
+                <span class="bold"><strong>category</strong></span>
+              </td><td>
+                <p>
+                  The category field is used for categorizing the module.
+                  You can place your module inside one or more categories by
+                  adding one or more category lines to the module information.
+                  The category is used for automatically generating a
+                  categorized list of available modules on the phorum.org
+                  web site.
+                </p>
+                <p>
+                  For consistency and for preventing wild growth of
+                  categories, we use a fixed set of categories from which
+                  you can choose. Please select your category / categories
+                  carefully and do not put your module in too many
+                  categories. Available categories to choose from are:
+                  </p><div class="itemizedlist"><ul type="disc"><li><span class="bold"><strong>admin</strong></span><br>
+                      Modules that are useful for performing administrative
+                      tasks and for handling advanced Phorum configuration.
+                    </li><li><span class="bold"><strong>bbcode</strong></span><br>
+                      Modules that implement extra BBcode tags.
+                    </li><li><span class="bold"><strong>embed_content</strong></span><br>
+                      Modules for embedding content (e.g. images, audio,
+                      video, flash, etc.) in message bodies. These
+                      modules implement viewers that are shown inside the
+                      message bodies when reading the message and which take
+                      away the need to launch some external viewer to open
+                      attachments and/or linked files.
+                    </li><li><span class="bold"><strong>phorum3conversion</strong></span><br>
+                      Modules that can help sites to convert from the
+                      old Phorum 3 system to Phorum 5.
+                    </li><li><span class="bold"><strong>email</strong></span><br>
+                      Modules that extend or enhance the email system.
+                    </li><li><span class="bold"><strong>integration</strong></span><br>
+                      Modules that can be used for integrating Phorum with
+                      other systems.
+                    </li><li><span class="bold"><strong>user_management</strong></span><br>
+                      These modules deal with user registration, logging in
+                      and out, login status and user management tasks.
+                    </li><li><span class="bold"><strong>moderator</strong></span><br>
+                      Modules that extend or enhance the moderation system.
+                    </li><li><span class="bold"><strong>posting</strong></span><br>
+                      Modules that extend or enhance posting and/or
+                      editing messages.
+                    </li><li><span class="bold"><strong>search</strong></span><br>
+                      Modules that provide search features
+                      or that replace the full message search backend.
+                    </li><li><span class="bold"><strong>seo</strong></span><br>
+                      Modules that apply search engine optimization
+                      measures to Phorum.
+                    </li><li><span class="bold"><strong>spam</strong></span><br>
+                      Modules that help protecting Phorum against spam.
+                    </li><li><span class="bold"><strong>user_features</strong></span><br>
+                      Modules that give the users new options and enhance
+                      their experience.
+                    </li><li><span class="bold"><strong>viewlayout</strong></span><br>
+                      Modules that add information to or alter the view /
+                      layout of Phorum pages.
+                    </li><li><span class="bold"><strong>uncategorized</strong></span><br>
+                      Modules that do not have a category assigned. This one
+                      is mainly mentioned for completeness. In the online
+                      module list, this category will be assigned to modules
+                      that don't have a category set in their info.txt.
+                    </li></ul></div><p>
+                </p>
+                <p>
+                  Example:<br>
+                  <code class="literal">category: user_features</code><br>
+                  <code class="literal">category: posting</code>
+                </p>
+              </td></tr></tbody></table></div></div><p><br class="table-break">
+      </p><p>
+        It is allowed to use multiple hook lines in your module information,
+        so your module can act upon multiple hooks. When doing this, it
+        is also allowed to use the same hook function for handling different
+        hooks in your module (asuming the hooks are compatible).
+      </p><p>
+        Here is an example of what the module information for our example
+        module "foo" might look like:
+        </p><div class="example"><a name="example.moduleinfo"></a><p class="title"><b>Example 2.1. Module information</b></p><div class="example-contents"><pre class="programlisting">
+title: Foo
+desc: This is the Foo module for Phorum. Nothing exciting...
+version: 1.0.2
+release_date: Jan 1st, 2008
+url: http://www.phorum.org
+author: John Doe &lt;johndoe@example.com&gt;
+require_version: 5.2.2
+category: user_features
+
+hook: some_hook|phorum_mod_foo_some_hook
+hook: some_other_hook|phorum_mod_foo_some_other_hook
+hook: yet_another_hook|phorum_mod_foo_some_other_hook
+
+priority: run some_hook before some_other_module</pre></div></div><p><br class="example-break">
+
+        What this module info does, is telling Phorum that when it gets to
+        "some_other_hook", it will have to call the function
+        <code class="literal">phorum_mod_foo_some_other_hook()</code> in your module.
+        It also tells that for "yet_another_hook" the same function has to
+        be called. It will also take care that the hook "some_hook" is run
+        before the same hook in the module "some_other_module".
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

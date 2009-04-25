@@ -1,0 +1,68 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.4.4. failed_login</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s04.html" title="3.4. Login/Logout"><link rel="prev" href="ch03s04s03.html" title="3.4.3. after_login"><link rel="next" href="ch03s05.html" title="3.5. Buddies system"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s04s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s05.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.failed_login"></a>3.4.4. failed_login</h3></div></div></div><p>
+
+This hook can be used for tracking failing login attempts.
+This can be used for things like logging or implementing
+login failure penalties (like temporary denying access after
+X login attempts).
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In <code class="filename">login.php</code>, when a user login fails.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+An array containing three fields (read-only): 
+</p><div class="itemizedlist"><ul type="disc"><li>username</li><li>password</li><li>location
+<div class="itemizedlist"><ul type="circle"><li>The location field specifies where the login 
+failure occurred and its value can be either 
+<code class="literal">forum</code> or 
+<code class="literal">admin</code>.</li></ul></div></li></ul></div><p>
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+None
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_failed_login($data)
+{
+    global $PHORUM;
+
+    // Get the current timestamp
+    $curr_time = time();
+
+    // Check for a previous login failure from the current
+    // IP address
+    if (!empty($PHORUM["mod_foo"]["login_failures"][$_SERVER["REMOTE_ADDR"]])) {
+        // If the failures occur within the set time window,
+        // increment the login failure count
+        if ($curr_time &lt;= ($PHORUM["mod_foo"]["login_failures"][$_SERVER["REMOTE_ADDR"]]["timestamp"] + (int)$PHORUM["mod_foo"]["login_failures_time_window"])) {
+            $PHORUM["mod_foo"]["login_failures"][$_SERVER["REMOTE_ADDR"]]["login_failure_count"] ++;
+            $PHORUM["mod_foo"]["login_failures"][$_SERVER["REMOTE_ADDR"]]["timestamp"] = $curr_time;
+        // Otherwise, reset the count.
+        } else {
+            $PHORUM["mod_foo"]["login_failures"][$_SERVER["REMOTE_ADDR"]]["login_failure_count"] = 1;
+            $PHORUM["mod_foo"]["login_failures"][$_SERVER["REMOTE_ADDR"]]["timestamp"] = $curr_time;
+    } else {
+        // Log the timestamp and IP address of a login failure
+        $PHORUM["mod_foo"]["login_failures"][$_SERVER["REMOTE_ADDR"]]["login_failure_count"] = 1;
+        $PHORUM["mod_foo"]["login_failures"][$_SERVER["REMOTE_ADDR"]]["timestamp"] = $curr_time;
+    }
+    phorum_db_update_settings(array("mod_foo" =&gt; $PHORUM["mod_foo"]));
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s04s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s04.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

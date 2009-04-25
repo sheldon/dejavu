@@ -1,0 +1,71 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.9.4. before_editor</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s09.html" title="3.9. Message handling"><link rel="prev" href="ch03s09s03.html" title="3.9.3. posting_custom_actions"><link rel="next" href="ch03s09s05.html" title="3.9.5. check_post"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s09s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s09s05.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.before_editor"></a>3.9.4. before_editor</h3></div></div></div><p>
+
+This hook can be used for changing message data, just before the 
+editor is displayed. This is done after escaping message data for XSS
+prevention is done. So in the hook, the module writer will have to be
+aware that data is escaped and that he has to escape data himself if
+needed.<br>
+<br>
+This hook is called every time the editor is displayed. If modifying
+the message data does not have to be done on every request (for
+example only on the first request when replying to a message), the
+module will have to check the state the editor is in. Here's some
+hints on what you could do to accomplish this:<br>
+<br>
+</p><div class="itemizedlist"><ul type="disc"><li>Check the editor mode: this can be done by looking at the
+"mode" field in the message data. This field can be one of
+"post", "reply" and "edit".</li><li>Check if it's the first request: this can be done by looking
+at the <code class="literal">$_POST</code> array. If no field "message_id"
+can be found in there, the editor is handing the first
+request.</li></ul></div><p>
+<br>
+Beware: this hook function only changes message data before it is
+displayed in the editor. From the editor, the user can still change
+the data. Therefore, this hook cannot be used to control the data
+which will be stored in the database. If you need that functionality,
+then use the hooks <a class="xref" href="ch03s09s06.html" title="3.9.6. before_edit">???</a> and/or
+<a class="xref" href="ch03s09s08.html" title="3.9.8. before_post">???</a> instead.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In <code class="filename">posting.php</code> just before the message editor is
+displayed.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+Array containing data for the message that will be shown in the
+editor screen.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+Same as input.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+// Using this, an example hook function that appends the string 
+// "FOO!" to the subject when replying to a message (how useful ;-) 
+// could look like this:
+function phorum_mod_foo_before_editor ($data)
+{
+    if ($data["mode"] == "reply" &amp;&amp; ! isset($_POST["message_id])) {
+        $data["reply"] = $data["reply"] . " FOO!";
+    }
+
+    return $data;
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s09s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s09.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s09s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

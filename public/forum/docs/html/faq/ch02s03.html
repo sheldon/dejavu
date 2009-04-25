@@ -1,0 +1,16 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3. Why do I get a database error about temporary tables when I search?</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum FAQ"><link rel="up" href="ch02.html" title="Chapter 2. Troubleshooting"><link rel="prev" href="ch02s02.html" title="2.2. Help! I've deleted the admin user and can't log in!"><link rel="next" href="ch03.html" title="Chapter 3. Features"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2494779"></a>2.3. Why do I get a database error about temporary tables when I search?</h2></div></div></div><p>
+      If you get an access denied error about CREATE TEMPORARY TABLE when
+      you search, the MySQL user assigned to your Phorum database does not
+      have the rights to create temporary tables, which the search feature
+      uses. To fix this, either grant your user temporary table creation
+      permissions through a tool like phpmyadmin, or if you cannot, then
+      contact your host to see if they can enable it for you.
+    </p><p>
+      If you cannnot obtain permissions to create temporary tables, you can
+      install the "Non-Temporary Search" module which you can find in our
+      on line module list:<br>
+      <br>
+      <a class="ulink" href="http://trac.phorum.org/wiki/ListOfModules52" target="_top">http://trac.phorum.org/wiki/ListOfModules52</a><br>
+      <br>
+      (warning: it will be a slow search on large data sets!)
+    </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

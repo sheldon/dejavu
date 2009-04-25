@@ -1,0 +1,69 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.6.6. page_&lt;phorum_page&gt;</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.70.1"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s06.html" title="3.6. Request initialization"><link rel="prev" href="ch03s06s05.html" title="3.6.5. common"><link rel="next" href="ch03s07.html" title="3.7. Page output"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s06s05.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s07.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.page_&lt;phorum_page&gt;"></a>3.6.6. page_&lt;phorum_page&gt;</h3></div></div></div><p>
+        (Phorum 5 &gt;= 5.2.7)
+      </p><p>
+
+This hook gives modules a chance to run hook code for a specific
+Phorum page near the end of the the <code class="filename">common.php</code>
+script.<br>
+<br>
+It gives modules a chance to override Phorum variables
+and settings near the end of the <code class="filename">common.php</code>
+script. This can be used to override the Phorum (settings)
+variables that are setup during this script.
+<br>
+The <code class="literal">phorum_page</code> definition that is set
+for each script is used to construct the name of the hook that will
+be called. For example the <code class="filename">index.php</code> script
+uses phorum_page <code class="literal">index</code>, which means that the
+called hook will be <code class="literal">page_index</code>.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+At the end of <code class="filename">common.php</code>, right after the
+<a href="ch03s06s05.html">common</a> hook is called.<br>
+<br>
+You can look at this as if the hook is called at the start of the
+called script, since including <code class="filename">common.php</code>
+is about the first thing that a Phorum script does.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+No input.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+No output.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_page_list()
+{
+    global $PHORUM;
+
+    // Set the type of list page to use, based on a cookie.
+    if (empty($_COOKIE['list_style'])) {
+        $PHORUM['threaded_list'] = PHORUM_THREADED_DEFAULT;
+    } elseif ($_COOKIE['list_style'] == 'threaded') {
+        $PHORUM['threaded_list'] = PHORUM_THREADED_ON;
+    } elseif ($_COOKIE['list_style'] == 'flat') {
+        $PHORUM['threaded_list'] = PHORUM_THREADED_OFF;
+    } elseif ($_COOKIE['list_style'] == 'hybrid') {
+        $PHORUM['threaded_list'] = PHORUM_THREADED_HYBRID;
+    }
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s06s05.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s06.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s07.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

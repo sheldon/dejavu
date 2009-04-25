@@ -1,0 +1,54 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.7.4. common_post_user</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.70.1"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s07.html" title="3.7. Request initialization"><link rel="prev" href="ch03s07s03.html" title="3.7.3. common_no_forum"><link rel="next" href="ch03s07s05.html" title="3.7.5. common"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s07s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s07s05.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.common_post_user"></a>3.7.4. common_post_user</h3></div></div></div><p>
+
+This hook gives modules a chance to override Phorum variables
+and settings, after the active user has been loaded. The settings
+for the active forum are also loaded before this hook is called,
+therefore this hook can be used for overriding general settings,
+forum settings and user settings.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+Right after loading the data for the active user in
+<code class="filename">common.php</code>, but before deciding on the
+language and template to use.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+No input.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+No output.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_common_post_user()
+{
+    global $PHORUM;
+
+    // Switch the read mode for admin users to threaded.
+    if ($PHORUM['user']['user_id'] &amp;&amp; $PHORUM['user']['admin']) {
+        $PHORUM['threaded_read'] = PHORUM_THREADED_ON;
+    }
+
+    // Disable "float_to_top" for anonymous users.
+    if (!$PHORUM['user']['user_id']) {
+        $PHORUM['float_to_top'] = 0;
+    }
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s07s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s07.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s07s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

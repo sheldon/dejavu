@@ -1,0 +1,25 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.2. Convert the old forum data</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Administrator Reference Manual"><link rel="up" href="ch02s03.html" title="2.3. Major upgrades"><link rel="prev" href="ch02s03.html" title="2.3. Major upgrades"><link rel="next" href="ch02s03s03.html" title="2.3.3. Update the posted message counters for the users"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="upgrade.major.convert"></a>2.3.2. Convert the old forum data</h3></div></div></div><p> In the scripts directory of your Phorum5 distribution, you will find a script named
+        phorum3to5convert.php. Instructions for using this script are given below. The script will
+        convert your old forum to Phorum5. Everything, but permission levels, is converted. </p><p>
+        <span class="bold"><strong>Instructions from phorum3to5convert.php</strong></span>
+        <br> This script will convert the data from a Phorum 3 database to a Phorum 5 database.
+          <span class="bold"><strong>It does not change any of the old phorum3 tables. The data is only
+          copied over to the new Phorum 5 tables. </strong></span></p><p> Instructions: </p><div class="itemizedlist"><ul type="disc"><li>Be sure your Phorum 3 is running a 3.4.x version. If you are running an older
+            version of Phorum 3, first upgrade to 3.4.x.</li><li>Copy or move this script one directory up, to the main Phorum 5 directory.</li><li>Edit the $CONVERT variables in the beginning of phorum3to5convert.php to match
+            the settings of your phorum3 installation (set there in the admin).</li><li>Install Phorum 5 as usual. For speed and reliability, preferably use the same
+            database as the database where Phorum 3 lives. Because Phorum 5 uses a table prefix
+            (typically "phorum_"), the tables for Phorum 3 and Phorum 5 can safely live next to each
+            other in the same database.</li><li>Empty the phorum_messages and phorum_forums tables of the Phorum 5 installation.
+            You can do this either by dropping all forums from the Phorum 5 admin interface or by
+            issuing the appropriate SQL queries from the MySQL prompt or from a database tool like
+            "phpmyadmin". The queries to execute are (replace "phorum" with your own table_prefix if
+            you changed this during install):
+            <pre class="screen"><code class="literal">DELETE FROM phorum_search; <br>
+                DELETE FROM phorum_messages;<br>
+                DELETE FROM phorum_forums;</code></pre>
+            I could do this from this script as well, but I would find that a little bit rude ;-))</li><li>Turn off unneeded modules for the conversion. All modules hooking into
+            common.php or some other general hook will be run while doing the conversion which will
+            lead to at least a slowdown, unexpected side effects and some strange output.</li><li>If you have shell access to your webserver, run this script using the shell from
+            the command line. This is the preferred way of running the upgrade:
+            <pre class="screen">shell&gt; <code class="literal">php phorum3to5convert.php</code></pre></li><li>If you do not have shell access, call the upgrade script from your browser: <pre class="screen"><code class="literal">{phorum url}/phorum3to5convert.php</code></pre><span class="bold"><strong> *** THIS STEP MAY TAKE A WHILE ***</strong></span></li><li>Take a look at the Phorum 5 forums to see if everything was converted correctly.</li><li>Delete the upgrade script phorum3to5convert.php. </li></ul></div><p>
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

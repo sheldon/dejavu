@@ -1,0 +1,95 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.17.3. user_session_restore</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s17.html" title="3.17. User authentication and session handling"><link rel="prev" href="ch03s17s02.html" title="3.17.2. user_session_create"><link rel="next" href="ch03s17s04.html" title="3.17.4. user_session_destroy"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s17s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s17s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.user_session_restore"></a>3.17.3. user_session_restore</h3></div></div></div><p>
+
+Allow modules to override Phorum's session restore management.
+This hook is the designated hook if you need to let Phorum
+inherit an authenticated session from some external system.<br>
+<br>
+The array that is passed to this hook,
+contains a key for each of the Phorum session types:
+</p><div class="itemizedlist"><ul type="disc"><li>PHORUM_SESSION_LONG_TERM</li><li>PHORUM_SESSION_SHORT_TERM</li><li>PHORUM_SESSION_ADMIN</li></ul></div><p>
+What the module has to do, is fill the values for each of these
+keys with the user_id of the Phorum user for which the session that
+the key represents should be considered active. Other options
+are FALSE to indicate that no session is active and NULL to
+tell Phorum to handle session restore on its own.<br>
+<br>
+Note that the user for which a user_id is provided through this
+hook must exist in the Phorum system before returning from this
+hook. One option to take care of that constraint is letting
+this hook create the user on-the-fly if needed. A cleaner way
+would be to synchronize the user data from the main system at those
+times when the user data changes (create, update and delete user).
+Of course it is highly dependent on the other system whether
+you can implement that kind of Phorum user management in the main
+application.<br>
+<br>
+Hint: Creating users can be done using the
+<code class="literal"> phorum_api_user_save()</code> user API function.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+Just before Phorum runs its own session restore code
+in the user API function
+<code class="literal">phorum_api_user_session_restore()</code>.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+An array containing three keys:
+</p><div class="itemizedlist"><ul type="disc"><li>PHORUM_SESSION_LONG_TERM</li><li>PHORUM_SESSION_SHORT_TERM</li><li>PHORUM_SESSION_ADMIN</li></ul></div><p>
+By default, all values for these keys are NULL.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+Same as input, possibly with updated array values.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+See the <a class="xref" href="ch03s17s02.html" title="3.17.2. user_session_create">???</a> hook for an example
+of how to let Phorum setup the PHP session that is picked up
+in this example hook.
+</p><pre class="programlisting">
+function phorum_mod_foo_user_session_restore($sessions)
+{
+    // Override the session handling for front end forum sessions.
+    // We could for example retrieve a session from a standard PHP
+    // session by first starting a PHP session if that was
+    // not done yet...
+    if (!session_id()) session_start();
+
+    // ...and then retrieving the user_id of the current user
+    // from the PHP session data. The user_id is really the
+    // only thing that needs to be remembered for a Phorum
+    // session, because all other data for the user is stored
+    // in the database. If no user id was set in the session,
+    // then use FALSE to flag this to Phorum.
+    $phorum_user_id = empty($_SESSION['phorum_user_id'])
+                    ? FALSE : $_SESSION['phorum_user_id'];
+
+    // If we only use session inheritance for the front end
+    // forum session (highly recommended for security), then
+    // We keep PHORUM_SESSION_ADMIN at NULL (default value).
+    // The other two need to be updated. If the main system does
+    // not use the concept of one long and one short term cookie
+    // (named "tight security" by Phorum), then simply assign
+    // the user_id to both PHORUM_SESSION_LONG_TERM and
+    // PHORUM_SESSION_SHORT_TERM.
+    $sessions[PHORUM_SESSION_SHORT_TERM] = $phorum_user_id;
+    $sessions[PHORUM_SESSION_LONG_TERM] = $phorum_user_id;
+
+    return $sessions;
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s17s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s17.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s17s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

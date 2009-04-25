@@ -1,0 +1,43 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.6.2. pm_read</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s06.html" title="3.6. Private message system"><link rel="prev" href="ch03s06.html" title="3.6. Private message system"><link rel="next" href="ch03s07.html" title="3.7. Module hooks"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s06.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s07.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.pm_read"></a>3.6.2. pm_read</h3></div></div></div><p>
+        (Phorum 5 &gt;= 5.2.7)
+      </p><p>
+
+This hook can be used for reformatting a single private
+message for reading.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+Right after Phorum has formatted the private message.
+This is primarily done when a private message read page is
+shown in the private message system.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+An array, describing a single private message.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+The same array as was used for the hook call argument,
+possibly with some updated fields in it.
+[example}
+</p><pre class="programlisting">
+function phorum_mod_foo_pm_read($message)
+{
+// Add a notice to messages that were sent by
+// evil user X with user_id 666.
+if ($message['user_id'] == 666) {
+$message['subject'] .= ' &lt;strong&gt;EVIL!&lt;/strong&gt;';
+}
+return $message;
+}
+</pre><p>
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s06.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s06.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s07.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

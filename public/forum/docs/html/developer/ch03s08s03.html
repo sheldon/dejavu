@@ -1,0 +1,48 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.8.3. external</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s08.html" title="3.8. Miscellaneous"><link rel="prev" href="ch03s08s02.html" title="3.8.2. database_error"><link rel="next" href="ch03s08s04.html" title="3.8.4. scheduled"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s08s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s08s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.external"></a>3.8.3. external</h3></div></div></div><p>
+
+The external hook functions are never called from any of the standard
+Phorum pages. These functions are called by invoking 
+<code class="filename">script.php</code> on the command line with the 
+<code class="literal">--module</code> parameter. This can be used to pipe output
+from some arbitrary command to a specific module, which can do something
+with that input. If your module does not need any command line input and
+is meant to be run on a regular basis, you should consider using the
+<a class="xref" href="ch03s08s04.html" title="3.8.4. scheduled">???</a> hook.<br>
+<br>
+Mind that for using an <a class="xref" href="ch03s08s03.html" title="3.8.3. external">???</a> hook, the module in which it
+is handled must be enabled in your admin interface. So if an 
+<a class="xref" href="ch03s08s03.html" title="3.8.3. external">???</a> hook is not running, the containing module might be
+disabled.<br>
+<br>
+To run this hook from the command line, you have to be in the Phorum
+installation directory. So running the <a class="xref" href="ch03s08s03.html" title="3.8.3. external">???</a> hook of
+a module named <code class="literal">external_foo</code> would be done like this on
+a UNIX system prompt:
+</p><pre class="programlisting">
+# cd /your/phorum/dir
+# php ./script.php --module=external_foo
+</pre><p>
+For easy use, you can of course put these commands in a script file.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In the <code class="filename">script.php</code> when called from the command
+prompt or a script file.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+Any array of arguments. (Optional)
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+None
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s08s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s08.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s08s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

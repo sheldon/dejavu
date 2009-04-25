@@ -1,0 +1,69 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.16.3. user_get</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s16.html" title="3.16. User data handling"><link rel="prev" href="ch03s16s02.html" title="3.16.2. user_register"><link rel="next" href="ch03s16s04.html" title="3.16.4. user_list"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s16s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s16s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.user_get"></a>3.16.3. user_get</h3></div></div></div><p>
+
+This hook can be used to handle the data that was retrieved
+from the database for a user. Modules can add and modify the
+user data.<br>
+<br>
+In combination with the <a class="xref" href="ch03s16.html#hook.user_save" title="3.16.1. user_save">???</a> hook, this hook
+could also be used to store and retrieve some of the Phorum
+user fields in some external system
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+Just after user data has been retrieved from the database.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+This hook receives two arguments.<br>
+The first argument contains an array of users.
+Each item in this array is an array containing data for
+a single user, which can be updated.<br>
+The second argument contains a boolean that indicates whether
+detailed information (i.e. including group info) is retrieved.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+The array that was used as the first argument for the hook call,
+possibly with some updated users in it.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_user_get($user, $detailed)
+{
+    // Let's asume that our usernames are based on the
+    // system users on a UNIX system. We could merge some
+    // info from the password file with the Phorum info here.
+
+    // First try to lookup the password file entry.
+    // Return if this lookup fails.
+    $pw = posix_getpwnam($user['username']);
+    if (empty($pw)) return $user;
+
+    // On a lot of systems, the "gecos" field contains
+    // the real name for the user.
+    $user['real_name'] = $pw["gecos"] != ''
+                       ? $pw["gecos"]
+                       : $user["real_name"];
+
+    // If a custom profile field "shell" was created, then
+    // we could also put the user's shell in the data.
+    $user['shell'] = $pw['shell'];
+
+    return $user;
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s16s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s16.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s16s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

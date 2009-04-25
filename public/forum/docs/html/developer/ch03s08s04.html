@@ -1,0 +1,67 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.8.4. scheduled</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s08.html" title="3.8. Miscellaneous"><link rel="prev" href="ch03s08s03.html" title="3.8.3. external"><link rel="next" href="ch03s09.html" title="3.9. Message handling"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s08s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s09.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.scheduled"></a>3.8.4. scheduled</h3></div></div></div><p>
+
+<a class="xref" href="">???</a> hook functions are similar to
+<a class="xref" href="ch03s08s03.html" title="3.8.3. external">???</a> ones, except these functions do not require any
+input from the command line. The modules containing this hook are invoked
+by running <code class="filename">script.php</code> with the
+<code class="literal">--scheduled</code> argument (no module name is taken; this
+argument will run all scheduled hooks for all available modules).<br>
+<br>
+Like the name of the hook already suggests, this hook can be used for
+creating tasks which have to be executed on a regular basis. To archieve
+this, you can let <code class="filename">script.php</code> run from a scheduling
+service (like a cron job on a UNIX system).<br>
+<br>
+In general, <a class="xref" href="ch03s08s04.html" title="3.8.4. scheduled">???</a> hooks are used for automating tasks
+you want to execute without having to perform any manual action.
+Practical uses for a scheduled hook could be:
+</p><div class="itemizedlist"><ul type="disc"><li>housekeeping (cleanup of stale/old data)</li><li>daily content generation (like sending daily digests containing all
+posted messages for that day)</li><li>forum statistics generation</li></ul></div><p>
+<br>
+Keep in mind that for using this hook, the module in which it is handled
+must be enabled in your admin interface. So if this hook is not running, 
+the containing module might be disabled.<br>
+<br>
+To run this hook from the command line or from a scheduling service, you
+have to be in the Phorum installation directory. So running this hook for
+your Phorum installation would be done like this on a UNIX system prompt:
+</p><pre class="programlisting">
+# cd /your/phorum/dir
+# php ./script.php --scheduled
+</pre><p>
+<br>
+When creating a scheduling service entry for running this automatically,
+remember to change the directory as well. You might also have to use the
+full path to your PHP binary (<code class="filename">/usr/bin/php</code> or
+whatever it is on your system), because the scheduling service might not
+know the path to it. An entry for the cron system on UNIX could look like
+this:
+</p><pre class="programlisting">
+0 0 * * * cd /your/phorum/dir &amp;&amp; /usr/bin/php ./script.php --scheduled
+</pre><p>
+<br>
+Please refer to your system's documentation to see how to use your
+system's scheduling service.
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In the <code class="filename">script.php</code> when called from the command
+prompt or a script file with the <code class="literal">--scheduled</code> argument.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+None
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+None
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s08s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s08.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s09.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

@@ -1,0 +1,27 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.6.3. Build URLs to files in the Phorum tree</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s03s06.html" title="2.3.6. Building URLs for Phorum"><link rel="prev" href="ch02s03s06s02.html" title="2.3.6.2. Build URLs for Phorum PHP scripts: phorum_get_url()"><link rel="next" href="ch02s03s07.html" title="2.3.7. Implementing a settings screen for your module"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03s06s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03s07.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="modules.scripturls"></a>2.3.6.3. Build URLs to files in the Phorum tree</h4></div></div></div><p>
+          If you have some non-script files in your module that you need
+          to access through a URL, then make sure that you are generating
+          absolute URLs for these. You can make use of the Phorum
+          setting variable <code class="literal">$PHORUM['http_path']</code>
+          to build these. This setting relates to the "HTTP Path"
+          option under "General Settings" in the admin interface.
+        </p><p>
+          Let's asume you have a file named <code class="filename">foobar.gif</code>
+          in your "foo" module tree, then you could generate the URL for
+          that file like this:
+          </p><div class="example"><a name="id2501025"></a><p class="title"><b>Example 2.9. 
+              Generating an absolute URL for a file in a module directory
+            </b></p><div class="example-contents"><pre class="programlisting">
+// Since the code probably runs inside a function scope,
+// the global $PHORUM variable needs to be imported.
+global $PHORUM;
+
+// Build the URL for the foobar.gif.
+$url = $PHORUM['http_path'] . "/mods/foo/foobar.gif";
+
+// After this, you could store the URL in the template data, so you
+// can use it from the templates. Here an example for filling the
+// template variable {MOD_FOO-&gt;IMAGE_URL}:
+$PHORUM["DATA"]["MOD_FOO"]["IMAGE_URL"] = $url; </pre></div></div><p><br class="example-break">
+
+        </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03s06s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03s06.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03s07.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

@@ -1,0 +1,60 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.16.6. before_register</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s16.html" title="3.16. User data handling"><link rel="prev" href="ch03s16s05.html" title="3.16.5. user_delete"><link rel="next" href="ch03s16s07.html" title="3.16.7. after_register"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s16s05.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s16s07.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.before_register"></a>3.16.6. before_register</h3></div></div></div><p>
+
+This hook can be used for performing tasks before user 
+registration. This hook is useful if you want to add some data to
+or change some data in the user data and to check if the user 
+data is correct.<br>
+<br>
+When checking the registration data, the hook can set the "error"
+field in the returned user data array. When this field is set 
+after running the hook, the registration processed will be halted
+and the error will be displayed. If you created a custom form 
+field "foo" and you require that field to be filled in, you could
+create a hook function like the one in the example below.<br>
+<br>
+The error must be safely HTML escaped, so if you use untrusted
+data in your error, then make sure that it is escaped using
+<a class="ulink" href="http://www.php.net/htmlspecialchars" target="_top">htmlspecialchars</a>() to prevent XSS (see also
+paragraph 3.6: Secure your pages from XSS).
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In <code class="filename">register.php</code>, right before a new user is
+stored in the database.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+An array containing the user data of the soon-to-be-registered
+user.
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+Same as input.
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_before_register ($data)
+{
+    $myfield = trim($data['foo']);
+    if (empty($myfield)) {
+        $data['error'] = 'You need to fill in the foo field';
+    }
+
+    return $data;
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s16s05.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s16.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s16s07.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

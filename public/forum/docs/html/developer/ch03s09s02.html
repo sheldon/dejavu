@@ -1,0 +1,58 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>3.9.2. posting_permissions</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch03s09.html" title="3.9. Message handling"><link rel="prev" href="ch03s09.html" title="3.9. Message handling"><link rel="next" href="ch03s09s03.html" title="3.9.3. posting_custom_actions"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch03s09.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s09s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="hook.posting_permissions"></a>3.9.2. posting_permissions</h3></div></div></div><p>
+
+This hook can be used for setting up custom abilities and permissions for
+users, by updating the applicable fields in 
+<code class="literal">$GLOBALS["PHORUM"]["DATA"]</code> (e.g. for giving certain
+users the right to make postings sticky, without having to make the full
+moderator for a forum).<br>
+<br>
+Read the code in <code class="filename">posting.php</code> before this hook is
+called to find out what fields can be used.<br>
+<br>
+Beware: Only use this hook if you know what you are doing and understand
+Phorum's editor permission code. If used wrong, you can open up security
+holes in your Phorum installation!
+      </p><p>
+        <span class="bold"><strong>
+          Call time:
+        </strong></span>
+      </p><p>
+
+In <code class="filename">posting.php</code> right after Phorum has determined all
+abilities that apply to the logged in user.
+      </p><p>
+        <span class="bold"><strong>
+          Hook input:
+        </strong></span>
+      </p><p>
+
+None
+      </p><p>
+        <span class="bold"><strong>
+          Hook output:
+        </strong></span>
+      </p><p>
+
+None
+      </p><p>
+        <span class="bold"><strong>
+          Example code:
+        </strong></span>
+      </p><p>
+
+</p><pre class="programlisting">
+function phorum_mod_foo_posting_permissions ()
+{
+    global $PHORUM;
+
+    // get the previously stored id for the "sticky_allowed" group
+    $mod_foo_group_id = $PHORUM["mod_foo"]["sticky_allowed_group_id"];
+
+    // allow creating sticky posts for users in the "sticky_allowed"
+    // group, if the option has not already been enabled.
+    if (!$PHORUM["DATA"]["OPTION_ALLOWED"]["sticky"])
+        $PHORUM["DATA"]["OPTION_ALLOWED"]["sticky"] = phorum_api_user_check_group_access (PHORUM_USER_GROUP_APPROVED, $mod_foo_group_id);
+}
+</pre><p>
+
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s09.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s09.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s09s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

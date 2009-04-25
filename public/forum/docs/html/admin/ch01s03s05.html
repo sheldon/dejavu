@@ -1,0 +1,163 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.3.5. Configure the database access for Phorum</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Administrator Reference Manual"><link rel="up" href="ch01s03.html" title="1.3. Detailed installation instructions"><link rel="prev" href="ch01s03s04.html" title="1.3.4. Create a database and a database user"><link rel="next" href="ch01s03s06.html" title="1.3.6. Run the web based installer"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s03s04.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s03s06.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2495455"></a>1.3.5. Configure the database access for Phorum</h3></div></div></div><p>
+        After setting up the database, you will have to tell Phorum how
+        to access that database. The configuration for this is put in
+        the file <code class="filename">include/db/config.php</code> inside your
+        Phorum directory. This file is not included in the distribution.
+        Only a differently named sample file is included (this is to
+        prevent overwriting your configuration when upgrading Phorum).
+        Copy or rename the sample configuration file
+        <code class="filename">include/db/config.php.sample</code> to
+        <code class="filename">include/db/config.php</code>. Then edit the
+        <code class="filename">config.php</code> file to match the access
+        settings for the database that was created in
+        <a class="xref" href="ch01s03s04.html" title="1.3.4. Create a database and a database user">Section 1.3.4, &#8220;Create a database and a database user&#8221;</a>.
+      </p><p>
+        If you run your website on a remote server, then either edit
+        the configuration file directly on that server (e.g. through a
+        UNIX prompt or an FTP client that supports this) or upload the
+        file to the correct location after editing it locally.
+      </p><p>
+        In the configuration file, you will find the following settings:
+        </p><div class="variablelist"><dl><dt><span class="term">type</span></dt><dd><p>
+                This setting determines what database backend is used
+                by Phorum. Phorum is distributed with the a MySQL backend.
+                If you are using MySQL for the database server, then you
+                can keep the default value <code class="literal">mysql</code> here.
+              </p><p>
+                If you use a third party database backend (e.g. PostgreSQL),
+                then you can configure it here. The backend PHP script must
+                be installed at the location
+                <code class="filename">{phorum dir}/include/db/mybackend.php</code>.
+                With this example, the setting of the type has to be
+                <code class="literal">mybackend</code>.
+              </p></dd><dt><span class="term">server</span></dt><dd><p>
+                This is the hostname or IP-address of your database server.
+                On a lot of systems, the database server will run on the
+                same system as the web server. In those cases, the default
+                value <code class="literal">localhost</code> will often be correct.
+                Change this value if the database server is running on
+                a different system than the web server.
+              </p></dd><dt><span class="term">name</span></dt><dd><p>
+                MySQL (and a lot of other database servers) can handle
+                multiple databases in one database server. Each database
+                is referenced by its own unique name. This setting is
+                used for configuring the name of the database that Phorum
+                has to use.
+              </p><p>
+                If you have created the database using the example command
+                from above (<code class="literal">CREATE DATABASE phorum</code>),
+                then you can use the default value <code class="literal">phorum</code>.
+              </p></dd><dt><span class="term">user</span></dt><dd><p>
+                The username of the user which is used for accessing the
+                database server. The user must have full access rights to
+                the database, for creating and maintaining the needed
+                tables.
+              </p></dd><dt><span class="term">password</span></dt><dd><p>
+                The password for the database user.
+              </p></dd><dt><span class="term">table_prefix</span></dt><dd><p>
+                This table prefix will be prepended to all table names
+                that Phorum uses. If other applications are using the
+                same database or if you have multiple Phorum installations
+                that use the same database name, this prefix can be used to
+                prevent table name collisions. E.g. if you set the
+                prefix to <code class="literal">myprefix</code>, then the full name
+                of the users table will be <code class="literal">myprefix_users</code>.
+                For most installations, you can keep the default value
+                <code class="literal">phorum</code>.
+              </p><p>
+                </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+                  Never change the table prefix on a running system!
+                </div><p>
+              </p></dd><dt><span class="term">port</span></dt><dd><p>
+                This port is used to connect to the database server.
+                For most installations, you can keep the default value
+                <code class="literal">3306</code> which is the regular port for mysql.
+              </p></dd><dt><span class="term">socket</span></dt><dd><p>
+                The socket which is used by the database server to connect to.
+                Overrides the port if the hostname is localhost for mysql.
+              </p></dd><dt><span class="term">down_page, </span><span class="term">upgrade_page</span></dt><dd><p>
+                Phorum uses a built-in error message to inform visitors
+                when no database connection can be made. If you want to
+                provide a custom error message page for this, you can
+                set this setting to the URL of the page that you want
+                to display.
+              </p><p>
+                Phorum uses a simple built-in page to inform visitors and
+                the site admin that the database has to be upgraded.
+                If you want to provide a custom upgrade message page for
+                this, you can set this setting to the URL of the page that
+                you want to display.
+              </p></dd><dt><span class="term">upgrade_page</span></dt><dd><p>
+                An optional URL for redirecting the user when the database
+                has to be upgraded. If you want to use this field, remove
+                the "//" in front of it.
+              </p></dd></dl></div><p>
+          <span class="emphasis"><em>
+            The following options apply only to the mysql-layer:
+          </em></span>
+          </p><div class="variablelist"><dl><dt><span class="term">mysql_use_ft</span></dt><dd><p>
+                This setting determines whether Phorum will use MySQL's
+                full text algorithm for searching through postings.
+                If enabled, searching will be much faster.
+              </p><p>
+                To be able to use this feature, the MySQL server that
+                you are using must be version 4.0.18 or higher and the
+                database user must be allowed to create temporary tables.
+                If these requirements are not met, then you will have to
+                disable this setting by assigning the value
+                <code class="literal">0</code>.
+              </p></dd><dt><span class="term">mysql_php_extension</span></dt><dd><p>
+                This option defines which MySQL PHP extension should be used.
+                Either NULL, "mysql", "mysqli" or "mysqli_replication" for
+                master/slave setups. If NULL, Phorum will autodetect the
+                extension to use.
+              </p></dd><dt><span class="term">empty_search_table</span></dt><dd><p>
+                This option defines if Phorum should populate the search
+                table with data for mysql fulltext search (useful if you
+                use a alternate search backend which doesn't use the
+                search table): 0 will put the messages into the search table,
+                1 will keep it empty.
+              </p></dd><dt><span class="term">charset</span></dt><dd><p>
+              This option specifies the charset used for the create table
+              statements and the connection(s) later on.
+              </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
+                  Never change the charset on a running system!
+              </div><p>
+              </p></dd><dt><span class="term">slaves</span></dt><dd><p>
+                This array can hold a number of slave servers to use in
+                master/slave mode. All write queries will go to the default
+                server above, which is the master server in this setup and
+                read load will be split randomly over the slave servers
+                specified in this array. If you want your master server to
+                get read load as well you need to specify it here too.
+                Some read queries will go to the master server anyway in
+                case they are vulnerable to replication lag.
+                </p><div class="example"><a name="id2496182"></a><p class="title"><b>Example 1.1. Configuring slaves with the MySQL layer</b></p><div class="example-contents"><pre class="programlisting">
+&lt;?php
+    'slaves'=&gt;array(
+        array(    // Database connection 1.
+        'name'          =&gt;  'phorum5',
+        'server'        =&gt;  '192.168.1.5',
+        'user'          =&gt;  'phorum5',
+        'password'      =&gt;  'phorum5',
+        'port'          =&gt;  '3306',
+        'socket'        =&gt;  NULL),
+        array(    // Database connection 2.
+        'name'          =&gt;  'phorum5',
+        'server'        =&gt;  '192.168.1.6',
+        'user'          =&gt;  'phorum5',
+        'password'      =&gt;  'phorum5',
+        'port'          =&gt;  '3306',
+        'socket'        =&gt;  NULL),
+        array(    // Database connection 3.
+        'name'          =&gt;  'phorum5',
+        'server'        =&gt;  '192.168.1.7',
+        'user'          =&gt;  'phorum5',
+        'password'      =&gt;  'phorum5',
+        'port'          =&gt;  '3306',
+        'socket'        =&gt;  NULL)
+    )
+?&gt; 
+                  </pre></div></div><p><br class="example-break">
+              </p></dd></dl></div><p>
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s03s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s03s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

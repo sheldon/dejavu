@@ -1,0 +1,109 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.2. Template structure</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch01.html" title="Chapter 1. Templates"><link rel="prev" href="ch01.html" title="Chapter 1. Templates"><link rel="next" href="ch01s03.html" title="1.3. How to start your own template"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2494438"></a>1.2. Template structure</h2></div></div></div><p>
+      A template set is a collection of files that together form a
+      single template. All template sets are stored in their own
+      subdirectory under the directory
+      <code class="filename">{phorum dir}/templates</code>. If we asume
+      that we have three templates <code class="literal">default</code>,
+      <code class="literal">template1</code> and <code class="literal">template2</code>,
+      then the directory structure for storing these templates
+      would look like this:
+      </p><div class="literallayout"><p><code class="literal"><br>
+{phorum dir}<br>
+ |<br>
+ +-- templates<br>
+    |<br>
+    +-- default<br>
+    |<br>
+    +-- template1<br>
+    |<br>
+    +-- template2 </code></p></div><p>
+    </p><p>
+      Inside these template subdirectories, the files for the templates
+      are stored. There, the the following files can be found:
+      </p><div class="variablelist"><dl><dt><span class="term">info.php</span></dt><dd><p>
+            This is a PHP file that is used for describing some
+            properties of the template. This file can define the
+            following variables:
+            </p><div class="itemizedlist"><ul type="disc"><li><code class="literal">$name</code><br>
+                Mandatory variable. This variable hold the name that
+                you want to give to the template. This is the name
+                that will be displayed in template selection boxes.
+                The name of the directory for the template will only
+                be used by Phorum internally.
+              </li><li><code class="literal">$version</code><br>
+                Mandatory variable. This variable holds the version number
+                for your template. It's used so you can track what version
+                of the template is installed for Phorum. You can use any
+                type of version numbering you like. If you do not know
+                what to use, then simply give your first version of the
+                template version 1, the second number 2, and so on.
+              </li><li><code class="literal">$template_hide</code><br>
+                Optional variable. If set to a true value, the template
+                will be hidden from user select boxes where the end user
+                can choose the template that he wants to use.
+              </li></ul></div><p>
+            </p><div class="example"><a name="id2494837"></a><p class="title"><b>Example 1.1. Template information file: $info.php</b></p><div class="example-contents"><pre class="programlisting">
+&lt;?php
+// Prevent loading from outside the Phorum application.
+if (!defined("PHORUM")) return;
+
+// Template information.
+$name = "A brilliant template";
+$version = "1.2-beta";
+$template_hide = 1;
+?&gt; </pre></div></div><p><br class="example-break">
+          </p></dd><dt><span class="term">.tpl and .php files</span></dt><dd><p>
+              These are the files that hold the actual template code.
+              When the Phorum application wants to display a template,
+              it is always referenced by its basename (i.e. without any
+              file extension like <code class="filename">.php</code> or
+              <code class="filename">.tpl</code> after it). If the file
+              <code class="filename">&lt;template basename&gt;.php</code> exists
+              in the template directory, then Phorum will use that file
+              as the template input.
+              Else, <code class="filename">&lt;template basename&gt;.tpl</code> will
+              be used.
+            </p><p>
+              An example: if Phorum wants to display the "header" template,
+              it will first search for <code class="filename">header.php</code> in
+              the template directory. If that file does not exist, it will
+              use <code class="filename">header.tpl</code> instead.
+            </p><p>
+              PHP files (<code class="filename">*.php</code>) contain pure
+              PHP/HTML code. In Phorum template files
+              (<code class="filename">.tpl</code>) you can additionally
+              make use of the <a class="xref" href="ch01s04.html" title="1.4. The Phorum template language">Section 1.4, &#8220;The Phorum template language&#8221;</a>.
+            </p><p>
+              Using this system, template authors can completely
+              revert to using pure PHP-code for templates, without using
+              the template language at all. The Phorum development team
+              does not recommend doing this. To keep templates simple,
+              always try to stick to the combination of HTML code and the
+              template language.
+            </p></dd><dt><span class="term">Other files and subdirectories</span></dt><dd><p>
+              In most cases these will be image files which are stored
+              in a subdirectory <code class="filename">images</code> of the
+              template. But template authors are free to add
+              whatever subdirectories and files they like to the
+              template directory (e.g. Flash based page components,
+              CSS stylesheets, audio files, JavaScript libraries, etc.).
+            </p></dd></dl></div><p>
+    </p><p>
+      Combining all this, the full tree for a typical template would
+      look like this:
+      </p><div class="literallayout"><p><code class="literal"><br>
+{phorum dir}<br>
+ |<br>
+ +-- templates<br>
+    |<br>
+    +-- templatename<br>
+         |<br>
+         +-- info.php<br>
+         |<br>
+         +-- *.tpl<br>
+         |<br>
+         +-- images<br>
+              |<br>
+              +-- *.gif, *.jpg, *.png<br>
+      </code></p></div><p>
+    </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

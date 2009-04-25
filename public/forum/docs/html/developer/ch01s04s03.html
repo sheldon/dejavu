@@ -1,0 +1,18 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>1.4.3. Data types</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch01s04.html" title="1.4. The Phorum template language"><link rel="prev" href="ch01s04s02.html" title="1.4.2. General syntax"><link rel="next" href="ch01s04s03s02.html" title="1.4.3.2. Strings"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch01s04s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch01s04s03s02.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="templates.datatypes"></a>1.4.3. Data types</h3></div></div></div><p>
+        The template language supports four data types to use in statements:
+        </p><div class="itemizedlist"><ul type="disc"><li><a class="xref" href="ch01s04s03.html#templates.integers" title="1.4.3.1. Integers">Integers</a></li><li><a class="xref" href="ch01s04s03s02.html" title="1.4.3.2. Strings">Strings</a></li><li><a class="xref" href="ch01s04s03s03.html" title="1.4.3.3. PHP constants">PHP Constants</a></li><li><a class="xref" href="ch01s04s03s04.html" title="1.4.3.4. Template variables">Template variables</a></li></ul></div><p>
+      </p><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="templates.integers"></a>1.4.3.1. Integers</h4></div></div></div><p>
+          Integers are formatted as a sequence of numbers.
+          </p><div class="example"><a name="id2495120"></a><p class="title"><b>Example 1.3. Integer values</b></p><div class="example-contents"><pre class="programlisting">
+403
+90
+4231 </pre></div></div><p><br class="example-break">
+          Here is an example of template code in which integers are used:
+          </p><div class="example"><a name="id2495128"></a><p class="title"><b>Example 1.4. Code using integer values</b></p><div class="example-contents"><pre class="programlisting">
+{VAR INTEGERVAR 1000}
+The variable INTEGERVAR is {INTEGERVAR}.
+
+{IF INTEGERVAR 333}
+  The INTEGERVAR has the value 333.
+{/IF} </pre></div></div><p><br class="example-break">
+        </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s04s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01s04.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s04s03s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

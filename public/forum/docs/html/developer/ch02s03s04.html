@@ -1,0 +1,84 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.4. Supporting multiple languages</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s03.html" title="2.3. Writing your own modules"><link rel="prev" href="ch02s03s03s03.html" title="2.3.3.3. Multiple file modules"><link rel="next" href="ch02s03s05.html" title="2.3.5. Module data storage"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03s03s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03s05.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="modules.languages"></a>2.3.4. Supporting multiple languages</h3></div></div></div><p>
+        This feature is supported by the <a class="xref" href="ch02s03s03s03.html" title="2.3.3.3. Multiple file modules">multiple file structure</a>.
+      </p><p>
+        If your module includes text that will be displayed to end users,
+        you should strongly consider making it support multiple languages.
+        This will allow Phorum installations that use a different language(s)
+        to display output of your module in the same language(s),
+        instead of the language you have written the module in.
+      </p><p>
+        For supporting multiple languages, the first thing to do is add the
+        following line to your module information file
+        <code class="filename">info.txt</code>:
+
+        </p><pre class="programlisting">hook: lang|</pre><p>
+
+        There is no actual hook function configured here, because the
+        "lang" hook is only used as a marker for Phorum. It tells Phorum
+        that your module supports multiple languages.
+      </p><p>
+        Next, you must provide at least one language file with your module.
+        Language files are stored in a subdirectory name "lang" inside your
+        module directory. In our sample module, the full directory would be
+        <code class="filename">{phorum dir}/mods/foo/lang/</code>. The language files
+        must be named identical to the main language files that Phorum uses.
+        To include both English and French, your module would require the
+        following file structure:
+        </p><div class="example"><a name="id2499972"></a><p class="title"><b>Example 2.4. Tree structure for a module that supports languages</b></p><div class="example-contents"><pre class="programlisting">
+{phorum dir}/
+     |
+     +-- mods/
+          |
+          +-- foo/
+               |
+               +-- info.txt
+               |
+               +-- foo.php
+               |
+               +-- lang/
+                    |
+                    +-- english.php
+                    |
+                    +-- french.php </pre></div></div><p><br class="example-break">
+
+        The structure of your language files will be almost identical to
+        that of the main Phorum language files. However, for your own
+        language files it is advisable to add an extra level in the
+        language variables, to avoid conflicts with language string from
+        other modules or Phorum itself. Here is an example of how you
+        could do that:
+
+        </p><div class="example"><a name="id2499995"></a><p class="title"><b>Example 2.5. Custom language file for a module</b></p><div class="example-contents"><pre class="programlisting">
+&lt;?php
+$PHORUM["DATA"]["LANG"]["mod_foo"] = array(
+    "Hello"   =&gt; "Hello!",
+    "Bye"     =&gt; "Good bye!"
+);
+?&gt; </pre></div></div><p><br class="example-break">
+
+        Here, the extra inserted level is <code class="literal">["mod_foo"]</code>.
+        To access the "Hello" string from your module code you would
+        use the PHP variable:
+        </p><pre class="programlisting">
+$PHORUM["DATA"]["LANG"]["mod_foo"]["Hello"]</pre><p>
+
+        When you want to use the language string from a template file,
+        the you would use the following <a class="xref" href="ch01s04s03s04.html" title="1.4.3.4. Template variables">template variable</a>:
+        </p><pre class="programlisting">
+{LANG-&gt;mod_foo-&gt;Hello}</pre><p>
+
+      </p><p>
+        In case a Phorum installation is using a language that your module
+        does not support, Phorum will automatically attempt to fallback to
+        English. So it is highly recommend that you include an
+        <code class="filename">english.php</code> language file in all your modules.
+        If both the current language and English are not found, Phorum will
+        be unable to load a language for your module and will display empty
+        space instead of your language strings.
+      </p><p>
+        Always try to reuse strings that are already in the main Phorum
+        language files itself. Only create custom strings when there is
+        no alternative available. Having more text to translate is more
+        work for translators and using core language strings helps in
+        keeping the used terminology consistent.
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03s03s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>

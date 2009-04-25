@@ -1,0 +1,68 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.3.3.2. Single file modules</title><link rel="stylesheet" href="../phorum_docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="Phorum Developer Reference Manual"><link rel="up" href="ch02s03s03.html" title="2.3.3. Module file structure"><link rel="prev" href="ch02s03s03.html" title="2.3.3. Module file structure"><link rel="next" href="ch02s03s03s03.html" title="2.3.3.3. Multiple file modules"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s03s03s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="modules.singlefile"></a>2.3.3.2. Single file modules</h4></div></div></div><p>
+            Single file modules are useful in case case no additional files
+            have to be distributed with your module. Because the module
+            consists of only one single file, it is very easy to distribute.
+            Beware though that the moment that you want to support for
+            example a settings screen, multiple languages or custom images,
+            you will have to switch to the multiple file module structure.
+            Switching does mean some extra work for your users. So only use
+            this format for modules for which you are sure that you do not
+            need additional files in the future.
+          </p><p>
+            Single file modules consist of one single PHP file. The name
+            of this file is not restricted. We advice you to use
+            <code class="filename">mod_&lt;module name&gt;.php</code> though
+            for clarity and consitency with other module
+            (e.g. <code class="filename">mod_foo.php</code>).
+            This file contains both the module information and the hook
+            function definitions. For storing the module informaton, a
+            special PHP comment is used. This comment must look like the
+            following:
+            </p><pre class="programlisting">
+/* phorum module info
+&lt;module information lines go here&gt;
+*/</pre><p>
+            Using the example module info from
+            <a class="xref" href="ch02s03s02.html#example.moduleinfo" title="Example 2.1. Module information">Example 2.1, &#8220;Module information&#8221;</a>, the complete single
+            file module would look like this (see XXX why we use the
+            check on PHORUM at the start of this file):
+            </p><div class="example"><a name="example.singlefilemodule"></a><p class="title"><b>Example 2.2. Single file module</b></p><div class="example-contents"><pre class="programlisting">
+<code class="filename">{phorum dir}/mods/mod_foo.php</code>
+&lt;?php
+
+if(!defined("PHORUM")) return;
+
+/* phorum module info
+title: Foo
+desc: This is the Foo module for Phorum. Nothing exciting...
+version: 1.0.2
+release_date: Jan 1st, 2008
+url: http://www.phorum.org
+author: John Doe &lt;johndoe@example.com&gt;
+require_version: 5.2.2
+category: user_features
+
+hook: some_hook|phorum_mod_foo_some_hook
+hook: some_other_hook|phorum_mod_foo_some_other_hook
+hook: yet_another_hook|phorum_mod_foo_some_other_hook
+
+priority: run some_hook before some_other_module
+*/
+
+function phorum_mod_foo_some_hook ($data) {
+    // Do stuff for "some_hook".
+    return $data;
+}
+
+function phorum_mod_foo_some_other_hook ($data) {
+    // Do stuff for "some_other_hook" and "yet_another_hook".
+    return $data;
+}
+
+?&gt;</pre></div></div><p><br class="example-break">
+
+            Installation of a single file module is done by putting the PHP
+            file (e.g. <code class="filename">mod_foo.php</code>) directly in the
+            directory <code class="filename">{phorum dir}/mods/</code> and activating
+            the module from the "Modules" screen in your admin interface.
+          </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02s03s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s03s03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></body></html>
