@@ -96,7 +96,8 @@ class PageController extends ApplicationController {
     $allowed_item_slots = array(0,2,4,5,6,7,8,9,14,15,16,17);
     
     $character_data_url = "http://eu.wowarmory.com/character-sheet.xml?r=".urlencode($this->server_name)."&n=".urlencode($character_name);
-		$character_xml = $this->cached_feed($character_data_url);
+		//$character_xml = $this->cached_feed($character_data_url);
+		$character_xml = "";
 		$member = $this->parse_xml($character_xml, "//character");
 		$member = $member[0];
 		$member["items"] = $this->parse_xml($character_xml, "//item");
