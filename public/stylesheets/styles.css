@@ -5,8 +5,11 @@ body {
   background: url(/images/bg3.jpg) 50% 0 #fdfff4 repeat-x;
 }
 a{
-  color: #fff;
+  color: #F9ECBF;
   text-decoration: none;
+}
+a:hover{
+  color: #f7a850;
 }
 #ev_bg {
   background: url(/images/ev_bg.gif) repeat-y;
