@@ -413,7 +413,7 @@ img {
     border: 1px solid {border_color};
     border-top: 0;
     background-image: url('/images/burlap_foreground.jpg');
-    background-repeat: repeat-x;
+    background-repeat: repeat;
     background-color: {message_background_color};
     overflow: hidden; /* makes the div extend around floated elements */
 }
