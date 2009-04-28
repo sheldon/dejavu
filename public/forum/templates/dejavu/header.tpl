@@ -46,7 +46,7 @@ if ($PHORUM['DATA']['CHARSET']) {
   google.setOnLoadCallback(function() {
     $(document).ready(function(){
       if($("body").height() < $(window).height()){
-        $("body").css("padding-bottom",$(window).height() - $("body").height());
+        $("#ev_bg").css("padding-bottom",$(window).height() - $("body").height());
       }
     });
   });
