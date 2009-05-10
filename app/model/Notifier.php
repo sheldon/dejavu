@@ -6,6 +6,10 @@ class Notifier extends WXEmail{
   public function recruitment($post_data){
     $this->subject = "Deja Vu Application";
     $this->add_to_address("sheldon.els@gmail.com", "Sheldon");
+    $this->add_to_address("cirithgumis@googlemail.com", "Kasia");
+    $this->add_to_address("marko.kommer@mail.ee", "Marko");
+    $this->add_to_address("bartlomiej.michna@gmail.com", "Bartek");
+    $this->add_to_address("arir47@gmail.com", "Ari");
     $this->post_data = $post_data;
   }
 }
