@@ -3,9 +3,9 @@
   <h1><?=$content->title?></h1>
   <div class="post_body">
     <?=$content->content?>
-    <?if(count($content->images)):?>
-    <p><a href="<?=$content->images[0]->url?>"><img src="<?=$content->images[0]->permalink(703)?>" /></a></p>
-    <?endif?>
+    <?foreach($content->images as $image):?>
+    <p><a href="<?=$image->url?>"><img src="<?=$image->permalink(703)?>" /></a></p>
+    <?endforeach?>
   </div>
   <div class="postedby">Posted by: <?=$content->author->username?></div><div class="timestamp"><?=$content->published?></div>
 </div>
