@@ -29,7 +29,7 @@ set :deploy_to,   "."
 
 set :cms_repository,  "git://github.com/phpwax/wildfire.git"
 set :cms_deploy_to,   "./plugins/cms"
-set :cms_branch,      "master"
+set :cms_branch,      "v2"
 
 set :wax_folder,      "./wax"
 set :wax_repository,  "git://github.com/phpwax/phpwax.git"
