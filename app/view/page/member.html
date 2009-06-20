@@ -2,6 +2,7 @@
   <h1><?=$member['name']?> - <?=$member['race']?> <?=$member['class']?></h1>
   <div class="post_body clearfix">
     <?=partial("_member", $this)?>
+    <p class="center">Average Gear Level: <?=$member['avg_ilevel']?></h2>
     <p class="center"><a href="http://be.imba.hu/?zone=EU&amp;realm=Azuremyst&amp;character=<?=urlencode($member['name'])?>">Check Gear on be.imba</a></p>
   </div>
 </div>

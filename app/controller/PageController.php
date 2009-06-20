@@ -16,6 +16,8 @@ class PageController extends ApplicationController {
   public $cache_time = 3600; //default cache time of 1 hour
   public $guild_name = "Deja Vu";
   public $server_name = "Azuremyst";
+  public $display_item_slots = array(0,2,4,5,6,7,8,9,14,15,16,17);
+  public $counted_item_slots = array(0,1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17);
   
   public function controller_global(){
     $this->cms();
@@ -67,6 +69,12 @@ class PageController extends ApplicationController {
     $this->member = $this->fetch_member_data(WaxUrl::get("id"));
     $this->model_viewer_width = 703;
     $this->model_viewer_height = 500;
+    foreach($this->member['items'] as $item) if(in_array($item['slot'],$this->counted_item_slots) && $item['ilevel']){
+      $total_ilevel += $item['ilevel'];
+      $total_counted_items += 1;
+    }
+    if($total_counted_items > 0) $this->member['avg_ilevel'] = $total_ilevel / $total_counted_items;
+    //print_r($this->member); exit;
   }
   
   static function sort_members_custom_cmp($a, $b)
@@ -91,27 +99,26 @@ class PageController extends ApplicationController {
 		//print_r($this->members); exit;
   }
   
-  protected function fetch_member_data($character_name){
-    $allowed_item_slots = array(0,2,4,5,6,7,8,9,14,15,16,17);
-    
+  protected function fetch_member_data($character_name){    
     $character_data_url = "http://eu.wowarmory.com/character-sheet.xml?r=".urlencode($this->server_name)."&n=".urlencode($character_name);
 		$character_xml = $this->cached_feed($character_data_url);
 		$member = $this->parse_xml($character_xml, "//character");
 		$member = $member[0];
 		$member["items"] = $this->parse_xml($character_xml, "//item");
 		foreach($member["items"] as $item_id => $item){
-  		if(in_array($item['slot'], $allowed_item_slots)){
-		    $item_reference = &$member["items"][$item_id];
-        $wowhead_item_data = "http://www.wowhead.com/?item=".$item['id']."&xml";
-    		$item_xml = $this->cached_feed($wowhead_item_data, 2592000); //cache wowhead item data for 30 days
-    		$display_id = $this->parse_xml($item_xml, "//icon");
-    		$display_id = $display_id[0]['displayId'];
-    		$item_reference["wowhead_display_id"] = $display_id;
-    		$slot_id = $this->parse_xml($item_xml, "//inventorySlot");
-    		$slot_id = $slot_id[0]['id'];
-    		$item_reference["wowhead_slot_id"] = $slot_id;
-    		//print_r($item_reference); exit;
-		  }
+	    $item_reference = &$member["items"][$item_id];
+      $wowhead_item_data = "http://www.wowhead.com/?item=".$item['id']."&xml";
+  		$item_xml = $this->cached_feed($wowhead_item_data, 2592000); //cache wowhead item data for 30 days
+  		$xml = @simplexml_load_string($item_xml, "SimpleXMLElement", LIBXML_NOERROR);
+  		$ilevel = (integer) $xml->item->level;
+  		$item_reference["ilevel"] = $ilevel;
+  		$display_id = $this->parse_xml($item_xml, "//icon");
+  		$display_id = $display_id[0]['displayId'];
+  		$item_reference["wowhead_display_id"] = $display_id;
+  		$slot_id = $this->parse_xml($item_xml, "//inventorySlot");
+  		$slot_id = $slot_id[0]['id'];
+  		$item_reference["wowhead_slot_id"] = $slot_id;
+  		//print_r($item_reference); exit;
 		}
 		//print_r($member); exit;
 		return $member;

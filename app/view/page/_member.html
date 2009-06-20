@@ -1,4 +1,4 @@
-<?foreach($member['items'] as $item) if($item['wowhead_slot_id']) $item_string .= $item['wowhead_slot_id'].",".$item['wowhead_display_id'].","; $item_string = substr($item_string, 0, -1);?>
+<?foreach($member['items'] as $item) if($item['wowhead_slot_id'] && in_array($item['slot'],$display_item_slots)) $item_string .= $item['wowhead_slot_id'].",".$item['wowhead_display_id'].","; $item_string = substr($item_string, 0, -1);?>
 <object
   classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
   width="<?=$model_viewer_width?>"
