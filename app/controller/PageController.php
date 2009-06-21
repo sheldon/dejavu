@@ -20,6 +20,7 @@ class PageController extends ApplicationController {
   public $display_ranks = array(1,3,4,5,6,7,8);
   public $display_item_slots = array(0,2,4,5,6,7,8,9,14,15,16,17);
   public $counted_item_slots = array(0,1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17);
+  public $this_page = false;
   
   public function controller_global(){
     $this->cms();
@@ -29,7 +30,7 @@ class PageController extends ApplicationController {
     $this->cms_section = new CmsSection();
     $this->cms_section = $this->cms_section->filter(array("title" => "News"))->first();
     $this->cms_content = new CmsContent("published");
-    $this->cms_content = $this->cms_content->filter(array("cms_section_id" => $this->cms_section->id))->limit(3)->all();
+    $this->cms_content = $this->cms_content->filter(array("cms_section_id" => $this->cms_section->id))->limit(2)->all();
   }
   
   public function login(){
