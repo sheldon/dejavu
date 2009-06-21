@@ -121,8 +121,9 @@ Some Icons courtesy of:
           	<a href="/">News</a>
           	<a href="/forum/index.php">Forums</a>
           	<a href="/members">Members</a>
+          	<a href="/ranks">Ranks</a>
           	<a href="/raid-rules">Raid Rules</a>
-          	<a href="/dkp">Looting Rules</a>
+          	<a href="/dkp">DKP</a>
           	<a href="/addons">Addons</a>
           	<a href="/boss-guides">Boss Guides</a>
           </div>
