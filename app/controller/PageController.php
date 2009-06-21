@@ -21,13 +21,6 @@ class PageController extends ApplicationController {
   
   public function controller_global(){
     $this->cms();
-    if($this->action != "member"){
-      $this->members();
-      $chosen_one = $this->members[array_rand($this->members)]['name'];
-      $this->member = $this->fetch_member_data($chosen_one);
-      $this->model_viewer_width = 175;
-      $this->model_viewer_height = 400;
-    }
   }
   
   public function index(){
