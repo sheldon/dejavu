@@ -84,7 +84,7 @@ class PageController extends ApplicationController {
 
   static function remove_alts($a)
   {
-    return (($a["rank"] != 7));
+    return (!in_array($a["rank"],array(2,7)));
   }
 
   public function members(){
