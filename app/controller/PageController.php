@@ -16,6 +16,8 @@ class PageController extends ApplicationController {
   public $cache_time = 3600; //default cache time of 1 hour
   public $guild_name = "Deja Vu";
   public $server_name = "Azuremyst";
+  public $guild_ranks = array("Guild Master","Officer","Officer Alt","Raider","Member","Trial","Initiate","Alt");
+  public $display_ranks = array(1,3,4,5,6,7,8);
   public $display_item_slots = array(0,2,4,5,6,7,8,9,14,15,16,17);
   public $counted_item_slots = array(0,1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17);
   
@@ -75,21 +77,20 @@ class PageController extends ApplicationController {
     return strcmp($a["name"], $b["name"]);
   }
 
-  static function remove_alts($a)
-  {
-    return (!in_array($a["rank"],array(2,7)));
-  }
-
   public function members(){
     $guild_list_url = "http://eu.wowarmory.com/guild-info.xml?r=".urlencode($this->server_name)."&n=".urlencode($this->guild_name)."&p=1";
 		$xml = $this->cached_feed($guild_list_url);
-		$this->members = $this->parse_xml($xml, "//character");
+		$unsorted_members = $this->parse_xml($xml, "//character");
     //sort members by name
-    usort($this->members, array("PageController", "sort_members_custom_cmp"));
-    //remove alts from the member list
-    $this->members = array_filter($this->members, array("PageController", "remove_alts"));
-    
-		//print_r($this->members); exit;
+    usort($unsorted_members, array("PageController", "sort_members_custom_cmp"));
+    //sort members by rank
+    foreach($this->guild_ranks as $rank_id => $rank_name) $this->members[$rank_id] = array();
+    foreach($unsorted_members as $id => $member){
+			$item = &$unsorted_members[$id];
+			if($item['rank'] === "0") $item['rank'] = "1";
+			if($item['rank'] === "2") $item['rank'] = "7";
+			$this->members[$item['rank']][] = &$item;
+    }
   }
   
   protected function fetch_member_data($character_name){    

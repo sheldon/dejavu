@@ -1,7 +1,9 @@
 <div class="post">
-  <h1>Members</h1>
+  <?foreach($display_ranks as $rank_id):?>
+  <?if($members[$rank_id]):?>
+  <h1><?=$guild_ranks[$rank_id]?></h1>
   <div class="post_body clearfix">
-    <?foreach($members as $member):?>
+    <?foreach($members[$rank_id] as $member):?>
       <div class="member center">
         <p>
           <a href="/member/<?=$member['name']?>"><?=$member['name']?></a>
@@ -10,4 +12,6 @@
       </div>
     <?endforeach?>
   </div>
+  <?endif?>
+  <?endforeach?>
 </div>
