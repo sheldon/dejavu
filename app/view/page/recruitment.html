@@ -1,8 +1,11 @@
 <div class="post recruitment">
   <h1>Recruitment</h1>
   <div class="post_body clearfix">
-  <p>If you're interested in joining us please fill in your details below. One of us will get back to you in game within a few days. Please read through our <a href="/raid-rules">raid rules</a> first to see if we're the kind of guild you'd like to be a part of.</p>
-  <?if($recruitment_message):?><blockquote><?=$recruitment_message?></blockquote><?endif?>
-  <?=$rec_form->render()?>
+  <?if($recruitment_message):?>
+    <blockquote><?=$recruitment_message?></blockquote>
+  <?else:?>
+    <p>If you're interested in joining us please fill in your details below. One of us will get back to you in game within a few days. Please read through our <a href="/raid-rules">raid rules</a> first to see if we're the kind of guild you'd like to be a part of.</p>
+    <?=$rec_form->render()?>
+  <?endif?>
   </div>
 </div>

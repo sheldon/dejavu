@@ -44,20 +44,42 @@ class PageController extends ApplicationController {
   
   public function recruitment(){
     $this->rec_form = new WaxForm();
-    $this->rec_form->add_element("Character Name", "TextInput", array("id"=>"name"));
-    $this->rec_form->add_element("Class", "TextInput");
-    $this->rec_form->add_element("Level", "TextInput");
-    $this->rec_form->add_element("Talent Spec", "TextInput", array("id"=>"talent"));
     $this->rec_form->add_element("Age", "TextInput");
-    $this->rec_form->add_element("Gear level (heroic/naxx10/etc.)", "TextInput", array("id"=>"gear"));
-    $this->rec_form->add_element("Can you attend 2 of our weekly planned raids", "CheckboxInput", array("id"=>"attend"));
-    $this->rec_form->add_element("Reason for leaving your previous guild", "TextareaInput", array("id"=>"reason_for_leaving"));
-    $this->rec_form->add_element("About yourself", "TextareaInput", array("id"=>"about_yourself"));
+    $this->rec_form->add_element("english_level", "TextInput", array('label'=>'How well do you speak english'));
+    $this->rec_form->add_element("name", "TextInput", array("label"=>"Character Name"));
+    $this->rec_form->add_element("class", "TextInput", array('label'=>"Character Class"));
+    $this->rec_form->add_element("level", "TextInput", array('label'=>"Character Level"));
+    $this->rec_form->add_element("gear", "TextInput", array("label"=>"Average gear level (heroic/naxx10/25/uld10/25)"));
+    $this->rec_form->add_element("attendance", "TextInput", array("label"=>"Can you attend 2 of our weekly planned raids every week"));
+    $this->rec_form->add_element("talents", "TextareaInput", array("label"=>"Your chosen raid talents and why you chose them"));
+    $this->rec_form->add_element("previous_guild", "TextareaInput", array("label"=>"Reason for leaving your previous guild"));
+    $this->rec_form->add_element("raid_experience", "TextareaInput", array("label"=>"Previous raiding experience (which classes have you played in raids, and to what level of raid)"));
+    $this->rec_form->add_element("computer_internet", "TextareaInput", array("label"=>"What kind of computer do you have, and what kind of internet. (Please mention anything about regular lags here)"));
+    $this->rec_form->add_element("about", "TextareaInput", array("label"=>"About Yourself"));
     $this->rec_form->submit_text = "Apply to Guild";
     if($this->rec_form->save()){
       $notifier = new Notifier();
       $notifier->send_recruitment($this->rec_form->post_data);
-      $this->recruitment_message = "Thanks for your application, we'll get back to your shortly.";
+      
+      $forum_data_row = array(
+        "user_id"=>"1",
+        "status"=>"0",
+        "forum_id"=>"7",
+        "thread"=>"0",
+        "parent_id"=>"0",
+        "thread_count"=>"0",
+        "subject"=>"Application from ".$this->rec_form->post_data['name'],
+        "body"=>"",
+      );
+      
+      foreach(array_diff_key($this->rec_form->post_data,array("submit"=>"")) as $name => $value) $forum_data_row['body'] .= $name . " : " . $value . "\n";
+      
+      $forum_model = new WaxModel;
+      $forum_model->table = "phorum_messages";
+      $forum_model->row = $forum_data_row;
+      $forum_model->save();
+
+      $this->recruitment_message = "Thanks for your application, we'll get back to your shortly. Please check our recruitment forum for an assessment from our members.";
     }
   }
   

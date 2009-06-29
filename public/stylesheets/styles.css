@@ -144,7 +144,11 @@ p{margin: 10px 0;}
 div.recruitment form label, div.recruitment form input.submit_field{
   float: left;
   clear: left;
-  margin: 5px 0 5px 185px;
+  margin: 5px 15px 5px 0;
+  text-align: right;
+}
+div.recruitment form label{
+  width: 350px;
 }
 div.recruitment form input, div.recruitment form textarea{
   float: left;
@@ -156,7 +160,8 @@ div.recruitment form input.text_field, div.recruitment form textarea {
   width: 200px;
 }
 div.recruitment form input.submit_field{
-  margin-left: 305px;
+  float: right;
+  margin-right: 132px;
 }
 #footer {
   clear: both;
