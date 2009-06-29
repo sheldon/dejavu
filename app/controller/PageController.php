@@ -68,6 +68,9 @@ class PageController extends ApplicationController {
         "thread"=>"0",
         "parent_id"=>"0",
         "thread_count"=>"0",
+        "author"=>"Paracetamol",
+        "ip"=>"127.0.0.1",
+        "status"=>"2",
         "subject"=>"Application from ".$this->rec_form->post_data['name'],
         "body"=>"",
       );
