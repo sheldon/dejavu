@@ -71,6 +71,7 @@ class PageController extends ApplicationController {
         "author"=>"Paracetamol",
         "ip"=>"127.0.0.1",
         "status"=>"2",
+        "modifystamp"=>time(),
         "subject"=>"Application from ".$this->rec_form->post_data['name'],
         "body"=>"",
       );
