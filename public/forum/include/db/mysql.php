@@ -542,7 +542,6 @@ function phorum_db_get_thread_list($page, $include_bodies=FALSE)
                                sort > 1
                         ORDER  BY $sortfield DESC
                         LIMIT  $start, $limit";
-                print_r($sql); exit;
                 break;
 
             // Reply messages.
