@@ -76,7 +76,7 @@ class PageController extends ApplicationController {
         "body"=>"",
       );
       
-      foreach(array_diff_key($this->rec_form->post_data,array("submit"=>"")) as $name => $value) $forum_data_row['body'] .= $name . " : " . $value . "\n";
+      foreach(array_diff_key($this->rec_form->post_data,array("submit"=>"")) as $name => $value) $forum_data_row['body'] .= $this->rec_form->elements[$name]->label . " :\n\n" . $value . "\n\n";
       
       $forum_model = new WaxModel;
       $forum_model->table = "phorum_messages";
@@ -86,7 +86,7 @@ class PageController extends ApplicationController {
       $forum_model->thread = $forum_model->message_id;
       $forum_model->save();
 
-      $this->recruitment_message = "Thanks for your application, we'll get back to your shortly. Please check our recruitment forum for an assessment from our members.";
+      $this->recruitment_message = 'Thanks for your application, we\'ll get back to your shortly. Please check our <a href="/forum/list.php?7">recruitment forum</a> for an assessment from our members.';
     }
   }
   
