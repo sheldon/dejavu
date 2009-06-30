@@ -76,7 +76,7 @@ class PageController extends ApplicationController {
         "body"=>"",
       );
       
-      foreach(array_diff_key($this->rec_form->post_data,array("submit"=>"")) as $name => $value) $forum_data_row['body'] .= $this->rec_form->elements[$name]->label . " :\n\n" . $value . "\n\n";
+      foreach(array_diff_key($this->rec_form->post_data,array("submit"=>"")) as $name => $value) $forum_data_row['body'] .= "[b][size=large]" . $this->rec_form->elements[$name]->label . " :[/size][/b]\n" . $value . "\n\n";
       
       $forum_model = new WaxModel;
       $forum_model->table = "phorum_messages";
