@@ -117,7 +117,7 @@ Some Icons courtesy of:
       <div id="middle">
         <div id="left_column">
           <div id="navigation">
-          	<a href="/recruitment">Join the Guild</a>
+          	<a href="/recruitment">Recruitment Application</a>
           	<a href="/news">News</a>
           	<a href="/forum/index.php">Forums</a>
           	<a href="/members">Members</a>
