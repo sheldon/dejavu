@@ -82,6 +82,8 @@ class PageController extends ApplicationController {
       $forum_model->table = "phorum_messages";
       $forum_model->row = $forum_data_row;
       $forum_model->save();
+      $forum_model->thread = $forum_model->message_id;
+      $forum_model->save();
 
       $this->recruitment_message = "Thanks for your application, we'll get back to your shortly. Please check our recruitment forum for an assessment from our members.";
     }
