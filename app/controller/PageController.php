@@ -81,6 +81,7 @@ class PageController extends ApplicationController {
       $forum_model = new WaxModel;
       $forum_model->table = "phorum_messages";
       $forum_model->row = $forum_data_row;
+      $forum_model->primary_key = "message_id";
       $forum_model->save();
       $forum_model->thread = $forum_model->message_id;
       $forum_model->save();
