@@ -61,7 +61,7 @@ class PageController extends ApplicationController {
     if($this->rec_form->save()){
       $notifier = new Notifier();
       $notifier->send_recruitment($this->rec_form);
-      
+            
       $forum_data_row = array(
         "user_id"=>"1",
         "status"=>"0",
@@ -73,7 +73,7 @@ class PageController extends ApplicationController {
         "ip"=>"127.0.0.1",
         "status"=>"2",
         "modifystamp"=>time(),
-        "subject"=>"Application from ".$this->rec_form->post_data['name'],
+        "subject"=>"Application from ".$this->rec_form->handler->elements['name']->value,
         "body"=>"",
       );
       
