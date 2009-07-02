@@ -1,6 +1,6 @@
 Recruitment Application:
 
 <?foreach($post_data as $post_field => $post_var):?>
-<?=$post_field?> : <?=$post_var?>
+<?=$post_var->label?> : <?=$post_var->value?>
 
 <?endforeach?>

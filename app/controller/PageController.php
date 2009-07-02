@@ -60,7 +60,7 @@ class PageController extends ApplicationController {
     $this->rec_form->submit_text = "Apply to Guild";
     if($this->rec_form->save()){
       $notifier = new Notifier();
-      $notifier->send_recruitment($this->rec_form->post_data);
+      $notifier->send_recruitment($this->rec_form);
       
       $forum_data_row = array(
         "user_id"=>"1",
