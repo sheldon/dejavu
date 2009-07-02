@@ -33,7 +33,7 @@ set :cms_branch,      "v2"
 
 set :wax_folder,      "./wax"
 set :wax_repository,  "git://github.com/phpwax/phpwax.git"
-set :wax_branch,      "master"
+set :wax_branch,      "v2-stable"
 
 # =============================================================================
 # TASKS

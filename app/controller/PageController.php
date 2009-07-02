@@ -16,7 +16,7 @@ class PageController extends ApplicationController {
   public $cache_time = 3600; //default cache time of 1 hour
   public $guild_name = "Deja Vu";
   public $server_name = "Azuremyst";
-  public $guild_ranks = array("Guild Master","Officer","Officer Alt","Raider","Member","Trial","Initiate","Alt");
+  public $guild_ranks = array("Guild Master","Officer","Officer Alt","Raider","Member","Initiate","NOT USED","Alt");
   public $display_ranks = array(1,3,4,5,6,7,8);
   public $display_item_slots = array(0,2,4,5,6,7,8,9,14,15,16,17);
   public $counted_item_slots = array(0,1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17);
@@ -44,7 +44,7 @@ class PageController extends ApplicationController {
   
   public function recruitment(){
     $this->rec_form = new WaxForm();
-    $this->rec_form->add_element("Age", "TextInput");
+    $this->rec_form->add_element("age", "TextInput");
     $this->rec_form->add_element("english_level", "TextInput", array('label'=>'How well do you speak english'));
     $this->rec_form->add_element("name", "TextInput", array("label"=>"Character Name"));
     $this->rec_form->add_element("class", "TextInput", array('label'=>"Character Class"));
@@ -54,7 +54,8 @@ class PageController extends ApplicationController {
     $this->rec_form->add_element("talents", "TextareaInput", array("label"=>"Your chosen raid talents and why you chose them"));
     $this->rec_form->add_element("previous_guild", "TextareaInput", array("label"=>"Reason for leaving your previous guild"));
     $this->rec_form->add_element("raid_experience", "TextareaInput", array("label"=>"Previous raiding experience (which classes have you played in raids, and to what level of raid)"));
-    $this->rec_form->add_element("computer_internet", "TextareaInput", array("label"=>"What kind of computer do you have, and what kind of internet. (Please mention anything about regular lags here)"));
+    $this->rec_form->add_element("internet", "TextareaInput", array("label"=>"What kind of internet connection do you have. (Please mention anything about regular lags here)"));
+    $this->rec_form->add_element("other_members", "TextareaInput", array("label"=>"Do you know any other members in Deja Vu and what is your replationship to them"));
     $this->rec_form->add_element("about", "TextareaInput", array("label"=>"About Yourself"));
     $this->rec_form->submit_text = "Apply to Guild";
     if($this->rec_form->save()){
@@ -76,7 +77,7 @@ class PageController extends ApplicationController {
         "body"=>"",
       );
       
-      foreach(array_diff_key($this->rec_form->post_data,array("submit"=>"")) as $name => $value) $forum_data_row['body'] .= "[b][size=large]" . $this->rec_form->elements[$name]->label . " :[/size][/b]\n" . $value . "\n\n";
+      foreach($this->rec_form as $name => $element) $forum_data_row['body'] .= "[b][size=large]" . $element->label . " :[/size][/b]\n" . $element->value . "\n\n";
       
       $forum_model = new WaxModel;
       $forum_model->table = "phorum_messages";
