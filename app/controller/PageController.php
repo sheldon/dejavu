@@ -42,6 +42,17 @@ class PageController extends ApplicationController {
     
   }
   
+  public function vent(){
+    $this->vent_stat = new CVentriloStatus;
+    $this->vent_stat->m_cmdprog	= "app/lib/ventrilo_status";
+    $this->vent_stat->m_cmdcode	= "2";
+    $this->vent_stat->m_cmdhost	= "hydrogen.typefrag.com";
+    $this->vent_stat->m_cmdport	= "28674";
+    $this->vent_stat->m_cmdpass	= "";
+    
+    if($this->vent_stat->Request()) $this->vent_stat = false;
+  }
+  
   public function recruitment(){
     $this->rec_form = new WaxForm();
     $this->rec_form->add_element("age", "TextInput");
