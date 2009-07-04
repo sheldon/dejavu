@@ -1,1 +1,10 @@
-<?print_r($vent_stat); print_r($vent_return);?>
+<?if($vent_stat):?>
+<div id="vent_status">
+<p>Who's on ventrilo:</p>
+<ul>
+<?foreach($vent_stat->m_clientlist as $client):?>
+<li><?=$client->m_name?></li>
+<?endforeach?>
+</ul>
+</div>
+<?endif?>

@@ -50,7 +50,7 @@ class PageController extends ApplicationController {
     $this->vent_stat->m_cmdport	= "28674";
     $this->vent_stat->m_cmdpass	= "";
     
-    $this->vent_return = $this->vent_stat->Request();
+    if($this->vent_stat->Request()) $this->vent_stat = false;
   }
   
   public function recruitment(){
