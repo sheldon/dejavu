@@ -1,10 +1,12 @@
 <?if($vent_stat):?>
 <div id="vent_status">
 <p>Who's on <a href="ventrilo://<?=$vent_stat->m_cmdhost?>:<?=$vent_stat->m_cmdport?>/servername=<?=$vent_stat->m_name?>">ventrilo</a>:</p>
+<?if($vent_stat->m_clientlist):?>
 <ul>
 <?foreach($vent_stat->m_clientlist as $client):?>
 <li><?=$client->m_name?></li>
 <?endforeach?>
 </ul>
+<?endif?>
 </div>
 <?endif?>
