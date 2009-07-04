@@ -42,7 +42,8 @@ class PageController extends ApplicationController {
     
   }
   
-  public function vent(){
+  public function vent_status(){
+    $this->use_layout = false;
     $this->vent_stat = new CVentriloStatus;
     $this->vent_stat->m_cmdprog	= APP_LIB_DIR."ventrilo_status";
     $this->vent_stat->m_cmdcode	= "2";
