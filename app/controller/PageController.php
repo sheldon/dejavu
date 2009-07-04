@@ -44,7 +44,7 @@ class PageController extends ApplicationController {
   
   public function vent(){
     $this->vent_stat = new CVentriloStatus;
-    $this->vent_stat->m_cmdprog	= "../app/lib/ventrilo_status";
+    $this->vent_stat->m_cmdprog	= APP_LIB_DIR."ventrilo_status";
     $this->vent_stat->m_cmdcode	= "2";
     $this->vent_stat->m_cmdhost	= "hydrogen.typefrag.com";
     $this->vent_stat->m_cmdport	= "28674";
