@@ -63,7 +63,7 @@ a:hover{
 }
 #navigation a:hover {background-position: 0 bottom;}
 .horizontal #navigation a {float: left;}
-#more_information {padding-top: 15px;}
+#more_information , #vent_status {padding-top: 15px;}
 #middle_column {
   float: left;
   width: 50%;
